@@ -13,17 +13,20 @@ m = "treimi"
 ok = 0
 if(len(n) != len(m)):
     print('nu')
-else:
-    for i in range(len(n)):
-        for j in range(len(m)):
-            if(n[i] == m[j]):
-                m = m[:j]+m[j+1:]
-                ok = 1
-                j = 0
-                break
-        if(not ok):
-            print('nu')
-            break
+# else:
+#     for i in range(len(n)):
+#         for j in range(len(m)):
+#             if(n[i] == m[j]):
+#                 m = m[:j]+m[j+1:]
+#                 ok = 1
+#                 # j = 0
+#                 break
+#         if(not ok):
+#             print('nu')
+#             break
+for i in n:
+    if i in m:
+        m.replace(i,"",1)
 if(len(m)):
     print('no')
 else:

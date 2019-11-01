@@ -4,5 +4,6 @@ Scrieți un program care citește propoziția, șirul greșit și șirul corect,
 corectă. De exemplu, în propoziția “Problemele cu șiruri de caractedf nu sunt gdfle!” greșeală constă
 în faptul că în loc de șirul “re” a fost scris șirul “df”.
 '''
-corect = input()
+# corect = input()
 gresit = input()
+print(gresit.replace("df","re",-1))
