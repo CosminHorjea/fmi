@@ -1,0 +1,56 @@
+Siruri de caractere
+tinyurl.com/asc-lab-2019
+
+- tablouri unidimensionale de elemente de tip /byte/
+- sunt finalizate cu '\0'
+P1: Sa se determine lungimea unui sir de caractere
+'''
+.data
+	str : .asciiz "Sir de caractere"
+.text
+main:
+	li $t0,0 #pt loca de memorie
+	lb $t1,str($t0)
+	loop:
+		beqz $t1,exit
+		addi $t0,1
+		db $t1,str($t0)
+		j loop
+	exit:
+		move $a0,$t0
+		li $v0,1
+		syscall
+		li $v0,10
+		syscall # nu cred ca merge, debug acasa
+'''
+
+PRINT BYTE : 11 # li $v0 11
+'''
+.data
+	ch : .byte 'a'
+.text
+main:
+	lb $a0,ch
+	li $v0,11
+	syscall
+	li $v0,10
+	syscall
+	'''
+READ STRING
+$a0 : dau adresa de memorie la care vreau sa stochez sirul citit
+$a1 : dimensiunea max a sirului de charactere
+$v0 : 8
+'''
+.data
+	str: .space 100
+.text
+	la $a0,str
+	li $a1,99
+	li $v0,8
+	syscall
+	la $a0,str
+	li $v0,4
+	syscall
+	li $v0,10
+	syscall
+'''
