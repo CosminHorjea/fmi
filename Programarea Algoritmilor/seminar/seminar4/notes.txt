@@ -1,0 +1,55 @@
+Heaps : -arbore binar complet(mai putin ultimul nivel)
+	-pot sa il reprezint in vector
+	-v[i]-> copiii: v[2*i-1] si v[2*i-2]
+		 -> tatal: v[(i-1)/2]
+	MinHeap : un heap in care val tatalui este mai mica decat valorile fiecarui fiu
+Complexitate:
+	Fie n lungimea unui input si f(n) numarul de instructiuni efectuat de algoritm pt un input de lungime n
+	n apartine N*
+	clase de complexitate : O, OMEGA Ω, TETHA Θ
+
+	lim(n->inf) sup f(n)/g(n)
+	-la O, ne intereseaza sa gasim un g(n) a. i. g sa se apropie asimptotic de f
+	#http://fmi.unibuc.ro/ro/pdf/2019/admitere/licenta/FMI_Complexitate_2019.pdf
+	#really not that useful
+	-la O(logN), nu punem baza pt ca am inmulti cu o constanta, deci nu conteaza
+
+	-Ω
+		f(n) ∈ Ω(g(n))
+		∃ 'c1','c2','n0'-> constatnte pozitive
+		a. i. f(x)>= c1 g(x)+c2 ∀ n>= n0
+		lin(n->inf)f(n)/g(n) >0
+		∃ g a. i. f(n) e
+			f(n) ∈ O(g(n)) | =>f(n)∈O(g(n))
+			f(n) ∈ Ω(g(n)) |
+		n^2+nlogn >= n^2
+			nlogn >= 0
+Exercitii:
+1)Fie M a i fiecare linie a matricei e sortata cresc si foecare coloana crescator de sus in jos:
+
+3 ,8 ,12,20,50,60
+6 ,10,15,22,55,62
+12,13,
+18,20,22,
+
+
+-O(n^2)- cautare secventiala
+-O(nlogn)-cautare binara pe linii
+-O(n+m)- incep din dreapta sus, daca valoarea e mai mica ma duc in stanga, daca e mai mare merg in jos
+-> seminarPart1.py # aici facem din stanga jos
+2) Fibbonacci
+-calculez tot sirul -> O(n)
+A=[ [1,1],
+	[1,0] ]
+A^n=[[fib(n),fib(n+1)]
+	 [fib(n),fib(n-1)]]
+A^(n+1)=[[fib(n),fib(n+1)] * [[1,1] = [[fib(n)+fib(n-1)  ,fib(n)]
+	 	[fib(n),fib(n-1)]]	 [1,0]]	   [fib(n-1)+fib(n-2),fib(n-2)]
+	   =[[fib(n+1), fib(n)]
+	    [fib(n),fib(n-2) ]]
+A^n=A*A*A*.........A
+	[.......][------]
+	   n//2    n-n//2
+Ridicam la putere logaritmic, o data partea n//2 si n-n//2
+	*Calculez o singura data puterea, un fel de prog dinamica
+seminarPart2.py
