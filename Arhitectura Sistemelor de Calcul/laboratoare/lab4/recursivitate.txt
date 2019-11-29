@@ -1,0 +1,202 @@
+#Proceduri
+
+Sa se implementeze perfect(x) x apartine R, care sa retruneze prin v0, 0 daca x nu este perfect, 1 altfel
+perfect -> x = suma divizorilor d, d!=x
+
+'''
+.data
+	x: .word
+.text
+perfect:
+	subu $sp,4
+	sw $fp,0($sp)
+	#sp($fpv)(x)
+	addi $fp,$sp,4
+	#sp:($fpv)($fp)(x)
+	subu $sp,4
+	sw $s0,0($sp)
+	lw $s0,0($fp)
+	div $t0,$s0,2
+	li $t1,1
+	li $t2,0
+	loop:
+		bgt $t1,$t0,exit
+		rem $t3,$s0,$t1
+		beqz $t3, eDivizor
+	cont:
+		addi:$t1,1
+		j loop
+eDivizor:
+	add $t2,$t2,$t1
+	j cont
+exit:
+	seq $v0,$s0,$t2 #pune 1 in v0 daca s0 == t2 altfel 0
+	lw $s0,-8($fp)
+	lw $fp,-4($fp)
+	addu $sp,8
+	ja $ra
+main:
+	lw $t0,x
+	subu $sp,4
+	sw $t0,0($sp)
+	jal perfect
+	addu $sp,4
+	move $a0,$v0
+	li $v0,1
+	syscall
+	li $v0,10
+	syscall
+https://tio.run/##ZVHBjoMgED3LV0xSDzaxBt0eGpPe@iNUcYNBoYLU7c@7A7J2s3uQ8OY9ZuY9jRbDuhYts4wkSw3FU00tKSxfLNF86nhja5KY@T5DanR@xvsT0k7nNEN8JMnB6AyxO2YLIta2ItBRjGwdaTw3zd9mhu7N5A47D1vhILU097UKWWxty7yMtyqneFNK44LJ/dMG0sv5IiyWJj5g6SO8RsqL@OMVSsBvwomXmkjSqNE7DJvXsX3Sg@9LflR1MBZGbh9qevAviZ/lA@IPSB2Nsyo46HnkUIIYwVFoWcPAULheATkmbccl0N3u6RL9yi3a0zliHLoldcF5DNKJkYGJsd6U6HT5n6Z9p9kzCfEf/uqFukE5DinDVR3dwsTV0ZP5Mg2T8l2ie21dvwE
+'''
+
+#Apeluri imbricate  (j $ra)
+ ex: funcia f(x)=2g(x)
+ 			g(x)=x+1
+'''
+.data
+	x:.word 5
+.text
+g:
+	subu $sp,4
+	sw $fp,0($sp)
+	addi $fp,$sp,4
+	subu $sp,4
+	sw $s0,0($sp)
+	lw $s0,$0($fp)
+	#sp,($s0v)($fpv)($fp:(x))
+	addi $v0,$s0,1
+	lw $s0,-8($fp)
+	lw $fp,-4($fp)
+	addi $sp,8
+	jr $ra
+f:
+	subu $sp,4
+	sw $fp,0($sp)
+	addi $fp,$sp,4
+	subu$sp,4
+	sw $ra,0($sp)
+	subu $sp,4
+	sw $s0,0($sp)
+	# ($s0)($rav)($fpv)($fp(x))
+	lw $s0,0($fp)
+	subu $sp,4
+	sw $s0,0($sp)
+	jal g
+	addu $sp,4
+	mul $v0,$v0,2
+	lw $s0,-12($fp)
+	lw $ra,-8($fp)
+	lw $fp,-4($fp)
+	addu $sp,12
+	jr $ra
+	
+main:
+	lw $t0,x
+	subu $sp,4
+	sw $t0,0($sp)
+	jal f
+	addu $sp,4
+	move $a0,$v0
+	li $v0,1
+	syscall
+	li $v0,10
+	syscall
+https://tio.run/##lZHbCoMwDIav26co2AsFlSoOhm@TzQNK3cRW557eRat1BxB20dI/@Zr@SVVbNdMUZqCBkjENH/cuYyca6nzUtEwpUf2lZ1y1foLnB@NF6wsXtUcJZFm1BLb0F6qERaWRHHUxaweprcCAccxFlgrOKyXNe0GyasPj1TMldcd4B7T43@Ib2YElD8w7DA/CcxEfvNmK2d3R2zvbGjsoU4Nk5WLJEk0vTf@44r3/KH4bAHo8GoipFcV2IoQ2UN1SA2vhj7@m9Kep4svUfcgZh8UVVjE/hL@jnuoKUu4hYWPT9AI
+'''
+
+#Proceduri recursive
+
+x in N x>1
+proc(x)
+=> afisez(x) si proc(x-1),x!=0
+	stop daca x=0
+
+'''
+.data 
+	x:.word 3
+.text
+proc:
+	subu $sp,4
+	sw $fr,0($sp)
+	addi $fp,$sp,4
+	subu $sp,4
+	sw $sp,4
+	subu $sp,4
+	sw $s0,0($sp)
+
+	lw $s0,0($fp)
+	beqz $s0,exit
+	move $a0,$s0
+	li $v0,1
+	syscall
+	addi $s0,-1
+	subu $sp,4
+	sw $s0,0($sp)
+	jal proc
+	addi $sp,4
+exit:
+	lw $s0,-12($fp)
+	lw $ra,-8($fp)
+	lw $fp -4($fp)
+	addu $sp,12
+	jr $ra
+main:
+	lw $t0,x
+	subu $sp,4
+	sw $t0,0($sp)
+	jal proc
+	addu $sp,4
+	li $v0,10
+	syscall
+https://tio.run/##fY9BDoMgFETXcAoWLtoEDdguGm@DgomNVoqotJe3n1aIaWN3zjC@mT/opluWTAorCEauyObeSHLCmVXOYm36qsBoGMuRJIOmZ/ieSVIbyg6gjxgJKRswNA3PX9EdlwUARm3UtQeW6v58G8o1FqOunxRJBAM@gyx0TYxyoDyGSrRtGAD5lP/rQVfREn9O/MOHfEcRJ6Q8X0d4wwiaXja61iQ9rxoQnx6eA9n4MO5Ec1tZllH3O8bujImhcB3bnLcsLw
+'''
+
+#Proceduri pentru manipularea tablourilor unidimensionale(vectori)
+'''
+.data
+	v: .word 3,15,27,9,18,26
+	u: .word 6
+	sp: .byte ' '
+.text
+main:
+	lw $t0,n
+	sw $t0,0($sp)
+	la $t0,v
+	subu $sp,4
+	sw $t0,0($sp)
+	jal afis
+	addu $sp,8
+	li $v0,10
+	syscall
+afis:
+	subu $sp,4
+	sw $fp,0($sp)
+	addi $fp,$sp,4
+	subu $sp,4
+	sw $s0,0($sp)
+	subu #sp,4
+	sw $s1,0($sp)
+	lw $s0,0($fp)
+	lw $s1,4($fp)
+	li $t0,0
+	loop:
+		bge $t0,$s1,exit
+		lw $a0,0($s0)
+		li $v0,1
+		syscall
+		lb $a0,ch
+		li $v0,11
+		syscall
+		addi $s0,4
+		addi $t0,1
+		j loop
+exit:
+	lw $s1,-12($fp)
+	lw $s0,-8($fp)
+	lw $fp,-4($fp)
+	addu $sp,12
+	jr $ra
+
+https://tio.run/##ZZHRboMwDEWfyVdEGlJXyaCE0Y3xN6HAloqWiATafj1zkiVl65uv78G@DlrJ87rmrTCCJEtN8@s4tfQN@AGKD/gEXkHxTpI5OFhrhaK5m47u6I7kprsZchbyUpNkuNLUMLgg5Cv2mmq1R0M4uaAxNzPFJpRP0EkMVPRSk0S0rYcq/FTSdGHAGfJ3fRTDQCxUP4/qVRyFA6RrBPsfqh9bnfWysfgjdST7KDmUQUqfHqtxVJgnab4617JUd5MGW/Yb4ZexvdW/12AZrsFm46Dj9wb4S/h7MEsZhfFTTtRuJ3ZdHSNmvNhmZpBVG43PkoUj4kvzAn/ARNNJkHX9AQ
+
+'''
