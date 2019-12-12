@@ -1,0 +1,26 @@
+:(
+se aplica atunci cand solutia = (s1,s2,...,sp) unde s1 apartine A1, s2 apartine A2 ..... sp apartine Ap
+de multe ori A1=A2=....Ap-multimi ordonate si p nu se cunoaste preoric(inainte)
+-se bazeaza pe cautare sau stiva
+- se adauga la constructie primul element #eligibil# din A1, la pasul K se adauga primul elemnt #eligibil# din Ak, daca exista, daca nu se intoarce la k-1 si se inlocuieste cu succesorul din Ak-1
+Daca am ajuns la pasul p -> afisez solutia
+
+Exista 3 tipuri de probleme la care BT e util:
+1. Problema de decizie -> existenta unui ciclu hamiltonian
+2. Problemele de optim -> Problema comis voiajorului 
+3. Probleme de enumerare -> Problema colorarii hartilor
+
+Sablon de lucru:
+ Problema data; D-> instanta de date
+ C-> Constrangeri pt solutie;
+ S->solutia oferita
+
+ Pasii:
+ 0. S= multimea vida
+ 1. Adaugam la S pe s primul element din  multimea de candidati
+ 2. Verificam daca S + s respecta pe C
+ 		daca DA atunci: revin la pasul 1 cu argumentul S+s 
+ 		daca NU , renunt la s din multimea candidatilor, revin la pasul 1 cu argumentul S
+ 3. Daca S+s este valid, este si solutie
+ 	output: S+s
+ Exemple la PC:

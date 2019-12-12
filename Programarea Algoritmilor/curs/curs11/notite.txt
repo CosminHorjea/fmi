@@ -1,0 +1,28 @@
+3)Mediana a doi vectori sortati de lungimi diferite:
+# https://www.geeksforgeeks.org/median-two-sorted-arrays-different-sizes-ologminn-m/
+
+4) Problema Medianei Ponderate (weighted median)
+Vector de perechi de tip e(pondere,valoare), valori distincte pozitive
+Suma ponderilor este 1
+				 |
+                 v
+3   ,5    ,6    ,12  ,15  ,16  ,20
+0.1 ,0.12 ,0.08 ,0.2 ,0.1 ,0.1 ,0.3
+Suma ponderelor elementelor cu valoarea mai mica deact a elementului elementului pe care il caut este mai mica deacto 0.5 iar pt cele mai mari este mai mare, 
+
+# https://en.wikipedia.org/wiki/Weighted_median
+Demonstratie: reducere la absurd
+T(n)= 1*T(n/2)+O(n)
+
+5)Problema cu gauri
+#http://fmi.unibuc.ro/ro/pdf/2019/admitere/licenta/FMI_Divide_et_Impera_II_2019.pdf pg 16
+Sa se gaseasca ce mai mare suprafara dreptunghiulara lipsita de gauri
+
+T(N)=4T(N/2)+O(N)
+
+6) Determinarea perechii de puncte aflate la distanata minima
+- am un plan cu n puncte
+- sa se gaseasca acele doua puncte cu distanta cea mai mica
+-
+
+T(N)=2T(N/2)+O(N)
