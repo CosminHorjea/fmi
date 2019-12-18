@@ -1,0 +1,59 @@
+# sa se parcurga recursiv un vector si pentru fiecare element sa se afiseze reprezentrarea binara
+
+parcurgere:
+	 #sp: (*v)(n)
+	 subu $sp,4
+	 sw $fp,0($sp)
+	 addi $fp,$sp,4
+	 subu $sp,4
+	 sw $ra,0($sp)
+	 subu $sp,4
+	 sw $s0,0($sp)
+	 subu $sp,4
+	 sw $s1,0($sp)
+	 $sp:($s1v)($s0v)($rav)($fpv)$fp:(*v)(n)
+	 lw $s0,0($fp)
+	 lw $s1,4($fp)
+	 li $t0,0
+	 for:
+	 	bge $t0,$s1,exit
+	 	lw $t1,0($s0)
+	 	subu $sp,4
+	 	sw $t1,0($sp)
+	 	jal afisare_binar
+	 	addu $sp,4
+
+	 	li $a0,'\n'
+	 	li $v0,11
+	 	syscall
+	 	addi $t0,1
+	 	addi $s0,4
+	 	j for
+	 exit_parcurgere:
+	 	lw $s1,-16($fp)
+	 	lw $s0,-12($fp)
+	 	lw $ra,-8($fp)
+	 	lw $fp,-4($fp)
+	 	addu $sp,16
+	 	jr $ra
+afis_binar:
+	subu $sp,4
+	sw $fp,0($sp)
+	addi $fp,$sp,4
+	subu $sp,4
+	sw $s0,0($sp)
+	$sp: ($s0v)($fpv)$fp:(x)
+	lw $s0,0($fp)
+	while:
+		beqz $s0, exit_afis_binar
+		rem $t0,$s0,2
+		move $a0,$t0
+		li $v0,1
+		syscall
+		div $s0,$s0,2
+		j while
+	exit_afis_binar:
+	lw $s0,-8($fp)
+	lw $fp,-4($fp)
+	addu $sp,8
+	jr $ra
