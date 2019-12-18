@@ -1,0 +1,76 @@
+notite.txt
+18.12.2019
+
+1) Bordurarea unei matrice cu piese de L
+cu exceptia unui punct p=(x,y)
+# tutoriate/deaconu/divide.py
+# https://www.geeksforgeeks.org/tiling-problem-using-divide-and-conquer-algorithm/
+
+Practic am un punct si trebuie sa pun piese de forma L a i sa acopar toata matricea mai putin un punct, merg in mijloc, pun o piesa si impart problema in 4 subprobleme
+
+Complexitate: N^2( n lungimea unei laturi)
+
+2)Z parcurgere
+	a) matrice 2^n si completez cu numerele 1....2^n
+	 III| I      11  9  3  1
+	--------- => 10 12  2  4
+	 II	| IV      7  5 15 13
+	 			  6  8 14 16
+	B) se da o matrice de forma de sus, si o regula de completare, sa se gaseasca pozitia elemntului X
+	- nu generez toata matricea, generez doar patratele unde se afla numarul(in primul cardan sunt el de la 1 la 2^(n-2)),si asta iese in timp log
+	complexitate:O(log_4 S) apartine O(n)
+3) Problema Rucascului Divide
+Knapsack(V,G):
+	piv = v[0]
+	Dr=[]; SDr=0 , st=[];SSt=0
+	for i in V[1:]
+		if e.p/e.g > piv.p/piv.g:
+			Dg.append(e)
+			SDr+=e.g
+		else:
+			St.append(e)
+			SSt+=e.g
+	if sDr<G and SDr+piv.g>=G:
+		return Dr+ (G-SDr)/piv.g +piv
+	if SDr>G
+		return knapsack(Dr,g)
+	return Dr+piv+Knapsack(st,G-(piv.g+SDr))
+Complexitate: T[n]=T[n/2]+f(n)  (f(n)apartine lui O(n))
+
+Trebuie sa dem ca exista un K constant a i T[n]<=k+n pt orice n>=n0
+Inductie: Pp ca T[k]<=k+x pt x<n
+	pt x=1
+	T[1]<=k
+
+=> prin inductie T[n]<= k*n =>> T[n] apartine O(n)
+
+4)Gasirea celui de al k-lea min dintr-un vector
+	a) sortam crescator si selectem el de pe pozitia k-1
+	a> cautam k=1 minim si il eliminam, a k parcurgere ofera raspunsul
+
+	b) folosing un minheap
+		- construiesc un minheap O(n) #https://www.growingwiththeweb.com/data-structures/binary-heap/build-heap-proof/
+		- de k-1 ori scot radacina O(logn)
+		- elem din radacina e elementul cautat
+			=> O(n+klogN)
+	c) Max_heap
+	-construim O(k)
+	- pt fiecare elem din rest daca > rad
+	TLDR, fac un max heap de lungime k(cu primele k elemente) si adaug pe rand de la k+1 pana la sfarsit, la final radacina e elementul corect
+
+	Complexitate(K+(M-K)*logK)
+
+	d) Quick select(liniar) #https://www.geeksforgeeks.org/quickselect-algorithm/
+		QuickSelect(V,K)
+			pv =v[0]
+			st=[];Dr=[]
+			for e in v[1:]
+				if e<piv : st.append(e)
+				else Dr.append(e)
+			m=log(St)
+			if m==k-1: return p
+			if m>k-1: return QuickSelect(st,K)
+			return QuickSelect(Dr,k-(m+1))
+		Complexitate: O(n) (worst case O(n^2))
+	e) Worst case sa fie liniar #https://www.geeksforgeeks.org/kth-smallestlargest-element-unsorted-array-set-3-worst-case-linear-time/
+	
