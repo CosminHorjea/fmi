@@ -1,0 +1,68 @@
+# 19.12.2019
+examen scris 3 Feb 2020
+examen lab 11 Ian 2020
+-ce facem de aici nu intra la examen lab, dar intra la examen scris
+
+Programare Dinamica:
+
+1. Probleme de optim
+2. Probleme de numarare
+
+problema P , intrare de lungime n
+	-> Ce ar trebuie sa stiu(sau ce respunsuri) ca sa rezolv pe P Pt intrarea n direct
+	-> acele raspunsuri de ce alte probleme depind
+Ex 0 : Sirul lui Fibonacci
+	Fib(n) -> Fib(n-1)
+			  Fib(n-2)->Fib(n-3)
+			  	      ->Fib(n-4)... etc
+			(Arbore de dependenta)
+cod:
+	Fib[0]*(n+1)
+	if(n<=1): print(1)
+	Fib[0]=Fib(1)=1
+	for i in range(2,n+1)
+		Fib[i]=Fib[i-1]+Fib[i-2]
+	print(Fib[n])
+
+Exemple de probleme:
+I: 1) cel mai lung subsir crescator O(n^2)[se poate si O(nlogn) #https://infoarena.ro/problema/scmax]
+   2) cel mai lung subsir de piese de domino
+II: Trasee in matrici
+
+III: Problema Timbrelor( bancnote fara divizibilitate )
+	 Problema rucsacului
+	 Impartirea cadourilor
+IV: -Longest Common Subsequence
+	-distanta de editarea dintrea doua stringuri (Levenstein)
+V : Optimal strategy
+
+I 1) Cel mai lung subsir crescator
+# Catalin Francu, "Psihologia concursurilor de informatica" pg 188
+v: 9,8,2,4,7,6,7,15,10,12,9
+	- Lungimea celui mai lung subsir crescator 
+	T[i]<-lungimea celui mai lung subsir crescator care se termina pe v[i]
+	T[i]= 1+max({T[j]| 0<=j<i si v[i]>v[j]},0)
+
+PseudoCod:
+	pred=[-1]*n // vector de predecesori
+	T=[1]*n
+	for i in range(n):
+		for j in range(i):
+			if v[i]>v[j] and T[i]<T[i]+1:
+				T[i]=T[j]+1
+				pred[i]=j
+II 1) Trasee in matrici:
+Fie M o matrice de dimensiune m*n de numere naturale 
+- un robotel pleaca din campul stanga sus al matricei si se deplaseaza un pas in jos sau la dreapta
+-> Ce traseu trebuie sa parcurga robotelul a i suma numerelor campurilor parcurse sa fie maxima
+--> Matrice de sume partiale
+
+T[i][j]<- suma maxima ce se poate obtine ajungand in M[i][j]
+T[i][j]= M[i][j]+max(T[i-1][j]|i>0,T[i][j-1]|j>0)
+T[0][0] = M[0][0]
+
+III. 1) Problema monedelor(timbrelor)
+{1,5,7}, S=13
+T[i]< ultima bancnota folosita pt a ajunge in mod eficient la suna i
+	0 -> daca suma I nu se poate obtine
+TODO : Cauta surse
