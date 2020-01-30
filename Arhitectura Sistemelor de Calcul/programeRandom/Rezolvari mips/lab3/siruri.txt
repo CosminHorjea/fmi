@@ -1,0 +1,120 @@
+Siruri de caractere
+tinyurl.com/usc-lab-2019
+
+- tablouri unidimensionale de elemente de tip /byte/
+- sunt finalizate cu '\0'
+P1: Sa se determine lungimea unui sir de caractere
+'''
+.data
+	str : .asciiz "Sir de caractere"
+.text
+main:
+	li $t0,0 #pt locatia de memorie
+	lb $t1,str($t0)
+	loop:
+		beqz $t1,exit
+		addi $t0,1
+		lb $t1,str($t0)
+		j loop
+	exit:
+		move $a0,$t0
+		li $v0,1
+		syscall
+		li $v0,10
+		syscall # nu cred ca merge, debug acasa
+'''
+
+PRINT BYTE : 11 # li $v0 11
+
+'''
+.data
+	ch : .byte 'a'
+.text
+main:
+	lb $a0,ch
+	li $v0,11
+	syscall
+	li $v0,10
+	syscall
+	'''
+READ STRING
+$a0 : dau adresa de memorie la care vreau sa stochez sirul citit
+$a1 : dimensiunea max a sirului de charactere
+$v0 : 8
+
+'''
+.data
+	str: .space 100
+.text
+	la $a0,str
+	li $a1,99
+	li $v0,8
+	syscall
+	la $a0,str
+	li $v0,4
+	syscall
+	li $v0,10
+	syscall
+''' https://tio.run/##ZU5BDsIgEDzDKzh40IQ00JP2BX5jWzDBgNRCavXzuFsSa9LDJjOzM5NJowulNAYyCM5SnjrRpBEGK7RSvMl2yTyAe3SceRAHUBI9iB1iLS@XCmclz5h@pwG8r1JWUmGj7xFqCh1ROqEQ44hlrLfPz/qyi8vIJxuQtpKC7fZvJdxcQg7G1FY6jcKumXFGXioPcbbrWHSQtU7UhH8j9413QeM4o0XdX0xtsVKu1vsoXnHy5gs
+
+Probleme:
+1) Se citeste un sir de caractere de dimensiune maxim 99 sa se afiseze pe ecran caracterele de pe pozitii pare, stiind ca indexarea este de la 0
+2) se da in memorie un sir de caractere, sa se modifica sirul adaugand fiecarui element 1 pe codul ascii
+// ex "abc xyz"->"bcd!yz"
+'''
+1) https://tio.run/##ZU5BDsIgEDzDKzh40IQ00JP2BX5jWzDBgNRCavXzuFsSa9LDJjOzM5NJowulNAYyCM5SnjrRpBEGK7RSvMl2yTyAe3SceRAHUBI9iB1iLS@XCmclz5h@pwG8r1JWUmGj7xFqCh1ROqEQ44hlrLfPz/qyi8vIJxuQtpKC7fZvJdxcQg7G1FY6jcKumXFGXioPcbbrWHSQtU7UhH8j9413QeM4o0XdX0xtsVKu1vsoXnHy5gs
+ .data 
+	str: .space 100
+.text
+main:
+	la $a0,str
+	li $a1,99
+	li $v0,8
+	syscall
+	li $t0,0 
+	lb $t1,str($t0)
+	loop:
+		beqz $t1,exit
+		rem $t2,$t0,2
+		beqz $t2,afis
+		addi $t0,$t0,1
+		lb $t1,str($t0)
+		
+	afis:
+		move $a0,$t1
+		li $v0,11
+		syscall
+		addi $t0,$t0,1
+		j loop
+	exit:
+		li $v0,10
+		syscall
+	2) https://tio.run/##dZDRCoMwDEWf268oTugGReqrf5NqYRWdzhbR7uO7pBu4MfZQyL3JPQn1sxtTqjoIwJkPSyMq8K1zURRgWrHtseCsvZJv9mCFjJJXwW6Bj@BuDWeDE2XQSmNlsKoVQs7oXNCYphknmLH3mFt2cwE1dJ3Lml6NxjitVpSgyXjNZyUfUo2WErRk1aqmrt99C8NwcHRm/GxnvaADGGfIaNibQliQf5GnL2YvygW/hc5uPiL6iKT0BA
+		.data
+	str: .asciiz "abc xyz"
+	chr: .byte 'z'
+.text
+main:
+	li $t0,0
+	lb $t1,str($t0)
+	loop:
+		beqz $t1,exit
+		addi $t1,$t1,1
+		move $a0,$t1
+		beq $a0,'{',met
+		li $v0,11
+		syscall
+		addi $t0,1
+		lb $t1,str($t0)
+		j loop	
+	met:	
+		li $a0,'a'
+		li $v0,11
+		syscall
+		addi $t0,1
+		j loop
+	exit:
+		li $v0,10
+		syscall
+'''
+

@@ -1,0 +1,13 @@
+#Laboratorul 4: 2
+.data
+.text
+main:
+li $t1,2
+li $t2,1
+bgtz $t1,sfarsit
+li $v0,10
+syscall
+sfarsit:
+li $t2,0
+li $v0,10
+syscall

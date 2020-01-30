@@ -1,3 +1,5 @@
+## Curs 9
+
 1)Clasificarea activitatii prin maximizarea profitului total
 n activitati : a1,a2,.....an
 fiecare activitatea are un - deadline

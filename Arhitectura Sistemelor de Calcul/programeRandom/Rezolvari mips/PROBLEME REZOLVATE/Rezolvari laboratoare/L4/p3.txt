@@ -1,0 +1,29 @@
+#Laboratorul 4: 3
+.data
+string1: .asciiz "sir de caractere \n"
+x: .byte 0
+elem: .space 30
+
+.text
+main:
+la $t2,string1
+li $t0,0
+li $t1,0
+
+loop:
+beq $t0,$t2 sfarsit
+addi $t2,1
+addi $t1,1
+li $v0,1
+lb $a0,($t1)
+syscall
+b loop
+
+sfarsit:
+li $v0,1
+lb $a0,($t1)
+syscall
+li $v0,10
+syscall
+
+
