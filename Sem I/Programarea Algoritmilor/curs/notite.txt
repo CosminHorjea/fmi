@@ -1,0 +1,14 @@
+11 Ian examen de lab
+
+2 Probleme
+- 1) sintaxa "Scrieti o functie" sau cv gen
+- 2) o preblema de algoritmica
++ fara internet, pe calculatoarele facultatii, fara materiale de curs
++ timp de lucru 2 ore cu totul(include si predarea surselor)
+~~70 min pt problema de algo, care o sa fie mai grea
+~~ a doua problema cel putin 5 pct
++ iei 5 doar cu partea de sintaxa
+
+Examenul scris:
+- justificarea rezolvarii(corectitudine + complexitate)
+- pseudocod e suficient("Nu sunt fan sa scrieti cod pe foaie"- Popescu 2k19)

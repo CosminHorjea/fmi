@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,  initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    th,
+    td {
+      border: 1px solid black;
+      padding: 5px;
+    }
+
+    td:empty {
+      padding: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      empty-cells: show;
+    }
+  </style>
+
+  <body>
+    <table>
+      <caption>
+        Notele studentilor din echipele 1 si 2
+      </caption>
+      <thead>
+        <tr>
+          <th rowspan="2">Echipa</th>
+          <th rowspan="1" colspan="2">Student</th>
+          <th rowspan="2" colspan="3">Nota/Bonus</th>
+        </tr>
+        <tr>
+          <th>Nume</th>
+          <th>Prenume</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2">1</td>
+          <td>Ionescu</td>
+          <td>George</td>
+          <td>10</td>
+          <td colspan="2">+</td>
+        </tr>
+        <tr>
+          <td>Georgescu</td>
+          <td>Ion</td>
+          <td>10</td>
+          <td>+</td>
+          <td>+</td>
+        </tr>
+        <tr>
+          <td rowspan="3">2</td>
+          <td>Teodor</td>
+          <td>Teo</td>
+          <td colspan="3">10</td>
+        </tr>
+        <tr>
+          <td>Gogu</td>
+          <td>Gogu</td>
+          <td>10</td>
+          <td>+</td>
+          <td>+</td>
+        </tr>
+        <tr>
+          <td>Tache</td>
+          <td>Bob</td>
+          <td>10</td>
+          <td colspan="2">+</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="6">Concluzie: 2 echipe(5 studenti)</td>
+        </tr>
+      </tfoot>
+    </table>
+    <br />
+    <!--Tabel 2-->
+    <table>
+      <tr>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+        <td colspan="2"></td>
+        <td rowspan="2" colspan="2"></td>
+      </tr>
+      <tr>
+        <td colspan="3"></td>
+        <td colspan="3" rowspan="2"></td>
+      </tr>
+      <tr>
+        <td colspan="3"></td>
+        <td colspan="2"></td>
+      </tr>
+    </table>
+  </body>
+</html>

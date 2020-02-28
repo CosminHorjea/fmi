@@ -1,0 +1,51 @@
+#Laboratorul 4: 4
+.data
+string1: .asciiz "Dati numarul de elemente \n"
+string2: .asciiz "Dati elementele \n"
+n: .word 0
+s: .word 0
+elem:  .space 64
+
+.text
+main:
+
+li $v0,4
+la $a0,string1
+syscall
+
+li $v0,5
+syscall
+
+sw $v0,n
+
+lw $t0,n
+li $t1,0
+li $t5,0
+la $t2,elem
+
+li $v0,4
+la $a0,string2
+syscall
+
+
+loop:
+beq $t0,$t1,sfarsit
+addi $t1,1
+li $v0,5
+syscall
+sw $v0,($t2)
+bltz $v0 salt_eticheta
+add $t5,$t5,$v0
+salt_eticheta:
+addi $t2,4
+b loop
+
+sfarsit:
+sw $t5,s
+li $v0,1
+la $a0,s
+syscall
+
+mfc0 $t8,$9
+li $v0,10
+syscall

@@ -1,0 +1,9 @@
+#Laborator 2: 1.1
+.data
+.text
+main: 
+div $t4,$t1,$t2
+rem $t5,$t1,$t2
+mulo $t3,$t4,$t5
+li $v0,10
+syscall

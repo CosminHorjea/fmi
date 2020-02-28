@@ -1,0 +1,9 @@
+#Laboratorul 2: 3.1
+.data
+.text
+main:
+li $t1,4
+ori $t0,$0,0x1234
+sll $t2,$t0,$t1
+li $v0,10
+syscall

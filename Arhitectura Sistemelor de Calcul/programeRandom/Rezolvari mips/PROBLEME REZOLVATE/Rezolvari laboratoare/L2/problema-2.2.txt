@@ -1,7 +1,0 @@
-#Laboratorul 2: 2.2
-.data
-.text
-main:
-ori $t1,$0,0x25
-li $v0,10
-syscall

@@ -1,0 +1,124 @@
+#Proceduri
+
+$s0->$s7 registri salvati
+$sp      stack pointer
+$fp      frame pointer
+$ra      return adress
+
+jal (jump and link)
+jal et
+jr  (jump to register)
+jr $ra
+
+cand folosesc $s0-7 intr-o procedura trebuie sa restaurez valoarea cand ies din procedura
+
+Operatii pe stiva
+Push:
+	subu $sp,4
+	sw $t0,0($sp) #varful stivei
+	#$sp:($t0)
+	subu $sp,4
+	sw $t1,0($sp)
+	#$sp;($t1)($t0)
+Pop:
+	addu $sp,8 #2*4 =8 2 elemente
+
+'''
+Suma a doua nr:
+.data
+	x: .word 17
+	y: .word 35
+.text
+suma:
+	subu $sp,4
+	sw $fp,0($sp)
+	#$sp:($fpv)(x,y)
+	add $fp,$sp,4
+	#$sp:($fpv)$fp(x)(y) #standard in orice functie pana aici
+	subu $sp,4
+	sw $s0,0($sp)
+	subu $sp,4
+	sw $s1,0($sp)
+	#$sp:($s1v)($s0v)($fpv)$fp(x)(y)
+	lw $s0,0($fp)
+	lw $s1,4($fp)
+	add $v0,$s0,$s1
+	lw $s1,-12($fp)
+	lw $s0,-8($fp)
+	lw $fp,-4($fp)
+	addu $sp,12
+	jr $ra
+	
+main:
+	lw $t0,y
+	subu $sp,4
+	sw $t0,0($sp) #push(y)
+	lw $t0,x
+	subu $sp,4
+	sw $t0,0($sp)#push(x)
+	jal suma
+	addu $sp,8
+	move $a0,$v0
+	li $v0,1
+	syscall
+	li $v0,10
+	syscall
+#Samabatamama
+
+'''
+Tema : O procedura care calculeaza suam de la x->y
+ex 3,5
+return 3+4+5
+-se schimba doar numele procedurii
+
+/// https://tio.run/##fVLLboMwEDzjr1gpHEByIjtN1Ii/2QBRjXhY2BDz9XTBMaWN1IMNM8zuzK4wWjXzfCrQIotcBqdn1xcgP1k0BfBxZSdbOsvM0GDGIjPcB4iN5hd6f0L80FwkhFMWHeiRJcSMaeL4RAwWxap46XcCuhKXJlMKB2OxLZCsVAtdr/ISHkObW1WCxhYBVa7ebY3YbN8@yb@JjKREVLLcv8xZVG@9HjpAyS8v2HRjCbEVNICgj12naQN@Kiu5P8IzyuvoSCLubaiTvHTKElXBUs8o1Fo/rk0XweZ6lOd9DMGPtx2mNR5DLurgR5ZnFlU9xD2yxSZjIYpPJ8MIi5slVK3SBlWb@a6UcXpfoQ3bhYMezNe2KeLdP2ovdiSusIblh9lFvYUsSFnGZZ1qzUWpzGRyrOsfSuy4ef4G
+.data
+	x: .word 17
+	y: .word 35
+.text
+suma:
+	subu $sp,4
+	sw $fp,0($sp)
+	#$sp:($fpv)(x,y)
+	add $fp,$sp,4
+	#$sp:($fpv)$fp(x)(y) #standard in orice functie pana aici
+	subu $sp,4
+	sw $s0,0($sp)
+	subu $sp,4
+	sw $s1,0($sp)
+	#$sp:($s1v)($s0v)($fpv)$fp(x)(y)
+	lw $s0,0($fp)
+	lw $s1,4($fp)
+	move $t0,$s0
+	loop:
+		add $t1,$t1,$t0
+		addi $t0,$t0,1
+		bne $t0,$s1,exit
+		j loop
+
+	#add $v0,$s0,$s1
+	lw $s1,-12($fp)
+	lw $s0,-8($fp)
+	lw $fp,-4($fp)
+	addu $sp,12
+	jr $ra
+exit:
+	addi $t1,$t1,1
+	move $v0,$t1
+	j $ra
+main:
+	lw $t0,y
+	subu $sp,4
+	sw $t0,0($sp) #push(y)
+	lw $t0,x
+	subu $sp,4
+	sw $t0,0($sp)#push(x)
+	jal suma
+	addu $sp,8
+	move $a0,$v0
+	li $v0,1
+	syscall
+	li $v0,10
+	syscall
+	
+///

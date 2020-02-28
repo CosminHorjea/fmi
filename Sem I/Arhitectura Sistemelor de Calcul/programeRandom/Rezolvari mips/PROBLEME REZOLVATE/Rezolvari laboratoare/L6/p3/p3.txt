@@ -1,0 +1,80 @@
+#Lab6:3(c)
+.data
+string1: .asciiz "Dati numarul de elemente al sirului .\n"
+string3: .asciiz "Dati sirul.\n"
+string2: .asciiz "sirul este:\n"
+string4: .asciiz "\n"
+n: .word 0
+elem: .space 64
+.text
+proc:
+li $t1,0
+li $t3,'a'
+li $t4,'A'
+la $t2,elem
+subprogram:
+beq $t1,$t0,sfarsit
+addi $t1,1
+lb $t6,($t2)
+ beq $t6,$t3,mic
+beq $t6,$t4 ,mare
+addi $t2,1
+j subprogram
+
+mic:
+sb $t4,($t2)
+addi $t2,1
+j subprogram
+mare:
+sb $t3,($t2)
+addi $t2,1
+j subprogram
+
+sfarsit:
+jr $ra
+
+main:
+li $v0, 4
+la $a0,string1
+syscall
+li $v0, 5
+syscall
+sw $v0, n
+lw $t0,n 
+li $t1,0
+la $t2, elem
+li $v0, 4 
+la $a0,string3
+syscall
+loop:
+beq $t0,$t1,end_loop
+addi $t1,1 
+li $v0, 12 
+syscall
+sb $v0, ($t2) 
+addi$t2,1 
+b loop
+end_loop:
+li $v0, 4
+la $a0,string4
+syscall
+li $t1,0
+
+jal proc
+
+li $v0, 4
+la $a0,string2
+syscall
+li $t1,0
+la $t2, elem
+loop_afisare: 
+beq $t0,$t1,end_loop_afisare
+addi $t1,1 
+lb $a0,($t2) 
+li $v0,11
+syscall
+addi $t2,1
+b loop_afisare
+end_loop_afisare:
+li $v0,10 
+syscall

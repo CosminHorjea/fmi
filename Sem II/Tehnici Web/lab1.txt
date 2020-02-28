@@ -1,0 +1,10 @@
+irinaciocan.ro
+	- de inregistrat
+Grup de Facebook - Tehnici_web_2019_2020_s2
+
+4p Lab -3p proiect -1p Html+css (sapt 6)
+				   -1p javascript (client-side) (sapt 10)
+				   -1p node.js (server-side) (sapt 14-15ish)
+	   Tema Site-ului alegem o tema pana in sapt 2
+	   -1p activitate
+6p Examen 

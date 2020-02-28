@@ -1,0 +1,117 @@
+.data
+	v: .word 6 , 25, 13 , 12, 10, 30 26 39 5
+	n: .word 9
+	r: .word 24
+.text
+j main
+modif:
+	subu $sp,$sp, 4
+	sw $fp, 0($sp)
+	addi $fp, $sp, 4
+
+	subu $sp,$sp, 4
+	sw $ra, 0($sp)
+
+	subu $sp,$sp, 4
+	sw $s0, 0($sp)
+
+	subu $sp,$sp,4
+	sw $s1,0($sp)
+
+	subu $sp,$sp,4
+	sw $s2,0($sp)
+
+	lw $s0,0($fp) # *v
+	lw $s1,4($fp) # n
+ 	lw $s2,8($fp) # r
+
+ 	for:
+ 		beqz $s1 exit_modif
+ 			li $t5,5
+ 			lw $t6,0($s0)
+
+ 			rem $t3, $t6,$t5
+ 			bnez $t3,cont1
+ 			jal suma_div_proprii
+	
+ 			sw $v0,0($s0)
+ 		cont1:
+ 		addi $s0,$s0,1
+ 		j for
+
+
+exit_modif:
+	lw $s2, -20($fp)
+	lw $s1, -16($fp)
+	lw $s0, -12($fp)
+	lw $ra, -8($fp)
+	lw $fp, -4($fp)
+	addu $sp,$sp, 20
+	jr $ra
+
+suma_div_proprii:
+	subu $sp,$sp, 4
+	sw $fp, 0($sp)
+	addi $fp, $sp, 4
+
+	subu $sp,$sp, 4
+	sw $ra, 0($sp)
+	
+	subu $sp,$sp,4
+	sw $s0,0($sp)
+
+	lw $s0,0($fp)
+	li $v0,0
+	li $t8,2
+	for2:
+		beq $t8,$s0,exit_suma
+		rem $t9,$s0,$t8
+		bnez $t9,cont
+		add $v0,$v0,$t8
+	cont:
+		addi $t8,$t8,1
+		j for2
+	j exit_suma 
+
+exit_suma:
+	lw $s0, -12($fp)
+	lw $ra, -8($fp)
+	lw $fp, -4($fp)
+	addi $sp,$sp, 12
+	jr $ra
+
+main:
+	la $t0,v
+	lw $t1,n
+	lw $t2,r 
+
+
+
+	subu $sp,$sp,4
+	sw $t2,0($sp) #push r
+
+	subu $sp,$sp,4
+	sw $t1,0($sp) #push n
+
+	subu $sp,$sp,4
+	sw $t0,0($sp) #push *v
+
+	jal modif
+
+	addu $sp,$sp,8 #eliberez stiva
+	
+	lw $t1,n
+	lw $t2,1
+	forAfis:
+		beq $t2,$t1,exit
+		lw $a0,0($t0)
+		li $v0,1
+		syscall
+		addi $t2,$t2,1
+		j forAfis
+		
+
+
+exit:
+	li $v0,10
+	syscall

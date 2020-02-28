@@ -1,0 +1,81 @@
+https://www.cs.princeton.edu/courses/archive/spring07/cos423/lectures/greed-dp.pdf	# sunt cam aceleasi probleme pe care le-a facut la curs, cu dem si cu tot
+# Metoda Greedy
+- se aplica pe o problema unde solutiile trebuie sa satisfaca o anumita cerinta
+	S- multimea valorilor din solutie
+
+-> generez toate solutiile si verific care e cea mai buna(ineficient dpdv complexitate)
+
+-> algoritm euristic(euristic= atribui fiecarui element cate o pondere si selectez fiecare element in functie de acea pondere) , bazat pe constructia lui S, pas cu pas, iar la fiecare pas adaugam la S elementul optim, a.i. S verifica mereu prop din el insusi
+A={a1,a2,a3.....an}
+#orice submultime a unei solutii e si ea solutie
+Functia check(), return 0 sau 1 daca e solutie
+for i de la 1 la n
+	s adaug elem optim din A ai check(S)==1
+Problema 1:
+- Se da o multime de N cuburu
+- fiecare cub e carecterizat prin lungimea laturii si culoare
+- nu exista 2 cuburi de aceeasi dimensiune
+= sa se construiasca un turn de inaltime maxima a. i. peste un cub cu latura L si culoare K se pune aseza doar un cub cul latura < L si culoare != K
+	Sol:
+		-sortam dupa latura
+		-la baza turnului pun cubul de latura maxima
+		-parcurg lista de cuburi si adaug la turn fiecare cub care se potriveste dupa culoare
+Obs:
+	-Algoritmii greedy sunt rapizi
+	- dese ori pt a putea accesa rapid elem optim esete nevoie de o pre procesare(in cazul nostru sortare), alte dati se folosesc structuri de date de tip (ex:minHeap)
+	- reuseesc sa construiesc o solutie optima folosind numai optime locale
+Corectitiduine:(examen)
+	->Reducere la absurd:
+		Algoritmul propus gaseste solutia G
+			check(G)==1
+		Pp. ca G nu este optima
+		Fie O o soluite optima: f(O)>f(G)
+		Ne uitam la prima diferenta dinte G si O
+		(desen) => practic ma leg de faptul de ca G sigur e cea mai buna , folosind faptul ca laturile sunt sigur dierite si vectorul este sortat desc. pana ajung la o contradictie
+	->Inductie:
+		Fiecare turnulet in care folosesc k cuburi , acel k e cel mai mare disponibil si cel mai mare turnulet k+1 e mai mare decat cel mai mare care contine k cuburi
+			- ne e bine inductie la asta, dar asta a zis ca "trebuie" sa facem daca vrem sa facem asa
+Problema 2:
+	- Fie  o multiem de bancnote b0,b1,....bn+1
+		1) B0=1
+		2) Bi<Bi+1 pt i< n-2
+		3) Bi | Bi+1 pt i<n-2
+		# fiecare bancnota este div de una din fata ei
+		= S-suma de bani
+			- platesc suma S folosind un numar minim de bancnote
+		Cashier's algorithm
+Sol:- (daca bancnotele nu sunt sortate, le sortez)
+	- citesc suma sum, s=multime vida
+	- pr fiecare bancnota i
+		s=s + (i,s//i) #avem pereci de genul(val bancnota,de cate ori intra)
+		s=s%i
+	- O(n)-unde n e nr de bancnote (ignoram sortarea deoarece e deja facuta)
+Obs:
+	->Inductie
+		e foarte important ca bancnotele sa fie divizibile cu cele mai mici decat ele pt ca oricum adun bancnotele mai mici, o sa ajung la un moment dat la acea bancnota mai mare
+		# https://www.youtube.com/watch?v=HWW-jA6YjHk
+Problema 2':
+	-fara proprietatea a 3-a , divizibilitatea
+
+Problema 3:
+	problmea Spectacolelor:
+	-fie A, ={a1,a2,....an}
+		ai=(s,p)
+	-trebuie sa programez cat mai multe spectacole
+Sol:
+	Sortam A dupa final:
+	S=mult vita
+	pentru fiecare ai din a, 
+		daca ai nu e in conflict cu a
+			adaug ai la A
+https://www.cs.princeton.edu/courses/archive/spring07/cos423/lectures/greed-dp.pdf
+
+Problema 4)
+Problema minimizarii intarzierii maxime
+O multime de activitati A ={a1,....,an}
+Fiecare ai are durata si deadline
+Trebuie sa gasesc o permutare Pi a. i. intarzierea maxima a unei activitati sa fie cat mai mica
+- sortez joburile dupa deadline(crescator)
+x
+#https://www.cs.princeton.edu/courses/archive/spring07/cos423/lectures/greed-dp.pdf #minimizind lateness
+#(pg 6)

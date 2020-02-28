@@ -1,0 +1,19 @@
+#Laborator 4: 1
+.data
+.text
+main:
+li $t4,7
+li $t0,1
+li $t1,1
+li $t2,7
+li $t3,3
+seq $t5,$t1,$t4
+seq $t6,$t2,$t4
+seq $t7,$t3,$t4
+bgtz $t5,sfarsit
+bgtz $t6,sfarsit
+bgtz $t7,sfarsit
+li $t0,0
+sfarsit:
+li $v0,10
+syscall

@@ -1,0 +1,24 @@
+Info Test:
+	Sambata de la 9- 10:40 (teoretic)
+	Vineri - programarea pe sali
+	Subiecte: 
+		(4p)- Limbaj/Sintaxa -> citire din fisier
+							 -> lucru cu stringuri
+							 -> liste/ slice pe liste
+							 -> tuplete
+							 -> set/dict
+							 -> functii si param
+				a)-1p 
+				b)-2p(complexitate, 1p fara complexitate) 
+				c)-1p
+		(5p)- Subiect de algoritmica
+					->conteza complexitatea(nu ni se spune complexitatea)
+					-> daca facem corect dar complex putin mai slaba 4p
+					-> 1p citire date
+				chestii: -> list/ tuple
+						 -> deque
+						 -> set/dict
+						 -> hepq -> hepify
+						 		 -> heappop()
+						 		 -> heappush()
+						 -> .sort(), sorted()

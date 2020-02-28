@@ -1,0 +1,103 @@
+.data
+   v:.space 12
+   n:.word 3
+   i:.space 4
+   k:.space 4
+   inputn:.asciiz "dati n:\n"
+   inputv:.asciiz "dati vectorul:\n"
+   prime:.asciiz "v["
+   second:.asciiz "]="
+   outputv:.asciiz "am citit vectorul:"
+   spatiu:.asciiz " ,"
+.text
+main:
+#intializari
+   li $t0,0
+   sw $t0,i #i=0
+   
+   li $t2,0
+   sw $t2,k #k=0
+
+   li $v0,4
+   la $a0,inputn
+   syscall    #afiseaza inputn
+  
+   li $v0,5
+   syscall
+   move $t1,$v0   #citeste n
+  
+   li $v0,4
+   la $a0,inputv
+   syscall     #afiseaza inputv
+   
+   parcurgere: 
+
+   beq $t0,$t1,citit #if(t0==t1) out
+
+   li $v0,4
+   la $a0,prime
+   syscall     #afiseaza prime
+
+   li $v0,1
+   move $a0,$t0
+   syscall     #afiseaza indicele i
+
+   li $v0,4
+   la $a0,second
+   syscall     #afiseaza second
+
+   li $v0,5
+   syscall
+   sw $v0,v($t2)  #stocheaza val citita in v[k]
+   
+
+   lw $t0,i
+   addi $t0,$t0,1
+   sw $t0,i #i++
+   
+   lw $t2,k
+   addi $t2,$t2,4
+   sw $t2,k     #k+=4 octeti
+
+   b parcurgere
+ 
+citit:
+   li $v0,4
+   la $a0,outputv
+   syscall   #afiseaza outputv
+
+   li $t0,0
+   sw $t0,i #i=0
+
+   lw $t1,n
+
+   li $t2,0
+   sw $t2,k   #reinitializez datele pt o noua parcurgere
+afisare:
+
+   beq $t0,$t1,iesire #if(t0==t1) out 
+
+   li $v0,1
+   lw $a0,v($t2)
+   syscall    #afisez v[k]
+
+   li $v0,4
+   la $a0,spatiu
+   syscall
+
+   lw $t0,i
+   addi $t0,$t0,1
+   sw $t0,i #i++
+
+   lw $t2,k
+   addi $t2,$t2,4
+   sw $t2,k   #k+=4 octeti
+
+
+   b afisare
+   
+
+iesire:   li $v0,10
+          syscall
+
+

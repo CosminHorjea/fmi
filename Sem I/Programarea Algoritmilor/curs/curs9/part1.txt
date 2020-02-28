@@ -1,0 +1,49 @@
+## Curs 9
+
+1)Clasificarea activitatii prin maximizarea profitului total
+n activitati : a1,a2,.....an
+fiecare activitatea are un - deadline
+						   - profit
+						   - durata =1
+Obtin o planificare pi (multime ordonata) a i deadline-ul de pi(i)<=i oricare i {1...k}
+	respectiv sum(i=1 to k)profit(pi[i]) = maxim}
+# https://www.geeksforgeeks.org/job-sequencing-problem/ #aici e ceva putin diferit, dar aceeasi problema in principiu
+- sortam a descrescator dupa deadline
+- pi(solutiile) = lungime max deadline
+- cat timp a!= multimaea vida(le parcurg pe toate)
+	- cat timp dealine(a.first)>=k
+		multimea Q- pentru candidati, sortata descrescator dupa profit (coada cu prioritati)
+		Q.push(A.first)
+		A.popLeft()
+	- pi(k)= Q.Pop
+	- k--
+TLDR: Sortez activitatiile dupa deadline de la max la 1, pt fiecare deadline, le pun pe toate care se intampla in acelasi timp intr-o coada in care primul elemnt are mereu cel mai mare profit, il adaug in vectorul de solutii
+Demonstrate: Prin reducere la absurd:
+
+2) Optimizarea citirii cuvintelor pe banda
+Am niste cuvinte puse pe o banda, si de fiecare data cand vreau sa citesc un cuvant trebuie sa trec si prin cele din fata lui, cum ordonam cuvintele incat sa facem un numar minim de operatii,
+ex : daca vreau sa citesc al 3-lea cuvant, banda e pe pozitia 0 si trebuie sa treaca prin primele 2 inainte de acesta, costul ar fi lungimea primului + lungimea al doilea. Fiecare cuvant are o frecventa (de cate ori vreau sa-l citesc), banda se intoarce la inceput de fiecare data cand termin de citit un cuvant
+Sol: sortez dupa lungime/frecveta (cuvant), that's it
+
+3) Problema sacului
+#https://www.cs.princeton.edu/courses/archive/spring07/cos423/lectures/greed-dp.pdf
+# sau manualul de clasa 11
+Obiecte care au o anumita valoare si greutate
+-un rucsac care poate sa tina o greutate G
+2 variate: o varianta in care putem fractiona obiectele(juamte din ob cu jumate din greutate si jumate din valoare)
+			- sau varianta discreta in care nu putem imparti obiectele
+Noi rezolvam prima varianta cu greedy:
+
+Sortez descrescator dupa profit/greutate
+S= mult vida
+x=Obiecte.popLeft()
+Cat timp G>x.w and O!=mult vida
+	S.add(x);G-=x.w
+	x=O.popLeft()
+S.add(x.p,G/x.w)
+
+
+# ** Algoritmi alfaaproximativi
+- se aplica tot in cazul problememlor de oprim
+- O solutioe 
+	1/alfa(optim) <= S <= Optim
