@@ -30,7 +30,6 @@ public:
     set<char> getSigma() const { return this->Sigma; }
     set<int> getInitialState() const { return this->q0; }
     map<pair<int, char>, set<int>> getDelta() const { return this->delta; }
-    set<int> deltaPrim(set<int>, string);
 
     friend istream &operator>>(istream &, LNFA &);
 
@@ -50,9 +49,12 @@ set<int> LNFA::deltaStar(set<int> s, string w)
     int n = w.length();
     set<int> localFinalStates;
     s = lambdaInchidere(*s.begin());
-    for (int j : delta[{*s.begin(), w[0]}])
+    for (int i : s)
     {
-        localFinalStates.insert(j);
+        for (int j : delta[{i, w[0]}])
+        {
+            localFinalStates.insert(j);
+        }
     }
     n--;
     if (n == 0)
@@ -65,8 +67,9 @@ set<int> LNFA::deltaStar(set<int> s, string w)
 
         for (int i : localFinalStates)
         {
-            for (int j : delta[{i, w[contor + 1]}])
-                auxiliar.insert(j);
+            for (int k : lambdaInchidere(i))
+                for (int j : delta[{k, w[contor + 1]}])
+                    auxiliar.insert(j);
         }
         n--;
         contor++;
@@ -78,11 +81,6 @@ set<int> LNFA::deltaStar(set<int> s, string w)
         auxiliar.clear();
     }
     return localFinalStates;
-}
-
-set<int> LNFA::deltaPrim(set<int> s, string w)
-{
-    // return lambdaInchidere(deltaStar(lambdaInchidere(delta[{*s.begin(),w[0]}])));
 }
 
 set<int> LNFA::lambdaInchidere(int q)
@@ -163,27 +161,33 @@ int main()
 {
     LNFA M;
     int ok = 0;
-    ifstream fin("LNFA.txt");
+    // ifstream fin("LNFA.txt");
+    ifstream fin("lambdaNFA2.txt");
     fin >> M;
     fin.close();
     set<int> test;
 
-    // for(int i :M.lambdaInchidere(3)){
-    //     cout<<i<<" ";
-    // }
-    // set<int> lastState = M.deltaStar(M.getInitialState(), "aabb");
-    // cout << *M.getF().begin();
-    // for (int i : lastState)
-    //     if (*M.getF().find(i) == i)
-    //     {
-    //         cout << "Cuvant acceptat";
-    //         ok = 1;
-    //         break;
-    //     }
-    // if (!ok)
+    // for (int i : M.lambdaInchidere(2))
     // {
-    //     cout << "Cuvant neacceptat";
+    //     cout << i << " ";
     // }
+    // cout << endl;
+    set<int> lastState = M.deltaStar(M.getInitialState(), "babb");
+    // for (int i : lastState)
+    // {
+    //     cout << i << " ";
+    // }
+    for (int i : lastState)
+        if (M.isFinalState(i))
+        {
+            cout << "Cuvant acceptat";
+            ok = 1;
+            break;
+        }
+    if (!ok)
+    {
+        cout << "Cuvant neacceptat";
+    }
     return 0;
 }
 /*

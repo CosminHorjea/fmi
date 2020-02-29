@@ -140,7 +140,7 @@ int main()
     set<int> lastState = M.deltaStar(M.getInitialState(), "aabbb");
     // cout << *M.getF().begin();
     for (int i : lastState)
-        if (*M.getF().find(i) == i)
+        if (M.isFinalState(i))
         {
             cout << "Cuvant acceptat";
             ok = 1;
