@@ -95,7 +95,7 @@ set<int> LNFA::lambdaInchidere(int q)
         //aici trebuie un for prin care trec prin toti vecinii lui j delta[{j,'*'}]
         for (int i : delta[{j, '*'}])
         {
-                };
+        };
         if (marked.find(j) == marked.end())
         {
             marked.insert(j);
