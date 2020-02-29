@@ -3,6 +3,7 @@
 #include <string>
 #include <set>
 #include <fstream>
+#include <queue>
 
 using namespace std;
 
@@ -29,6 +30,7 @@ public:
     set<char> getSigma() const { return this->Sigma; }
     set<int> getInitialState() const { return this->q0; }
     map<pair<int, char>, set<int>> getDelta() const { return this->delta; }
+    set<int> deltaPrim(set<int>,string);
 
     friend istream &operator>>(istream &, LNFA &);
 
@@ -47,7 +49,7 @@ set<int> LNFA::deltaStar(set<int> s, string w)
 {
     int n = w.length();
     set<int> localFinalStates;
-    // set<int>::iterator it = s.begin();
+    s=lambdaInchidere(*s.begin());
     for (int j : delta[{*s.begin(), w[0]}])
     {
         localFinalStates.insert(j);
@@ -78,31 +80,27 @@ set<int> LNFA::deltaStar(set<int> s, string w)
     return localFinalStates;
 }
 
+set<int> LNFA::deltaPrim(set<int> s,string w){
+    // return lambdaInchidere(deltaStar(lambdaInchidere(delta[{*s.begin(),w[0]}])));
+}
+
 set<int> LNFA::lambdaInchidere(int q)
 {
-    /*
-        HEAVY WIP
-
-    */
-
-    set<int> marked, toVisit;
-    cout << "TODO";
-    toVisit = delta[{q, '*'}];
-    //lambda inchiderea sun cu siguranta toti vecinii lui q care au tranzitia lambda
-    marked = toVisit;
-    for (int j : toVisit)
-    { //din q cu char lambda
-        //aici trebuie un for prin care trec prin toti vecinii lui j delta[{j,'*'}]
-        for (int i : delta[{j, '*'}])
-        {
-                };
-        if (marked.find(j) == marked.end())
-        {
-            marked.insert(j);
-            toVisit.insert(j);
+    set<int> elements = delta[{q,'*'}];
+    elements.insert(q);
+    queue<int> toVisit;
+    for(int i :elements)
+        toVisit.push(i);
+    while(!toVisit.empty()){
+        int curr = toVisit.front();
+        toVisit.pop();
+        elements.insert(curr);
+        for(int i: delta[{curr,'*'}]){
+            if(elements.find(i)!=elements.end())
+                toVisit.push(i);
         }
-        toVisit.erase(j);
     }
+    return elements;
 }
 
 istream &operator>>(istream &f, LNFA &M)
@@ -118,6 +116,7 @@ istream &operator>>(istream &f, LNFA &M)
 
     int noOfLetters;
     f >> noOfLetters;
+    M.Sigma.insert('*');// ch lambda de la LNFA
     for (int i = 0; i < noOfLetters; ++i)
     {
         char ch;
@@ -125,7 +124,7 @@ istream &operator>>(istream &f, LNFA &M)
         M.Sigma.insert(ch);
     }
     int nrTranzitiiDelta;
-    f >> nrTranzitiiDelta;
+    f >> nrTranzitiiDelta; // aici nu eram sigur ce numar, deci e daor numarul de reanduri ce urmeaza sa fie scrise sub forma stare init ch nr stari etc..
     for (int i = 0; i < nrTranzitiiDelta; ++i)
     {
         int stareInit;
@@ -161,24 +160,28 @@ int main()
 {
     LNFA M;
     int ok = 0;
-    ifstream fin("nfa.txt");
+    ifstream fin("LNFA.txt");
     fin >> M;
     fin.close();
     set<int> test;
 
-    set<int> lastState = M.deltaStar(M.getInitialState(), "aabb");
+
+    // for(int i :M.lambdaInchidere(3)){
+    //     cout<<i<<" ";
+    // }
+    // set<int> lastState = M.deltaStar(M.getInitialState(), "aabb");
     // cout << *M.getF().begin();
-    for (int i : lastState)
-        if (*M.getF().find(i) == i)
-        {
-            cout << "Cuvant acceptat";
-            ok = 1;
-            break;
-        }
-    if (!ok)
-    {
-        cout << "Cuvant neacceptat";
-    }
+    // for (int i : lastState)
+    //     if (*M.getF().find(i) == i)
+    //     {
+    //         cout << "Cuvant acceptat";
+    //         ok = 1;
+    //         break;
+    //     }
+    // if (!ok)
+    // {
+    //     cout << "Cuvant neacceptat";
+    // }
     return 0;
 }
 /*
