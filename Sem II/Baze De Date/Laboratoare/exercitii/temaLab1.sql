@@ -1,3 +1,7 @@
+--Horjea Cosmin-Marian
+--143
+
+
 -- ex 6
 SELECT employee_id||' '||first_name||' '||last_name||' '||email||' '||phone_number||' '||hire_date||' '||job_id||' '||salary||' '||commission_pct||' '|| manager_id||' '|| department_id as"Informatii Complete" FROM employees;
 
