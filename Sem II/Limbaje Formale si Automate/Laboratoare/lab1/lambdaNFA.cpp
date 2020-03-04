@@ -162,7 +162,7 @@ int main()
     LNFA M;
     int ok = 0;
     // ifstream fin("LNFA.txt");
-    ifstream fin("lambdaNFA2.txt");
+    ifstream fin("LNFA.txt");
     fin >> M;
     fin.close();
     set<int> test;
@@ -172,7 +172,14 @@ int main()
     //     cout << i << " ";
     // }
     // cout << endl;
-    set<int> lastState = M.deltaStar(M.getInitialState(), "babb");
+    set<int> lastState = M.deltaStar(M.getInitialState(), "ba");
+    for (int i : lastState)
+    { // trebuie sa verific lambda tranzitiile state-urilor finale, deci le adaug
+        for (int j : M.lambdaInchidere(i))
+        {
+            lastState.insert(j);
+        }
+    }
     // for (int i : lastState)
     // {
     //     cout << i << " ";

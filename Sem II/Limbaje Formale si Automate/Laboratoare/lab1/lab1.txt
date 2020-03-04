@@ -1,0 +1,38 @@
+Laborator : 3 teme
+nota [0,10.5]
+Prezente 5/7 laborator (obligatoriu)
+Limbaj C++11 de preferat(nu e obligatoriu, se accepta orice limbaj)
+
+Tema 1: imprementare NFA SI lambda-NFA
+
+mail: bogdan.macovei.fmi@gmail.com
+termen - cu o seara inainte de lab
+	7p cod
+	3p partea teoretica + max 0.5 bonus->implementari mai eficiente
+
+
+3 teme - prima tema comuna
+	   - a doua tema - lista
+	   - tot cu lista (probabil), aplicatii LFA
+
+/*************************************/
+
+Familia limbajelor REGULATE (REG)
+-limbaj de tip 3
+Sunt acceptate de 
+	- automatele finite - DFA(deteministe)
+					   - NFA( ndefeterministe )
+					   -lambda NFA
+	- gramatici
+
+
+
+Automatele finite
+
+DFA M={Q,alfabet,delta,q0,F}
+Q= multime finita nevida
+Sigma = finita si nevida
+q0 in Q stare initiala
+F inclusa in Q multimea starilor finale
+
+delta:Qxalfabet -> Q
