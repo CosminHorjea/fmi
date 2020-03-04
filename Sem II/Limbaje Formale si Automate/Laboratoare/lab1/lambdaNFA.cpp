@@ -93,13 +93,13 @@ set<int> LNFA::lambdaInchidere(int q)
     while (!toVisit.empty())
     {
         int curr = toVisit.front();
-        toVisit.pop();
         elements.insert(curr);
         for (int i : delta[{curr, '*'}])
         {
-            if (elements.find(i) != elements.end())
+            if (elements.find(i) == elements.end()) // daoar daca nu am selectat deja elem ala, altfel ar fi un ciclu infinit
                 toVisit.push(i);
         }
+        toVisit.pop();
     }
     return elements;
 }
@@ -162,17 +162,15 @@ int main()
     LNFA M;
     int ok = 0;
     // ifstream fin("LNFA.txt");
-    ifstream fin("LNFA.txt");
+    // ifstream fin("LNFA.txt");
+    ifstream fin("LFAtest1.txt");
+    // ifstream fin("LFAtest2.txt");
     fin >> M;
     fin.close();
     set<int> test;
 
-    // for (int i : M.lambdaInchidere(2))
-    // {
-    //     cout << i << " ";
-    // }
-    // cout << endl;
-    set<int> lastState = M.deltaStar(M.getInitialState(), "ba");
+    set<int> lastState = M.deltaStar(M.getInitialState(), "ab");
+
     for (int i : lastState)
     { // trebuie sa verific lambda tranzitiile state-urilor finale, deci le adaug
         for (int j : M.lambdaInchidere(i))
@@ -180,10 +178,7 @@ int main()
             lastState.insert(j);
         }
     }
-    // for (int i : lastState)
-    // {
-    //     cout << i << " ";
-    // }
+
     for (int i : lastState)
         if (M.isFinalState(i))
         {
@@ -197,14 +192,3 @@ int main()
     }
     return 0;
 }
-/*
-    int noOfTransitions;
-    f >> noOfTransitions;
-    for (int i = 0; i < noOfTransitions; ++i)
-    {
-        int s, d;
-        char ch;
-        f >> s >> ch >> d;
-        M.delta[{s, ch}] = d;
-    }
-*/
