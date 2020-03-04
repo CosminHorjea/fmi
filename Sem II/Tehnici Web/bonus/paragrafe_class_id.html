@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        p[class][id]:before {
+            content: "[id: \'"attr(id) "\', class: \'"attr(class) "\'] ";
+        }
+
+        p[id]:before {
+            content: "[id: \'"attr(id) "\'] ";
+        }
+
+        p[class]:before {
+            content: "[class: \'"attr(class) "\'] ";
+        }
+
+        p[id="para1"] {
+            color: red;
+        }
+
+        p[id="para1"]>* {
+            color: blue;
+        }
+
+        p[id="para2"]>*>* {
+            color: yellow;
+        }
+
+        .a:not(.b),
+        .b:not(.a) {
+            color: red;
+        }
+
+        p[id^="b"][id$="z"] {
+            font-size: 22px;
+        }
+
+        p[class*=" "] {
+            border: 1px green solid;
+        }
+    </style>
+    <title>exercitiu laborator</title>
+</head>
+
+<body>
+    <p id="para1">bla bla bla <b>bla bla</b> bla <q>bla bla</q> bla bla bla bla <i>bla bla bla</i> bla bla bla bla bla
+    </p>
+    <p id="para2">bla bla bla <b>bla bla</b> bla
+        <!--ar trebui sa fie colorat--><b><i>bla bla</i></b> bla bla bla bla <i>bla bla bla</i> bla <i>bla
+            <!--ar trebui sa fie colorat--><b>bla</b> bla</i> bla </p>
+
+    <p id="bzz">bla bla</p>
+    <p id="b">bla bla</p>
+    <p id="z">bla bla</p>
+    <p id="bau">bla bla</p>
+    <p id="baz">bla bla</p>
+    <p class="bau">bla bla</p>
+    <p class="bau">bla bla</p>
+    <p class="a">bla bla</p>
+    <p class="b">bla bla</p>
+    <p class="a b">bla bla</p>
+    <p class="b a">bla bla</p>
+    <p class="b z">bla bla</p>
+    <p id="abc" class="a b">bla bla</p>
+    <p class="a b c">bla bla</p>
+    <p id="bau-bau">bla bla</p>
+    <p class="c">bla bla</p>
+    <p>bla bla</p>
+
+
+</body>
+
+</html>
