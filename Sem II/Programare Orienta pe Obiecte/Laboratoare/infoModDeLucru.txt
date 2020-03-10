@@ -1,0 +1,11 @@
+Ca sa compilez "proiectele" am folosit VS Code, nu are support implicit de cpp dar cu niste extensii devine chiar fain:
+
+- Easy Cpp Projects
+https://marketplace.visualstudio.com/items?itemName=ACharLuk.easy-cpp-projects
+
+e cam shitty cand esti pe windows cu toate versiunile si pathurile, dar pt Windwos 10 exista Subsystem for Linux, 
+pe care poti sa instalezi compiler ce c++ si extensia asta iti ruleaza direct acolo
+
+https://docs.microsoft.com/en-us/windows/wsl/install-win10
+
+Alternativa mult mai simpla este Visual Studio, suport out of the box, dar nu cred ca o sa mearga cu lab astea.
