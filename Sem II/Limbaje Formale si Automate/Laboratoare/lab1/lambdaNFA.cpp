@@ -163,13 +163,14 @@ int main()
     int ok = 0;
     // ifstream fin("LNFA.txt");
     // ifstream fin("LNFA.txt");
-    ifstream fin("LFAtest1.txt");
+    // ifstream fin("LFAtest1.txt");
     // ifstream fin("LFAtest2.txt");
+    ifstream fin("testptLNFA.txt");
     fin >> M;
     fin.close();
     set<int> test;
 
-    set<int> lastState = M.deltaStar(M.getInitialState(), "ab");
+    set<int> lastState = M.deltaStar(M.getInitialState(), "aba");
 
     for (int i : lastState)
     { // trebuie sa verific lambda tranzitiile state-urilor finale, deci le adaug
@@ -178,6 +179,10 @@ int main()
             lastState.insert(j);
         }
     }
+    // for (int i : lastState)
+    // {
+    //     cout << i << " ";
+    // }
 
     for (int i : lastState)
         if (M.isFinalState(i))

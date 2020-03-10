@@ -1,3 +1,4 @@
- :M.lambdaInchidere(3)){
-        cout<<i<<" ";
-    }
+ lastState)
+    // {
+    //     cout << i << " ";
+    // }
