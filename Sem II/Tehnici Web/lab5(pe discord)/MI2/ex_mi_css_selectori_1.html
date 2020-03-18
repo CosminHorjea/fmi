@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Titlu</title>
+    <style type="text/css">
+      thead {
+        background-color: navy;
+        color: white;
+        font-family: Arial Black, Gadget, sans-serif;
+      }
+      tfoot {
+        background-color: lime;
+        font-style: italic;
+        font-family: Comic Sans MS;
+      }
+      table {
+        border: 4px outset blue;
+        border-collapse: collapse;
+      }
+      td {
+        border: 2px solid black;
+      }
+      tr > *:first-child {
+        text-decoration: underline;
+      }
+      caption {
+        text-decoration: line-through overline;
+        margin-top: 5px;
+        caption-side: bottom;
+      }
+      td img:hover {
+        cursor: crosshair;
+        border: 2px dotted pink;
+      }
+      ol {
+        list-style: none;
+        counter-reset: count;
+        padding: 0px;
+        margin: 15px;
+      }
+      ol li:before {
+        content: counter(count, armenian) ".";
+        counter-increment: count;
+        color: red;
+        font-weight: normal;
+        font-style: italic;
+      }
+      li {
+        color: blue;
+        font-weight: bold;
+      }
+      tbody tr td:nth-of-type(even)::first-letter {
+        background-color: lightblue;
+      }
+
+      tbody tr td:nth-of-type(odd)::first-letter {
+        background-color: pink;
+      }
+
+      tbody tr td ol::first-letter {
+        background-color: unset;
+      }
+      a:hover {
+        font-size: 20px;
+      }
+
+      a:active {
+        background-color: yellow;
+      }
+      div:nth-of-type(-n + 3) {
+        letter-spacing: -3px;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="tab_fl">
+      <thead>
+        <tr>
+          <th>Nume</th>
+          <th>Prenume</th>
+          <th>Ocupatie</th>
+          <th>Hobby-uri</th>
+          <th>Poza</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Flutureanu</td>
+          <td>Petala</td>
+          <td>instructor de zbor</td>
+          <td>
+            <ol>
+              <li>acrobatiile in aer</li>
+            </ol>
+          </td>
+          <td>
+            <img
+              src="http://irinaciocan.ro/tehnici_web/imagini/fluture1a.png"
+              alt="Flutureanu"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Fluflututurescu</td>
+          <td>Flu-flu</td>
+          <td>lo-logoped</td>
+          <td>
+            <ol>
+              <li>zbu-zbu-zburatul pe-pe c-c-campie</li>
+            </ol>
+          </td>
+          <td>
+            <img
+              src="http://irinaciocan.ro/tehnici_web/imagini/fluture2a.png"
+              alt="Fluflututurescu"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Fluturache</td>
+          <td>Ion</td>
+          <td>negustor de polen</td>
+          <td>
+            <ol>
+              <li>botanica</li>
+              <li>pictura</li>
+            </ol>
+          </td>
+          <td>
+            <img
+              src="http://irinaciocan.ro/tehnici_web/imagini/fluture3a.png"
+              alt="Fluturache"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Omiduta</td>
+          <td>Omidon</td>
+          <td>mancator de frunze</td>
+          <td>
+            <ol>
+              <li>actoria</li>
+              <li>deghizatul in fluture</li>
+            </ol>
+          </td>
+          <td>
+            <img
+              src="http://irinaciocan.ro/tehnici_web/imagini/fluture4a.png"
+              alt="Omiduta"
+            />
+          </td>
+        </tr>
+        <tr>
+          <td>Fluturong</td>
+          <td>Zbarr</td>
+          <td>luptator profesionist</td>
+          <td>
+            <ol>
+              <li>artele martiale</li>
+              <li>batut paianjenii</li>
+            </ol>
+          </td>
+          <td>
+            <img
+              src="http://irinaciocan.ro/tehnici_web/imagini/fluture5a.png"
+              alt="Omiduta"
+            />
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>
+            Concluzii:
+          </td>
+          <td colspan="4">
+            Toti fluturii sunt frumosi!
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+    <div>
+      <p>paragraf</p>
+      <p>paragraf</p>
+      <p>paragraf</p>
+    </div>
+    <div>
+      <p>paragraf</p>
+      <p>paragraf</p>
+      <p>paragraf</p>
+      <p>paragraf</p>
+    </div>
+    <div>
+      <p>paragraf</p>
+      <p>paragraf</p>
+      <p>paragraf</p>
+      <p>paragraf</p>
+      <p>paragraf</p>
+    </div>
+    <hr />
+    <div>
+      <p>paragraf</p>
+      <p>paragraf</p>
+      <p>paragraf</p>
+      <p>paragraf</p>
+      <p>paragraf</p>
+    </div>
+  </body>
+</html>
