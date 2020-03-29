@@ -8,32 +8,98 @@
 	<style>
 		table {
 			width: 300px;
-
 		}
 
 		table>caption {
-			font-size: 2em;
+			font-weight: bold;
+			text-shadow: 0px 1px grey;
 		}
 
-		thead {
-			display: table-row-group;
+		table#tab_preturi tbody tr {
+			display: grid;
+			grid-template-columns: 80px 80px;
+			margin-bottom: 20px;
 		}
 
-
-		tr>* {
-			display: block;
+		table#tab_preturi thead {
+			display: none;
 		}
 
-		tbody>tr :first-child {
-			background-color: skyblue;
+		tbody>tr>td:first-child {
+			grid-column: 1/3;
 			color: red;
+			border: 1px solid black;
+			border-top-left-radius: 50%;
+			border-top-right-radius: 50%;
+			text-transform: uppercase;
+			font-variant: small-caps;
+			text-align: center;
+			font-size: 0.8em;
+			padding: 5%;
+			background: linear-gradient(white, skyblue);
+			letter-spacing: 3px;
+			font-weight: 550;
 		}
 
-		tbody>tr :nth-child(2),
-		tbody>tr :nth-child(3) {
-			display: inline-block;
-			border: 2px dotted black;
-			width: 47%;
+		tbody>tr>td:first-child::first-letter {
+			font-weight: bold;
+		}
+
+		tr td:nth-child(2),
+		tr td:nth-child(3) {
+			border: 1px dashed black;
+			line-height: 2em;
+			text-align: center;
+		}
+
+		tr td:nth-child(2) {
+			grid-area: 2/1/3/2;
+			font-size: 0.8em;
+		}
+
+		tr td:nth-child(3) {
+			grid-area: 2/2/3/3;
+			border-left: 0px;
+			font-size: 0.8em;
+		}
+
+		tr td:nth-child(n+4) {
+			grid-column: 1/3;
+			border: 1.5px solid black;
+			line-height: 2em;
+			font-size: 0.8em;
+		}
+
+		tr td:nth-child(n+5) {
+			border-top: 0px;
+		}
+
+		tr td:nth-child(n+4):before {
+			float: left;
+			width: 60%;
+		}
+
+		tr td:nth-child(4):before {
+			content: "Layere";
+		}
+
+		tr td:nth-child(5):before {
+
+			content: "Multi user";
+		}
+
+		tr td:nth-child(6):before {
+			content: "Efecte speciale";
+		}
+
+		tr td:nth-child(7):before {
+
+			content: "Tool Animatie";
+		}
+
+		tr td:nth-child(8):before {
+
+			content: "Watermark";
 		}
 	</style>
 </head>
@@ -44,7 +110,7 @@
 		<thead>
 			<tr>
 				<th>Tip</th>
-				<th>Valabilitate</th><!-- Cum drq repet astea pentru fiecare rand?-->
+				<th>Valabilitate</th>
 				<th>Pret</th>
 				<th>Layere</th>
 				<th>Multi user</th>

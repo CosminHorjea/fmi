@@ -1,14 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ex_mi_tranzitie_cadere_litere</title>
+    <style>
+      div {
+        background-color: lightblue;
+        width: 500px;
+        height: 100px;
+        overflow: hidden;
+      }
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ex_mi_tranzitie_cadere_litere</title>
-</head>
+      div > p {
+        position: relative;
+        bottom: 100px;
+        font-size: 30px;
+        padding: 30px;
+        display: inline-block;
+        transition: all 0.5s;
+      }
 
-<body>
+      div:hover p:nth-of-type(1) {
+        transition-delay: 1s;
+      }
 
-</body>
+      div:hover p:nth-of-type(2) {
+        transition-delay: 1.5s;
+      }
 
+      div:hover p:nth-of-type(3) {
+        transition-delay: 2s;
+      }
+
+      div:hover p {
+        bottom: 0px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <p>a</p>
+      <p>b</p>
+      <p>c</p>
+    </div>
+  </body>
 </html>
