@@ -1,0 +1,9 @@
+thead{
+    display: none;
+}
+tr::before{
+    content:"•"
+}
+td:not(:last-child):after{
+    content:","
+}

@@ -1,0 +1,17 @@
+div{
+    display: inline;
+}
+span{
+    background-color: red;
+    width:70px;
+    height:50px;
+    /*Nu se aplica width si height*/
+}
+#b span{
+    display: inline-block;
+    /*width si height se aplica, iar spatiul de sub paragraf este margina implicita a lui p*/
+
+}
+#c span{
+    display: none;
+}

@@ -1,0 +1,31 @@
+/*1*/
+div.container#c0{
+    display: inline-block;
+    text-align: center;
+
+}
+#c0 .dv {
+    display: inline-block;
+    vertical-align:middle;
+    transform: translateY(50%);
+
+}
+
+#c1 .dv {
+    margin: 50px auto 0 auto;
+}
+
+div.container#c2 {
+    display: flex;
+}
+
+#c2 .dv {
+    margin: auto;
+    vertical-align: center;
+}
+
+div.container#c3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
