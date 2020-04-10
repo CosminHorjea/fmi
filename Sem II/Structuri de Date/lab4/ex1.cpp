@@ -24,7 +24,7 @@ void insert(int val)
 
 	while (aux)
 	{
-		if (val < aux->info)
+		if (val <= aux->info)
 		{
 			last = aux;
 			aux = aux->stang;
@@ -109,7 +109,7 @@ void remove(int val)
 		}
 		else
 		{
-			// they are equal
+			// daca sunt egale
 			if (!aux->drept && !aux->stang)
 			{
 				// daca nodul este frunza
@@ -157,8 +157,8 @@ void remove(int val)
 }
 int main()
 {
-	int values[9] = {6, 4, 9, 2, 1, 5, 3, 7, 8};
-	for (int i = 0; i < 9; i++)
+	int values[10] = {6, 4, 9, 2, 1, 5, 3, 7, 8, 6};
+	for (int i = 0; i < 10; i++)
 		insert(values[i]);
 	SRD(radacina);
 	cout << endl;
@@ -166,6 +166,6 @@ int main()
 	cout << endl;
 	cout << search(7) << endl;
 	cout << search(17) << endl;
-	remove(4);
+	remove(6);
 	SRD(radacina);
 }
