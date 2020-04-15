@@ -78,6 +78,7 @@ istream &operator>>(istream &f, DFA &M)
 	}
 	f >> M.q0;
 	int noOfFinalStates;
+	f >> noOfFinalStates;
 	for (int i = 0; i < noOfFinalStates; ++i)
 	{
 		int q;
@@ -162,21 +163,52 @@ DFA minimizareDFA(DFA M)
 		//TODO : this works making disjoint sets of the automata, have to ocnvert those sets to DFA
 		cout << i.first << " " << i.second << endl;
 	}
-	return M;
+	//converting the disjoint sets into tha DFA
+	set<int> newQ, newF;
+	int newQ0;
+	map<pair<int, char>, int> newDelta;
+	cout << "NewQ:";
+	for (int i : M.getQ())
+	{
+		newQ.insert(multime.find(i));
+		cout << multime.find(i) << " ";
+	}
+	cout << "\nNewF:";
+	for (int i : M.getF())
+	{
+		newF.insert(multime.find(i));
+		cout << multime.find(i) << " ";
+	}
+	newQ0 = multime.find(M.getInitialState());
+	cout << "\nTable:\n";
+	for (int i : M.getQ())
+	{
+		newDelta[{multime.find(i), 'a'}] = multime.find(initialTable[{multime.find(i), 'a'}]);
+		newDelta[{multime.find(i), 'b'}] = multime.find(initialTable[{multime.find(i), 'b'}]);
+		cout << "newDela[" << multime.find(i) << "\'a\']=" << multime.find(initialTable[{multime.find(i), 'a'}]) << "\n";
+		cout << "newDela[" << multime.find(i) << "\'b\']=" << multime.find(initialTable[{multime.find(i), 'b'}]) << "\n";
+	}
+	DFA r(newQ, M.getSigma(), newDelta, newQ0, newF);
+	return r;
 }
 
 int main()
 {
-	DFA M;
+	DFA M, N;
 
 	ifstream fin("minimizareDFA.in");
 	fin >> M;
 	fin.close();
+	N = minimizareDFA(M);
 	int lastState = M.deltaStar(M.getInitialState(), "ababa");
 	if (M.isFinalState(lastState))
 		cout << "Cuvant acceptat\n";
 	else
 		cout << "Cuvant neacceptat";
-	M = minimizareDFA(M);
+	lastState = N.deltaStar(N.getInitialState(), "ababa");
+	if (N.isFinalState(lastState))
+		cout << "Cuvant acceptat\n";
+	else
+		cout << "Cuvant neacceptat";
 	return 0;
 }
