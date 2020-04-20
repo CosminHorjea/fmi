@@ -143,10 +143,15 @@ DFA minimizareDFA(DFA M)
 		{
 			for (auto j : M.getQ())
 			{
-
-				if ((multime.find(initialTable[{i, 'a'}]) == multime.find(initialTable[{j, 'a'}])) &&
-					(multime.find(initialTable[{i, 'b'}]) == multime.find(initialTable[{j, 'b'}])))
-				// TODO this has to work with an arbitrary Sigma
+				int areInSameSet = 1;
+				for (char c : M.getSigma())
+				{
+					if (multime.find(initialTable[{i, c}]) != multime.find(initialTable[{j, c}]))
+					{
+						areInSameSet = 0;
+					}
+				}
+				if (areInSameSet)
 				{
 					newForest.Union(i, j);
 				}
@@ -160,33 +165,32 @@ DFA minimizareDFA(DFA M)
 	}
 	for (pair<int, int> i : multime.getMap())
 	{
-		//TODO : this works making disjoint sets of the automata, have to ocnvert those sets to DFA
 		cout << i.first << " " << i.second << endl;
 	}
 	//converting the disjoint sets into tha DFA
 	set<int> newQ, newF;
 	int newQ0;
 	map<pair<int, char>, int> newDelta;
-	cout << "NewQ:";
+	// cout << "NewQ:";
 	for (int i : M.getQ())
 	{
 		newQ.insert(multime.find(i));
-		cout << multime.find(i) << " ";
+		// cout << multime.find(i) << " ";
 	}
-	cout << "\nNewF:";
+	// cout << "\nNewF:";
 	for (int i : M.getF())
 	{
 		newF.insert(multime.find(i));
-		cout << multime.find(i) << " ";
+		// cout << multime.find(i) << " ";
 	}
 	newQ0 = multime.find(M.getInitialState());
-	cout << "\nTable:\n";
+	// cout << "\nTable:\n";
 	for (int i : M.getQ())
 	{
 		newDelta[{multime.find(i), 'a'}] = multime.find(initialTable[{multime.find(i), 'a'}]);
 		newDelta[{multime.find(i), 'b'}] = multime.find(initialTable[{multime.find(i), 'b'}]);
-		cout << "newDela[" << multime.find(i) << "\'a\']=" << multime.find(initialTable[{multime.find(i), 'a'}]) << "\n";
-		cout << "newDela[" << multime.find(i) << "\'b\']=" << multime.find(initialTable[{multime.find(i), 'b'}]) << "\n";
+		// cout << "newDela[" << multime.find(i) << "\'a\']=" << multime.find(initialTable[{multime.find(i), 'a'}]) << "\n";
+		// cout << "newDela[" << multime.find(i) << "\'b\']=" << multime.find(initialTable[{multime.find(i), 'b'}]) << "\n";
 	}
 	DFA r(newQ, M.getSigma(), newDelta, newQ0, newF);
 	return r;
