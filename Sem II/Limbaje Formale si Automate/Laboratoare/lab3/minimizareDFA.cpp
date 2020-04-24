@@ -9,6 +9,7 @@ using namespace std;
 
 class DFA
 {
+	// Implementarea DFA este aceeasi ca la laborator
 	set<int> Q, F;
 	set<char> Sigma;
 	int q0;
@@ -89,23 +90,23 @@ istream &operator>>(istream &f, DFA &M)
 }
 class DisjointSet
 {
-	unordered_map<int, int> parent;
+	unordered_map<int, int> parent; // fac un vector de tati pentru multimi
 
 public:
 	void makeSet(set<int> const &wholeset)
 	{
-		//perform makeset operation
-		for (int i : wholeset) // create n disjoint sets
+		// creez un set pentru fiecare element
+		for (int i : wholeset)
 			parent[i] = i;
 	}
 	int find(int l)
-	{						// Find the root of the set in which element l belongs
-		if (parent[l] == l) // if l is root
-			return l;
-		return find(parent[l]); // recurs for parent till we find root
+	{							// gasesc reprezentantul multimii
+		if (parent[l] == l)		// daca nodul este radacina
+			return l;			// acela este reprezentant
+		return find(parent[l]); // merg recursiv din nod in parinte si tot asa
 	}
 	void Union(int m, int n)
-	{ // perform Union of two subsets m and n
+	{ // unesc doua multimi
 		int x = find(m);
 		int y = find(n);
 		parent[x] = y;
@@ -121,81 +122,87 @@ public:
 };
 DFA minimizareDFA(DFA M)
 {
-	map<pair<set<int>, char>, set<int>> mappingTable;
-	map<pair<int, char>, int> initialTable = M.getDelta();
-	set<set<int>> equiv;
-	DisjointSet multime;
-	multime.makeSet(M.getQ());
-	for (auto i : M.getQ())
-	{
+	/*
+		Pentru algoritmul implementat am folosit tutorialul https://www.youtube.com/watch?v=0XaGAkY09Wc
+		
 
+		@param M - DFA-ul pentru care fac minimizarea
+		@returns DFA - un DFA nou care e minimizarea lui M
+	*/
+	map<pair<int, char>, int> initialTable = M.getDelta();
+	DisjointSet multime;	   // fac n obiect de paduri disjuncte
+	multime.makeSet(M.getQ()); // fiecare nod sta in propria multime
+	for (auto i : M.getQ())	   // pentru fiecare nod
+	{
 		for (auto j : M.getQ())
-			if (!M.isFinalState(i) && !M.isFinalState(j))
-				multime.Union(i, j);
-		break;
-	}
+		{
+			if (!M.isFinalState(i) && !M.isFinalState(j)) // daca nu sunt stari finale
+				multime.Union(i, j);					  // de pun in aceeasi multime
+			if (M.isFinalState(i) && M.isFinalState(j))
+				multime.Union(i, j); // daca sunt stari finale
+									 // ?break;
+		}
+	} // acum am starile nefinale intr-o multiem si cele finale in alta
 	int ok = 1;
 	while (ok)
 	{
+		// realizez k-echivalenta pana ajung la doua seturi de multimi disjuncte care sunt egale
 		DisjointSet newForest;
-		newForest.makeSet(M.getQ());
+		newForest.makeSet(M.getQ()); // fac multimi noi din starile automatului
 		for (auto i : M.getQ())
 		{
 			for (auto j : M.getQ())
 			{
-				int areInSameSet = 1;
+				int areInSameSet = 1; // presupun ca sunt in acelasi set unde fiecare nod e intr-o singura multime
 				for (char c : M.getSigma())
 				{
-					if (multime.find(initialTable[{i, c}]) != multime.find(initialTable[{j, c}]))
+					if (multime.find(initialTable[{i, c}]) != multime.find(initialTable[{j, c}])) // daca o stare cu o tranzitie ajunge intr-o stare care se afla in alta multime
 					{
-						areInSameSet = 0;
+						areInSameSet = 0; // nu sunt in aceeasi multime si le las asa
 					}
 				}
 				if (areInSameSet)
 				{
-					newForest.Union(i, j);
+					newForest.Union(i, j); // daca ajung in stari care sunt in aceeasi multime, le unesc
 				}
 			}
 		}
 		if (multime == newForest)
 		{
-			ok = 0;
+			ok = 0; // daca multime nou formata este aceeasi cu cea anterioara ma opresc
 		}
-		multime = newForest;
+		multime = newForest; //schimb multimea de baza cu cea nou formata
 	}
-	for (pair<int, int> i : multime.getMap())
-	{
-		cout << i.first << " " << i.second << endl;
-	}
-	//converting the disjoint sets into tha DFA
+	//convertesc seturile disjuncte in DFA
 	set<int> newQ, newF;
 	int newQ0;
-	map<pair<int, char>, int> newDelta;
+	map<pair<int, char>, int> newDelta; // variabilele pentru creeare noului DFA
 	// cout << "NewQ:";
 	for (int i : M.getQ())
 	{
-		newQ.insert(multime.find(i));
-		// cout << multime.find(i) << " ";
+		newQ.insert(multime.find(i)); // inserez doar reprezentantul multimii in care se afla o stare
+									  // cout << multime.find(i) << " ";
 	}
 	// cout << "\nNewF:";
 	for (int i : M.getF())
 	{
-		newF.insert(multime.find(i));
-		// cout << multime.find(i) << " ";
+		newF.insert(multime.find(i)); //inserez reprezentantul fiecarei stari finale
+									  // cout << multime.find(i) << " ";
 	}
-	newQ0 = multime.find(M.getInitialState());
+	newQ0 = multime.find(M.getInitialState()); // inserez reprezentatnul starii finale
 	// cout << "\nTable:\n";
-	for (int i : M.getQ())
+	for (int i : M.getQ()) // pentru fiecare stare
 	{
-		newDelta[{multime.find(i), 'a'}] = multime.find(initialTable[{multime.find(i), 'a'}]);
-		newDelta[{multime.find(i), 'b'}] = multime.find(initialTable[{multime.find(i), 'b'}]);
-		// cout << "newDela[" << multime.find(i) << "\'a\']=" << multime.find(initialTable[{multime.find(i), 'a'}]) << "\n";
-		// cout << "newDela[" << multime.find(i) << "\'b\']=" << multime.find(initialTable[{multime.find(i), 'b'}]) << "\n";
+		for (char c : M.getSigma()) // iau fiecare caracter
+		{
+			newDelta[{multime.find(i), c}] = multime.find(initialTable[{multime.find(i), c}]);
+			// in noul delta tranzitionez doar intre reprezentantii multimilor
+			//si starilor in care fac tranzitia cu caracterul c
+		}
 	}
-	DFA r(newQ, M.getSigma(), newDelta, newQ0, newF);
+	DFA r(newQ, M.getSigma(), newDelta, newQ0, newF); //construiesct noul DFA si il returnez
 	return r;
 }
-
 int main()
 {
 	DFA M, N;
