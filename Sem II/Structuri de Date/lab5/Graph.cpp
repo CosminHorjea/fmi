@@ -78,7 +78,17 @@ public:
 			}
 		}
 	};
-	int twoCycles(); //numara cele doua cicluri din graf (ex 3->5 si 5->3 e un 2-ciclu)
+	int twoCycles()
+	{
+		int res = 0;
+		for (int i = 0; i < adiacenta.size(); i++)
+		{
+			for (int j : adiacenta[i])
+				if (this->hasEdge(j, i))
+					res++;
+		}
+		return res / 2;
+	}; //numara cele doua cicluri din graf (ex 3->5 si 5->3 e un 2-ciclu)
 
 	//TODO Imbunatatiti performanta lui hasEdge
 	// * se presupune ca numarul si id-urile nodurilor sunt marginite la 10000
@@ -92,9 +102,14 @@ int main()
 	g.addNode(2);
 	g.addNode(3);
 	g.addEdge(1, 2);
+	g.addEdge(2, 1);
 	g.addEdge(1, 3);
+	g.addEdge(3, 1);
 	g.addEdge(3, 0);
 	g.DFS(1);
 	cout << endl;
 	g.BFS(1);
+	cout << endl;
+	// cout << g.hasEdge(1, 3);
+	cout << g.twoCycles();
 }
