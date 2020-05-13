@@ -59,35 +59,32 @@ public:
 	void DFS(int startNode)
 	{
 		vector<bool> visited(adiacenta.size(), false);
-		stack<int> stiva;
-		stiva.push(startNode);
-		visited[startNode] = true;
-		while (stiva.size())
+		DFSrec(startNode, visited);
+	};
+	void DFSrec(int n, vector<bool> visited)
+	{
+		visited[n] = true;
+		cout << n << " ";
+
+		for (int i : adiacenta[n])
 		{
-			int v = stiva.top();
-			cout << v << " ";
-			stiva.pop();
-			for (int i : adiacenta[v])
+			if (!visited[i])
 			{
-				if (!visited[i])
-				{
-					stiva.push(i);
-					visited[i] = true;
-					// cout << i;// ??
-				}
+				DFSrec(i, visited);
 			}
 		}
-	};
+	}
 	int twoCycles()
 	{
 		int res = 0;
 		for (int i = 0; i < adiacenta.size(); i++)
 		{
 			for (int j : adiacenta[i])
-				if (this->hasEdge(j, i))
+				if (i != j && this->hasEdge(j, i))
 					res++;
 		}
 		return res / 2;
+
 	}; //numara cele doua cicluri din graf (ex 3->5 si 5->3 e un 2-ciclu)
 
 	//TODO Imbunatatiti performanta lui hasEdge
@@ -106,10 +103,13 @@ int main()
 	g.addEdge(1, 3);
 	g.addEdge(3, 1);
 	g.addEdge(3, 0);
-	g.DFS(1);
-	cout << endl;
+	cout << "DFS(1): ";
+	g.DFS(3);
+	cout << endl
+		 << "BFS(1): ";
 	g.BFS(1);
 	cout << endl;
 	// cout << g.hasEdge(1, 3);
+	cout << "Cicluri de lungime 2: ";
 	cout << g.twoCycles();
 }
