@@ -1,3 +1,8 @@
+/*
+	Ideea de rezolvare a fost preluata din materilul: https://drive.google.com/file/d/1R6IvOee4YIGike9ckV_-2cdl0y_9CAq6/view
+
+*/
+
 #include <iostream>
 #include <set>
 #include <map>
@@ -11,6 +16,14 @@ set<char> N;			  // netermiale
 set<char> Sigma;		  //alfabet
 char S;
 // ! *-lambda
+char last = 'A';
+
+char getNewSymbol(set<char> N)
+{
+	while (N.find(last) != N.end())
+		last++;
+	return last;
+}
 
 void configGrammar()
 {
@@ -23,50 +36,62 @@ void configGrammar()
 	// P['C'].insert("AB");
 	// P['C'].insert("a");
 	N.insert('S');
-	N.insert('A');
-	// N.insert('B');
-	// N.insert('C');
+	N.insert('T');
+	N.insert('U');
+	N.insert('V');
 	N.insert('X');
 	N.insert('Y');
-	P['S'].insert("A");
-	P['A'].insert("XaYb");
-	P['X'].insert("x");
-	P['X'].insert("*");
-	P['Y'].insert("y");
-	P['Y'].insert("*");
-
+	P['S'].insert("T");
+	P['S'].insert("U");
+	P['S'].insert("X");
+	P['T'].insert("VaT");
+	P['T'].insert("VaV");
+	P['T'].insert("TaV");
+	P['U'].insert("VbU");
+	P['U'].insert("VbV");
+	P['U'].insert("UbV");
+	P['V'].insert("aVbV");
+	P['V'].insert("bVaV");
+	P['V'].insert("*");
+	P['X'].insert("Y");
+	P['Y'].insert("X");
 	Sigma.insert('a');
 	Sigma.insert('b');
-	Sigma.insert('x');
-	Sigma.insert('y');
+	Sigma.insert('*');
+
 	S = 'S';
 }
 
 void removeUseless()
 {
 	set<char> N1 = {};
-	for (char A : N)
+	unsigned i = 0;
+	while (i <= N1.size())
 	{
-		for (const string p : P[A])
+		for (char A : N)
 		{
-			int ok = 1;
-			for (char c : p)
+			for (const string p : P[A])
 			{
-				if (Sigma.find(c) == Sigma.end() && N1.find(c) == N1.end())
+				int ok = 1;
+				for (char c : p)
 				{
-					ok = 0;
+					if (Sigma.find(c) == Sigma.end() && N1.find(c) == N1.end())
+					{
+						ok = 0;
+					}
+				}
+				if (ok && (N1.find(A) == N1.end()))
+				{
+					N1.insert(A);
 				}
 			}
-			if (ok && (N1.find(A) == N1.end()))
-			{
-				N1.insert(A);
-			}
 		}
+		i++;
 	}
 	if (N1.find(S) == N1.end())
 		return;
 	vector<char> N2 = {S};
-	int i = 0;
+	i = 0;
 	while (i < N2.size())
 	{
 		for (string p : P[N2[i]])
@@ -90,6 +115,7 @@ void removeUseless()
 		}
 		i++;
 	}
+
 	set<char> finalN;
 	for (char c : N2)
 	{
@@ -108,86 +134,203 @@ void removeUseless()
 					P[n].erase(s);
 }
 
-void lambdaProd()
+void extractNonTerminals()
 {
-	set<char> Na;
-	map<char, set<string>> P1 = P;
-	char S1 = S;
-	for (char A : N)
+	map<char, char> nonT;
+	set<char> newN = N;
+	for (char nonTerm : N)
 	{
-		for (string s : P[A])
+		set<string> newProds;
+		for (string prod : P[nonTerm])
 		{
-			if (s == "*")
-				Na.insert(A);
-		}
-	}
-
-	int ok = 1;
-	// while (ok)
-	// {
-	// 	ok = 0;
-	// 	for (char A : N)
-	// 	{
-	// 		for (string s : P[A])
-	// 		{
-	// 			int canAdd = 1;
-	// 			for (char c : s)
-	// 			{
-	// 				if (N.find(c) == N.end() && Na.find(c) == Na.end())
-	// 					canAdd = 0;
-	// 			}
-	// 			if (canAdd && Na.find(A) == Na.end())
-	// 			{
-	// 				Na.insert(A);
-	// 				ok = 1;
-	// 			}
-	// 		}
-	// 	}
-	// }
-
-	if (Na.find(S) != Na.end())
-	{
-		P1['Z'].insert("" + S);
-		S1 = 'Z';
-	}
-
-	for (char A : N)
-	{
-		for (string s : P[A])
-		{
-			for (int i = 0; i < s.size(); i++)
+			string newProd = "";
+			for (int i = 0; i < prod.length(); i++)
 			{
-				if (Na.find(s[i]) != Na.end())
-					if (P[s[i]].size() == 1)
+				if ((N.find(prod[i]) == N.end()) && prod[i] != '*') //daca e terminal
+				{
+					if (nonT.count(prod[i])) // daca deja am facut productia
 					{
-						P1[A].erase(s);
-						s.erase(i);
-						P1[A].insert(s);
-						i--;
+						newProd += nonT[prod[i]];
 					}
 					else
 					{
-						string newS = s;
-						newS.erase(i);
-						cout << newS << ">";
-						P1[A].insert(newS);
+						nonT[prod[i]] = getNewSymbol(newN); // fac un neterminal nou
+						newProd += nonT[prod[i]];
+						P[nonT[prod[i]]].insert(string(1, prod[i]));
+						newN.insert(nonT[prod[i]]);
 					}
+				}
+				else
+				{
+					newProd += prod[i];
+				}
+			}
+			newProds.insert(newProd);
+		}
+		P[nonTerm] = newProds;
+	}
+	N = newN;
+}
+
+void cutProductions() //sparg productiile care au lungime >2
+{
+	set<char> newN = N;
+
+	for (char nonT : N)
+	{
+		set<string> newStrings;
+		for (string s : P[nonT])
+		{
+			// if (s.length() <= 2)
+			// {
+			// 	newStrings.insert(s);
+			// }
+			while (s.length() > 2)
+			{
+				string lastTwo = s.substr(s.length() - 2);
+				char newNonT = getNewSymbol(newN);
+				newN.insert(newNonT);
+				P[newNonT].insert(lastTwo);
+				s = s.substr(0, s.length() - 2) + newNonT;
+			}
+			newStrings.insert(s);
+		}
+		P[nonT] = newStrings;
+	}
+	N = newN;
+}
+
+void lambdaProd()
+{
+	set<char> onlyLambda, lambda;
+	for (char nonT : N)
+	{
+		for (string s : P[nonT])
+		{
+			if (s == "*")
+			{
+				if (P[nonT].size() == 1)
+				{
+
+					onlyLambda.insert(nonT);
+					P[nonT] = {};
+					N.erase(nonT);
+				}
+				else
+				{
+					lambda.insert(nonT);
+					P[nonT].erase("*");
+					break;
+				}
 			}
 		}
 	}
-	for (char c : Na)
+	for (char nonT : N)
 	{
-		if (P[c].size() == 1)
-			N.erase(c);
+		set<string> newProds = P[nonT];
+
+		for (string s : P[nonT])
+		{
+			string newS = s;
+			for (int i = 0; i < s.length(); i++)
+			{
+				if (onlyLambda.find(s[i]) != onlyLambda.end())
+				{
+					newProds.erase(s);
+					s.erase(i, 1);
+					newProds.insert(s);
+					i--;
+				}
+				else if (lambda.find(s[i]) != lambda.end())
+				{
+					newS.erase(i, 1);
+					newProds.insert(newS);
+					newS = s;
+				}
+			}
+		}
+		P[nonT] = newProds;
 	}
-	P = P1;
-	S = S1;
 }
+
+void removeUnitProd()
+{
+	int ok = 1;
+	do
+	{
+		ok = 1;
+		for (char nonT : N)
+		{
+			set<string> newProds;
+			for (string s : P[nonT])
+			{
+				if (s.length() == 1 && N.find(s[0]) != N.end()) //daca este o prod de lungime unu si nu este simbol terminal
+				{
+					for (string s2 : P[s[0]])
+					{
+						if (s2.length() == 1)
+							ok = 0;
+						newProds.insert(s2);
+					}
+				}
+				else
+				{
+					newProds.insert(s);
+				}
+			}
+			P[nonT] = newProds;
+		}
+	} while (!ok);
+}
+
 int main()
 {
 	configGrammar();
+	for (char c : N)
+	{
+		cout << c << ": ";
+		for (string s : P[c])
+		{
+			cout << s << "|";
+		}
+		cout << endl;
+	}
 	removeUseless();
+	// lambdaProd();
+	extractNonTerminals();
+	cout << "\n============\n";
+	for (char c : N)
+	{
+		cout << c << ": ";
+		for (string s : P[c])
+		{
+			cout << s << "|";
+		}
+		cout << endl;
+	}
+	cutProductions();
+	cout << "\n============\n";
+	for (char c : N)
+	{
+		cout << c << ": ";
+		for (string s : P[c])
+		{
+			cout << s << "|";
+		}
+		cout << endl;
+	}
 	lambdaProd();
+	cout << "\n============\n";
+	for (char c : N)
+	{
+		cout << c << ": ";
+		for (string s : P[c])
+		{
+			cout << s << "|";
+		}
+		cout << endl;
+	}
+	removeUnitProd();
 	cout << "\n============\n";
 	for (char c : N)
 	{
