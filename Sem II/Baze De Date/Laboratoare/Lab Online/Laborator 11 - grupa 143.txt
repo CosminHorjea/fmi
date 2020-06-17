@@ -1,0 +1,205 @@
+--LABORATOR 7
+
+------------------------------------------------------------------------------
+
+!!!!!! Atentie la denumirea tabelelor si a constrangerilor!!!!!!
+se foloseste -> “pnu” unde p reprezintă prima literă a prenumelui, iar nu reprezintă primele două litere ale numelui
+
+------------------------------------------------------------------------------
+
+
+1. Să se creeze tabelele EMP_pnu, DEPT_pnu (în care şirul de caractere “pnu”, 
+p reprezintă prima literă a prenumelui, iar nu reprezintă primele două litere ale numelui), 
+prin copierea structurii şi conţinutului tabelelor EMPLOYEES, respectiv DEPARTMENTS.
+
+CREATE TABLE EMP_pnu AS SELECT * FROM employees;
+
+CREATE TABLE DEPT_pnu AS SELECT * FROM departments;
+
+select * from employees;
+select * from departments;
+
+2. Listaţi structura tabelelor sursă şi a celor create anterior. Ce se observă
+
+desc employees;
+desc emp_pnu;
+
+-- nu se copiaza constrangerile de integritate - cheie primara si cheie externa
+
+3. Listaţi conţinutul tabelelor create anterior
+
+select * from employees;
+select * from departments;
+
+select * from emp_pnu;
+select * from dept_pnu;
+
+--continutul se copiaza in totalitate
+
+4. Pentru introducerea constrângerilor de integritate, executaţi instrucţiunile LDD indicate în continuare.
+
+ALTER TABLE emp_pnu
+ADD CONSTRAINT pk_emp_pnu PRIMARY KEY(employee_id);
+
+ALTER TABLE dept_pnu
+ADD CONSTRAINT pk_dept_pnu PRIMARY KEY(department_id);
+
+ALTER TABLE emp_pnu
+ADD CONSTRAINT fk_emp_dept_pnu
+FOREIGN KEY(department_id) REFERENCES dept_pnu(department_id);
+
+Ce constrângere nu am implementat?
+
+ALTER TABLE emp_pnu
+ADD CONSTRAINT fk_emp_sef_pnu FOREIGN KEY(manager_id) 
+                              REFERENCES emp_pnu(employee_id);
+
+
+ALTER TABLE dept_pnu
+ADD CONSTRAINT fk_dept_sef_pnu FOREIGN KEY(manager_id) 
+                               REFERENCES emp_pnu(employee_id);
+
+-- aici s-a produs un commit implicit (de catre sistem)
+
+5. Să se insereze departamentul 300, cu numele Programare în DEPT_pnu.
+Analizaţi cazurile, precizând care este soluţia corectă şi explicând erorile celorlalte variante. 
+Pentru a anula efectul instrucţiunii(ilor) corecte, utilizaţi comanda ROLLBACK.
+
+--a) not enough values
+-- metoda implicita de inserare in care nu se specifica coloanele in clauza INTO
+desc dept_pnu;
+INSERT INTO DEPT_pnu
+VALUES (300, 'Programare');
+
+--b) -- metoda explicita deoarece se specifica coloanele (o parte din ele)
+INSERT INTO DEPT_pnu (department_id, department_name)
+VALUES (300, 'Programare');
+
+select * from dept_pnu;
+
+--CREATE, ALTER, DROP - care realizeaza un commit implicit 
+
+rollback; -- anuleaza toate modificarile pana la ultimul commit (implicit sau explicit)
+
+commit; 
+
+select * from dept_pnu;
+
+rollback;
+
+select * from dept_pnu;
+
+--c) --invalid number
+INSERT INTO DEPT_pnu (department_name, department_id)
+VALUES (300, 'Programare');  
+
+--d) unique constraint (GRUPA43.PK_DEPT_PNU) violated
+INSERT INTO DEPT_pnu (department_id, department_name, location_id)
+VALUES (300, 'Programare', null);
+
+INSERT INTO DEPT_pnu (department_id, department_name, location_id)
+VALUES (301, 'Programare', null);
+
+commit;
+
+--e) cannot insert NULL into ("GRUPA43"."DEPT_PNU"."DEPARTMENT_ID")
+INSERT INTO DEPT_pnu (department_name, location_id)
+VALUES ('Programare', null);
+
+6. Să se insereze un angajat corespunzător departamentului introdus anterior în tabelul EMP_pnu, 
+precizând valoarea NULL pentru coloanele a căror valoare nu este cunoscută la inserare (metoda implicită de inserare). 
+Determinaţi ca efectele instrucţiunii să devină permanente.
+
+INSERT INTO nume_tabel (col1, col2, ...) VALUES - inserare explicita
+INSERT INTO nume_tabel VALUES - inserare implicita;
+
+desc emp_pnu;
+
+INSERT INTO emp_pnu 
+       VALUES (257, NULL, 'nume257', 'email257', NULL, SYSDATE, 'IT_PROG', NULL, NULL, NULL, NULL); 
+
+select * from emp_pnu
+where employee_id = 257;
+
+commit;
+
+7. Să se mai introducă un angajat corespunzător departamentului 300, precizând după numele tabelului lista coloanelor 
+în care se introduc valori (metoda explicita de inserare). Se presupune că data angajării acestuia este cea curentă (SYSDATE)
+Salvaţi înregistrarea.
+  
+INSERT INTO emp_pnu (hire_date, job_id, employee_id, last_name, email, department_id)
+       VALUES (sysdate, 'sa_man', 278, 'nume_278', 'email_278', 300);
+       
+COMMIT;
+
+select * from emp_pnu;
+
+--11
+
+INSERT INTO emp_pnu (employee_id, first_name, last_name, email, hire_date, job_id, salary)
+VALUES(&cod, '&&prenume', '&&nume', substr('&prenume',1,1) || substr('&nume',1,7), sysdate, 'it_prog',&sal);
+
+UNDEFINE prenume;
+
+UNDEFINE nume;
+
+select * from emp_pnu;
+
+rollback;
+
+9. Creaţi un nou tabel, numit EMP1_PNU, care va avea aceeaşi structură ca şi EMPLOYEES, dar nici o înregistrare. 
+Copiaţi în tabelul EMP1_PNU salariaţii (din tabelul EMPLOYEES) al căror comision depăşeşte 25% din salariu.
+
+create table emp1_pnu as select * from employees;
+
+delete from emp1_pnu;
+
+select * from emp1_pnu;
+
+insert into emp1_pnu
+        select *
+        from employees
+        where commission_pct > 0.25;
+        
+rollback; -- ce se intampla daca se executa un rollback??
+-- anuleaza toate modificarile realizate pana la ultimul commit - adica anuleaza inserarea si stergerea
+
+
+12. Creaţi 2 tabele emp2_pnu şi emp3_pnu cu aceeaşi structură ca tabelul EMPLOYEES, 
+dar fără înregistrări (acceptăm omiterea constrângerilor de integritate). 
+Prin intermediul unei singure comenzi, copiaţi din tabelul EMPLOYEES:
+
+- în tabelul EMP1_PNU salariaţii care au salariul mai mic decât 5000;
+- în tabelul EMP2_PNU salariaţii care au salariul cuprins între 5000 şi 10000;
+- în tabelul EMP3_PNU salariaţii care au salariul mai mare decât 10000.
+Verificaţi rezultatele, apoi ştergeţi toate înregistrările din aceste tabele.
+
+
+create table emp1_pnu as select * from employees;
+create table emp2_pnu as select * from employees;
+create table emp3_pnu as select * from employees;
+
+delete from emp1_pnu;
+delete from emp2_pnu;
+delete from emp3_pnu;
+
+select * from emp1_pnu;
+select * from emp2_pnu;
+select * from emp3_pnu;
+
+Pentru inserări condiţionate:
+INSERT [ALL | FIRST]
+WHEN condiţie THEN INTO…
+[WHEN condiţie THEN INTO…
+[ELSE INTO …]]
+subcerere;
+
+
+insert all
+when salary < 5000 then into emp1_pnu
+when salary >= 5000 and salary <= 10000 then into emp2_pnu
+else into emp3_pnu
+    select * from employees;
+
+
+

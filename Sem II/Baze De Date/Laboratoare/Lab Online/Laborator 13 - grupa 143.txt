@@ -1,0 +1,226 @@
+--LABORATOR 8
+
+select * from angajati_pnu;
+
+ALTER TABLE nume_tabel
+ADD/MODIFY/DROP;
+
+3. Introduceti coloana comision in tabelul ANGAJATI_pnu. Coloana va avea tipul de date NUMBER(4,2).
+
+ALTER TABLE angajati_pnu
+ADD(comision number(4,2));
+
+desc angajati_pnu;
+select * from angajati_pnu;
+
+4. Este posibilă modificarea tipului coloanei salariu în NUMBER(6,2) – 6 cifre si 2 zecimale?
+
+ALTER TABLE angajati_pnu
+MODIFY(salariu number(6,2)); --column to be modified must be empty to decrease precision or scale
+
+desc angajati_pnu;
+select * from angajati_pnu;
+
+5. Setaţi o valoare DEFAULT pentru coloana salariu.
+
+ALTER TABLE angajati_pnu
+MODIFY(salariu number(8,2) default 10);
+
+6. Modificaţi tipul coloanei comision în NUMBER(2, 2) şi al coloanei salariu la NUMBER(10,2), 
+în cadrul aceleiaşi instrucţiuni.
+
+ALTER TABLE angajati_pnu
+MODIFY(comision number(2,2),
+       salariu number(10,2)
+       );
+       
+desc angajati_pnu;
+select * from angajati_pnu;      
+
+7. Actualizati valoarea coloanei comision, setând-o la valoarea 0.1 pentru salariaţii al căror 
+job începe cu litera A. (UPDATE)
+
+UPDATE angajati_pnu
+SET comision = 0.1
+WHERE upper(job) like 'A%';
+
+select * from angajati_pnu;      
+
+commit;
+
+8. Modificaţi tipul de date al coloanei email în VARCHAR2.
+
+ALTER TABLE angajati_pnu
+MODIFY(email varchar2(15));
+
+desc angajati_pnu;
+select * from angajati_pnu; 
+
+9. Adăugaţi coloana nr_telefon în tabelul ANGAJATI_pnu, setându-i o valoare implicită.
+
+ALTER TABLE angajati_pnu
+ADD(nr_telefon varchar2(10) default '0732342354');
+
+
+10. Vizualizaţi înregistrările existente. Suprimaţi coloana nr_telefon.
+Ce efect ar avea o comandă ROLLBACK în acest moment?
+
+ALTER TABLE angajati_pnu
+DROP COLUMN nr_telefon;
+
+11. Creaţi şi tabelul DEPARTAMENTE_pnu, corespunzător schemei relaţionale:
+DEPARTAMENTE_pnu (cod_dep# number(2), nume varchar2(15), cod_director number(4))
+specificând doar constrângerea NOT NULL pentru nume (nu precizaţi deocamdată constrângerea de cheie primară).
+
+CREATE TABLE departamente_pnu 
+        (cod_dep number(2),
+         nume varchar2(15) constraint nume_dept_pnu not null,
+         cod_director number(4)
+        );
+
+DESC departamente_pnu;
+
+12. Introduceţi următoarele înregistrări în tabelul DEPARTAMENTE_pnu:
+
+INSERT INTO departamente_pnu
+       VALUES(10, 'Administrativ', 100);
+       
+INSERT INTO departamente_pnu
+       VALUES(20, 'Proiectare', 101);
+       
+INSERT INTO departamente_pnu
+       VALUES(30, 'Programare', NULL);
+
+commit;
+
+13. Se va preciza apoi cheia primara cod_dep, fără suprimarea şi recrearea tabelului (comanda ALTER).
+
+ALTER TABLE departamente_pnu
+ADD CONSTRAINT pk_dep_pnu PRIMARY KEY(cod_dep);
+
+desc departamente_pnu;
+
+
+14. Să se precizeze constrângerea de cheie externă pentru coloana cod_dep din ANGAJATI_pnu:
+
+a) fără suprimarea tabelului (ALTER TABLE);
+
+DESC ANGAJATI_PNU;
+
+ALTER TABLE angajati_pnu
+ADD CONSTRAINT fk_ang_dept_pnu FOREIGN KEY(cod_dep) REFERENCES departamente_pnu(cod_dep);
+
+
+b) prin suprimarea şi recrearea tabelului, cu precizarea noii constrângeri la nivel de coloană ({DROP, CREATE} TABLE). 
+De asemenea, se vor mai preciza constrângerile (la nivel de coloană, dacă este posibil):
+- PRIMARY KEY pentru cod_ang; ===
+- FOREIGN KEY pentru cod_sef; ===
+- UNIQUE pentru combinaţia nume + prenume; ===
+- UNIQUE pentru email; ===
+- NOT NULL pentru nume; ===
+- verificarea cod_dep >0;===
+- verificarea ca salariul sa fie mai mare decat comisionul*100.===
+
+ANGAJATI_pnu(cod_ang number(4), nume varchar2(20), prenume varchar2(20), email char(15), data_ang date, 
+             job varchar2(10), cod_sef number(4), salariu number(8, 2), cod_dep number(2));
+
+drop table angajati_pnu;
+desc angajati_pnu;
+
+CREATE TABLE angajati_pnu
+       (cod_ang number(4) constraint pk_ang_pnu primary key,
+        nume varchar2(20) constraint nume_ang_pnu not null,
+        prenume varchar2(20),
+        email char(15) unique,
+        data_ang date default sysdate,
+        job varchar2(10),
+        cod_sef number(4) constraint sef_ang_pnu references angajati_pnu(cod_ang),
+        salariu number(8,2),
+        cod_dep number(2) constraint fk_ang_dep_pnu references departamente_pnu(cod_dep),
+        comision number(2,2),
+        check(cod_dep > 0),
+        constraint verif_sal_pnu check(salariu > comision * 100),
+        constraint num_pren_pnu unique(nume, prenume)
+       );
+
+16. Reintroduceţi date în tabel, utilizând (şi modificând, dacă este necesar) comenzile salvate anterior.
+
+INSERT INTO angajati_pnu
+VALUES(100, 'nume1', 'prenume1', 'email1', sysdate, 'Director ',null, 20000,10, 0.1);
+
+INSERT INTO angajati_pnu
+VALUES(101,'nume2' , 'prenume2', 'email2',to_date('02-02-2004','dd-mm- yyyy'),'Inginer', 100, 10000 ,10, 0.2);
+
+INSERT INTO angajati_pnu
+VALUES(102,'nume3' , 'prenume3', 'email3',to_date('05-06-2000','dd-mm-yyyy'),'Analist', 101, 5000 ,20, 0.1);
+
+INSERT INTO angajati_pnu
+VALUES(103,'nume4','prenume4', 'email4', sysdate, 'Inginer ',100,9000,20, 0.1);
+
+INSERT INTO angajati_pnu
+VALUES(104,'nume5', 'prenume5', 'email5', sysdate, 'Analist', 101, 3000 ,30, 0.1);
+
+select * from angajati_pnu;
+
+commit;
+
+
+19. Introduceţi constrângerea NOT NULL asupra coloanei email.
+
+ALTER TABLE angajati_pnu
+MODIFY(email not null);
+
+20. (Incercaţi să) adăugaţi o nouă înregistrare în tabelul ANGAJATI_pnu, 
+care să corespundă codului de departament 50. Se poate?
+
+select * from departamente_pnu;
+select * from angajati_pnu;
+
+
+21. Adăugaţi un nou departament, cu numele Analiza, codul 60 şi directorul null în DEPARTAMENTE_pnu. COMMIT.
+
+INSERT INTO departamente_pnu
+VALUES (60, 'Analiza', null);
+
+SELECT * FROM departamente_pnu;
+
+COMMIT;
+
+22. (Incercaţi să) ştergeţi departamentul 20 din tabelul DEPARTAMENTE_pnu. Comentaţi.
+
+DELETE FROM departamente_pnu
+WHERE cod_dep = 20; -- ORA-02292: integrity constraint (GRUPA43.FK_ANG_DEP_PNU) violated - child record found
+
+select * from angajati_pnu;
+
+
+23. Ştergeţi departamentul 60 din DEPARTAMENTE_pnu. ROLLBACK.
+
+DELETE FROM departamente_pnu
+WHERE cod_dep = 60;
+
+SELECT * FROM departamente_pnu;
+
+rollback;
+
+24. Se doreşte ştergerea automată a angajaţilor dintr-un departament, odată cu suprimarea departamentului. 
+Pentru aceasta, este necesară introducerea clauzei ON DELETE CASCADE în definirea constrângerii de cheie externă. 
+Suprimaţi constrângerea de cheie externă asupra tabelului ANGAJATI_pnu şi reintroduceţi această constrângere, 
+specificând clauza ON DELETE CASCADE;
+
+ALTER TABLE angajati_pnu
+DROP CONSTRAINT FK_ANG_DEP_PNU;
+
+ALTER TABLE angajati_pnu
+ADD CONSTRAINT FK_ANG_DEP_PNU FOREIGN KEY(cod_dep)
+REFERENCES departamente_pnu(cod_dep) ON DELETE CASCADE; 
+
+
+25. Ştergeţi departamentul 20 din DEPARTAMENTE_pnu. Ce se întâmplă? Rollback.
+
+DELETE FROM departamente_pnu
+WHERE cod_dep = 20;
+
+ROLLBACK;
+
+

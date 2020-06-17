@@ -1,0 +1,249 @@
+-- LABORATOR 4
+16. Sa se afiseze codul, numele departamentului si numarul de angajati care
+lucreaza in acel departament pentru:
+
+a) departamentele in care lucreaza mai putin de 4 angajati;
+
+SELECT e.department_id, d.department_name, COUNT(employee_id)
+FROM employees e JOIN departments d ON (d.department_id = e.department_id )
+GROUP BY e.department_id, d.department_name
+HAVING COUNT(employee_id) < 4;
+
+-- vrem sa afisam si departamentele care au zero angajati
+SELECT d.department_id, d.department_name, COUNT(employee_id)
+FROM employees e RIGHT JOIN departments d ON (d.department_id = e.department_id )
+GROUP BY d.department_id, d.department_name
+HAVING COUNT(employee_id) < 4;
+
+--sau:
+
+SELECT e.department_id, d. department_name, COUNT(*)
+FROM departments d JOIN employees e ON (d.department_id = e.department_id )
+WHERE e.department_id IN (  SELECT department_id
+                            FROM employees
+                            GROUP BY department_id
+                            HAVING COUNT(*) < 4
+                          )
+GROUP BY e.department_id, d.department_name;
+
+
+-- NOT IN si valorile null
+
+SELECT e.department_id, d. department_name, COUNT(*)
+FROM departments d JOIN employees e ON (d.department_id = e.department_id )
+WHERE e.department_id NOT IN (  SELECT department_id
+                                FROM employees
+                                WHERE department_id is not null
+                                GROUP BY department_id
+                                HAVING COUNT(*) < 4
+                              )
+GROUP BY e.department_id, d.department_name;
+
+ATENTIE!!!! -> la compararea cu null atunci cand se utilizeaza NOT IN 
+(putem elimina valorile null cu ajutorul unei conditii sau putem inlocui valorile null cu o alta valoare);
+
+
+SELECT e.department_id, d. department_name, COUNT(*)
+FROM departments d JOIN employees e ON (d.department_id = e.department_id )
+WHERE e.department_id NOT IN (  SELECT nvl(department_id, 0)
+                                FROM employees
+                                GROUP BY department_id
+                                HAVING COUNT(*) < 4
+                              )
+GROUP BY e.department_id, d.department_name;
+
+
+
+b) departamentul care are numarul maxim de angajati.
+
+SELECT e.department_id, d.department_name, COUNT(employee_id)
+FROM employees e JOIN departments d ON (d.department_id = e.department_id )
+GROUP BY e.department_id, d.department_name
+HAVING count(employee_id) = (select max(count(employee_id))
+                             from employees
+                             group by department_id);
+                             
+17. Sa se afiseze salariatii care au fost angajati în aceeaşi zi a lunii în care cei mai
+multi dintre salariati au fost angajati.
+
+--determinam numarul maxim de angajati dintr-o zi a lunii
+select max(count(employee_id))
+from employees
+group by to_char(hire_date, 'dd');
+
+
+-- selectam ziua lunii pentru care numarul de angajati este maxim 
+-- adica este egal cu numarul obtinut in cererea anterioara
+select to_char(hire_date, 'dd')
+from employees
+group by to_char(hire_date, 'dd')
+having count(employee_id) = (select max(count(employee_id))
+                             from employees
+                             group by to_char(hire_date, 'dd')
+                             );
+                             
+--cererea completa
+select last_name, hire_date
+from employees
+where to_char(hire_date, 'dd') = (  select to_char(hire_date, 'dd')
+                                    from employees
+                                    group by to_char(hire_date, 'dd')
+                                    having count(employee_id) = (select max(count(employee_id))
+                                                                 from employees
+                                                                 group by to_char(hire_date, 'dd')
+                                                                 )
+                                 );
+
+
+18. Să se obţină numărul departamentelor care au cel puţin 15 angajaţi
+
+select count(count(department_id)) "Nr departamente"
+from employees
+group by department_id
+having count(employee_id) >= 15;
+
+
+19. Să se obţină codul departamentelor şi suma salariilor angajaţilor care lucrează în
+acestea, în ordine crescătoare. Se consideră departamentele care au mai mult de
+10 angajaţi şi al căror cod este diferit de 30.
+
+select department_id, sum(salary)
+from employees
+group by department_id
+having count(employee_id) > 10 and department_id <> 30
+order by 2;
+
+-- sau: (sunt echivalente dar varianta 2 este mai optima) De ce? -> 
+
+select department_id, sum(salary)
+from employees
+where department_id != 30
+group by department_id
+having count(employee_id) > 10 
+order by 2;
+
+
+20. Care sunt angajatii care au mai avut cel putin doua joburi?
+
+select employee_id, count(job_id)
+from job_history
+group by employee_id
+having count(job_id) >= 2;
+
+21. Să se calculeze comisionul mediu din firmă, luând în considerare toate liniile din
+tabel.
+
+select commission_pct 
+from employees;
+
+Obs: Funcţiile grup ignoră valorile null (cu exceptia lui COUNT(*) acesta numara toate liniile). 
+Prin urmare, instrucţiunea
+
+SELECT AVG(commission_pct)
+FROM employees; -- 0.22
+
+va returna media valorilor pe baza liniilor din tabel pentru care există o valoare diferită
+de null. Astfel, reiese că suma valorilor se împarte la numărul de valori diferite de null.
+Calculul mediei pe baza tuturor liniilor din tabel se poate realiza utilizând funcţiile NVL, NVL2
+
+SELECT AVG(NVL(commission_pct, 0))
+FROM employees; -- 0.07
+
+
+O altă variantă este dată de o cerere de forma:
+
+SELECT SUM(commission_pct)/COUNT(*)
+FROM employees;  -- 0.07
+
+SELECT SUM(commission_pct)/COUNT(employee_id)
+FROM employees; -- 0.07 deoarece employee_id este cheie primara si este unica 
+                -- => impartirea se realizeaza utilizand toate liniile din tabel
+                
+
+[Exerciţii – DECODE]
+
+DECODE (value, if1, then1, if2, then2, ... ,ifN, thenN, else);
+
+
+22. Scrieţi o cerere pentru a afişa job-ul, salariul total pentru job-ul respectiv pe
+departamente si salariul total pentru job-ul respectiv pe departamentele 30, 50, 80.
+Se vor eticheta coloanele corespunzător. Rezultatul va apărea sub forma de mai jos:
+Job Dep30 Dep50 Dep80 Total
+------------------------------------------------------------------------------
+
+SELECT job_id,  SUM(DECODE(department_id, 30, salary)) Dep30,
+                SUM(DECODE(department_id, 50, salary)) Dep50,
+                SUM(DECODE(department_id, 80, salary)) Dep80,
+                SUM(salary) Total
+FROM employees
+GROUP BY job_id;
+
+
+select job_id, department_id, salary
+from employees;
+
+
+Metoda 2: (cu subcereri corelate în clauza SELECT)
+
+SELECT job_id, (SELECT SUM(salary)
+                FROM employees
+                WHERE department_id = 30
+                AND job_id = e.job_id) Dep30,
+                (SELECT SUM(salary)
+                FROM employees
+                WHERE department_id = 50
+                AND job_id = e.job_id) Dep50,
+                (SELECT SUM(salary)
+                FROM employees
+                WHERE department_id = 80
+                AND job_id = e.job_id) Dep80,
+                SUM(salary) Total
+FROM employees e
+GROUP BY job_id;
+
+
+[Exerciţii – subcereri în clauza FROM]
+
+Obs: Subcererile pot apărea în clauza SELECT, WHERE sau FROM a unei cereri. O
+subcerere care apare în clauza FROM se mai numeşte view in-line.
+
+24. Să se afişeze codul, numele departamentului şi suma salariilor pe departamente.
+
+SELECT d.department_id, department_name, sum(salary)
+FROM departments d join employees e on (d.department_id = e.department_id)
+GROUP BY d.department_id, department_name;
+
+
+-- varianta cu subcerere in FROM
+
+SELECT d.department_id, department_name, a.suma
+FROM departments d, (SELECT department_id ,SUM(salary) suma
+                     FROM employees
+                     GROUP BY department_id) a
+WHERE d.department_id = a.department_id;
+
+
+25. Să se afişeze numele, salariul, codul departamentului si salariul mediu din
+departamentul respectiv.
+
+-- subcerere in FROM
+select last_name, salary, department_id, SalariuMediu
+from employees join (select round(avg(salary)) SalariuMediu, department_id
+                     from employees
+                     group by department_id)
+    using(department_id);
+
+
+--subcerere in SELECT
+select last_name, salary, department_id, (select round(avg(salary))
+                                          from employees
+                                          where e.department_id = department_id
+                                          --group by department_id
+                                          ) SalMediu
+from employees e;
+
+
+select last_name, salary, department_id
+from employees;
+
+

@@ -1,0 +1,214 @@
+--LABORATOR 7 + 8
+
+select * from emp_pnu;
+
+select * from dept_pnu;
+
+II. Comanda UPDATE
+Sintaxa simplificată a comenzii UPDATE este:
+
+UPDATE nume_tabel [alias]
+SET col1 = expr1[, col2=expr2]
+[WHERE conditie];
+--sau
+UPDATE nume_tabel [alias]
+SET (col1,col2,...) = (subcerere)
+[WHERE conditie];
+
+Exerciţii [II]
+14. Măriţi salariul tuturor angajaţilor din tabelul EMP_PNU cu 5%. 
+Vizualizati, iar apoi anulaţi modificările.
+
+UPDATE emp_pnu
+SET salary = salary * 1.05;
+
+SELECT * FROM emp_pnu;
+
+ROLLBACK; -- rollback anuleaza modificarile pana la ultimul commit 
+-- in acest caz anuleaza comanda update 
+
+15. Schimbaţi jobul tuturor salariaţilor din departamentul 80 care au comision, în 'SA_REP'. Anulaţi modificările.
+
+update emp_pnu
+set job_id = 'SA_REP'
+where department_id = 80 and commission_pct is not null;
+
+select * from emp_pnu;
+
+rollback;
+
+16. Să se promoveze Douglas Grant la manager în departamentul 20, având o creştere de salariu cu 1000$.
+
+select * from dept_pnu
+where department_id = 20;
+
+select * from emp_pnu
+where employee_id = 201;
+
+update dept_pnu
+set manager_id = (select employee_id
+                  from emp_pnu
+                  where initcap(last_name) = 'Grant' and initcap(first_name) = 'Douglas'
+                  )
+where department_id = 20;
+
+update emp_pnu 
+set salary = salary + 1000
+where initcap(last_name) = 'Grant' and initcap(first_name) = 'Douglas';
+
+rollback; -- o sa se anuleze ambele comenzi update
+
+18. Să se modifice adresa de e-mail pentru angajaţii care câştigă cel mai mult în departamentul 
+în care lucrează astfel încât aceasta să devină iniţiala numelui concatenată cu prenumele. 
+Dacă nu are prenume atunci în loc de acesta apare caracterul ‘.’ . Anulaţi modificările.
+
+update emp_pnu e
+set email = substr(last_name, 1, 1) || nvl(first_name, '.')
+where salary = (select max(salary)
+                from emp_pnu
+                where department_id = e.department_id
+                );
+                
+--SAU
+update emp_pnu e
+set email = substr(last_name, 1, 1) || nvl(first_name, '.')
+where (salary, department_id) IN (select max(salary), department_id
+                                  from emp_pnu
+                                  group by department_id
+                                  );
+
+select * from emp_pnu;
+
+rollback;
+
+III. Comanda DELETE
+Sintaxa simplificată a comenzii DELETE este:
+
+DELETE FROM nume_tabel
+[WHERE conditie];
+
+Exercitii [III]
+20. Ştergeţi toate înregistrările din tabelul DEPT_PNU. Ce înregistrări se pot şterge? Anulaţi modificările.
+
+delete from dept_pnu; -- integrity constraint (GRUPA43.FK_EMP_DEPT_PNU) violated - child record found
+-- nu se pot sterge departamentele care se afla si in emp
+-- in emp department_id este cheie externa
+
+-- se pot sterge doar acele departamente care nu au angajati
+
+21. Suprimaţi departamentele care nu au angajati. Anulaţi modificările.
+
+delete from dept_pnu
+where department_id in (select department_id
+                        from dept_pnu -- din lista tuturor depart
+                        
+                        MINUS  -- eliminam depart in care lucreaza angajati
+                        
+                        select department_id
+                        from emp_pnu
+                        ); -- se obtin departamentele care nu au angajati
+                        
+-- sau
+delete from dept_pnu
+where department_id not in (select nvl(department_id, -100)
+                            from emp_pnu
+                            ); -- lista departametelor care au angajati
+
+
+select * from dept_pnu;
+
+rollback;
+
+Exerciţii [LMD, LCD]
+
+22. Să se mai introducă o linie in tabelul DEPT_PNU.
+
+desc dept_pnu;
+metode de inserare - implicita, explicita
+
+insert into dept_pnu
+values (400, 'depart400', null, null);
+
+23. Să se marcheze un punct intermediar in procesarea tranzacţiei (SAVEPOINT p).
+
+savepoint p;
+
+24. Să se şteargă din tabelul DEPT_PNU departamentele care au codul de departament cuprins intre 160 si 200 . 
+Listaţi conţinutul tabelului.
+
+delete from dept_pnu
+where department_id between 160 and 200;
+
+25. Să se renunţe la cea mai recentă operaţie de ştergere, fără a renunţa la operaţia precedentă de introducere.
+(ROLLBACK TO p). Determinaţi ca modificările să devină permanente;
+
+rollback to p;
+
+select * from dept_pnu;
+
+--LABORATOR 8
+1. Să se creeze tabelul ANGAJATI_pnu (pnu se alcatuieşte din prima literă din prenume 
+şi primele două din numele studentului) corespunzător schemei relaţionale:
+
+ANGAJATI_pnu(cod_ang number(4), nume varchar2(20), prenume varchar2(20), email char(15), 
+             data_ang date, job varchar2(10), cod_sef number(4), salariu number(8, 2), cod_dep number(2) )
+în următoarele moduri:
+
+a) cu precizarea cheilor primare la nivel de coloană si a constrangerilor NOT NULL pentru coloanele nume şi salariu; 
+
+CREATE TABLE angajati_pnu
+       (cod_ang number(4) constraint p_key_pnu primary key,
+        nume varchar2(20) constraint ang_nume_pnu not null,
+        prenume varchar2(20),
+        email char(15) unique,
+        data_ang date default sysdate,
+        job varchar2(10),
+        cod_sef number(4),
+        salariu number(8, 2) constraint ang_sal_pnu not null,
+        cod_dep number(2)
+       );
+       
+desc angajati_pnu;
+select * from angajati_pnu;
+
+
+b) cu precizarea cheii primare la nivel de tabel si a constrângerilor NOT NULL pentru coloanele nume şi salariu.
+Se presupune că valoarea implicită a coloanei data_ang este SYSDATE.
+
+drop table angajati_pnu;
+
+CREATE TABLE angajati_pnu
+       (cod_ang number(4),
+        nume varchar2(20) constraint ang_nume_pnu not null,
+        prenume varchar2(20),
+        email char(15) unique,
+        data_ang date default sysdate,
+        job varchar2(10),
+        cod_sef number(4),
+        salariu number(8, 2) constraint ang_sal_pnu not null,
+        cod_dep number(2),
+        constraint p_key_pnu primary key(cod_ang)
+       );
+
+2. Adăugaţi următoarele înregistrări în tabelul ANGAJATI_pnu:
+
+insert into angajati_pnu(cod_ang, nume, prenume, data_ang, job, salariu, cod_dep)
+       values(100, 'nume1', 'prenume1', null, 'Director', 20000, 10);      
+       
+insert into angajati_pnu 
+       values(101,'nume2', 'prenume2', 'nume2', to_date('02-02-2004','dd-mm-yyyy'), 'Inginer', 100, 10000, 10);
+            
+insert into angajati_pnu 
+       values(102,'nume3', 'prenume3', 'nume3', to_date('05-06-2000','dd-mm-yyyy'), 'Analist', 101, 5000, 20);
+                     
+insert into angajati_pnu(cod_ang, nume, prenume, data_ang, job, cod_sef, salariu, cod_dep)  
+       values(103, 'nume4', 'prenume4', null, 'Inginer', 100, 9000, 20);
+       
+insert into angajati_pnu 
+       values(104, 'nume5', 'prenume5', 'nume5', null, 'Analist', 101, 3000, 30);
+
+
+select * from angajati_pnu;
+
+commit;
+

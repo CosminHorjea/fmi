@@ -1,0 +1,249 @@
+-- LABORATOR 3 continuare 
+
+10. Folosind subcereri, să se afişeze numele şi data angajării pentru salariaţii care au
+fost angajaţi după Gates.
+
+SELECT last_name, hire_date
+FROM employees
+WHERE hire_date > ( SELECT hire_date
+                    FROM employees
+                    WHERE INITCAP(last_name)= 'Gates'
+                    -- subcerere prin care preluam data angajarii lui Gates
+                  );
+                  
+11. Folosind subcereri, scrieţi o cerere pentru a afişa numele şi salariul pentru toţi
+colegii (din acelaşi departament) lui Gates. Se va exclude Gates.
+Se poate înlocui operatorul IN cu = ???
+
+--subcerere nesincronizata care determina id-ul de departament pentru angajatul cu numele Gates
+select department_id
+from employees
+where initcap(last_name) = 'Gates';
+
+--cererea principala
+select last_name, salary
+from employees
+where department_id = ( select department_id
+                        from employees
+                        where initcap(last_name) = 'Gates'
+                       )
+      and initcap(last_name) != 'Gates';
+
+--Se va inlocui Gates cu King?
+select last_name, salary
+from employees
+where department_id IN ( select department_id
+                        from employees
+                        where initcap(last_name) = 'King'
+                       )
+      and initcap(last_name) != 'King';
+      
+-> se poate inlocui operatorul = cu IN (nu si invers)
+
+
+12. Folosind subcereri, să se afişeze numele şi salariul angajaţilor conduşi direct de
+preşedintele companiei (acesta este considerat angajatul care nu are manager).
+
+--subcerere prin care selectam angajatul care este manager
+select employee_id
+from employees
+where manager_id is null;
+
+--cererea principala
+select last_name, salary
+from employees
+where manager_id = (select employee_id
+                    from employees
+                    where manager_id is null);
+
+--metoda cu self join                    
+from employees e join emmployees sef on (e.manager_id = sef.employee_id);
+
+13. Scrieți o cerere pentru a afişa numele, codul departamentului și salariul
+angajaților al căror cod de departament și salariu coincid cu codul departamentului și
+salariul unui angajat care câștigă comision.
+
+SELECT last_name, department_id, salary
+FROM employees
+WHERE (department_id, salary) IN (  SELECT department_id, salary
+                                    FROM employees
+                                    WHERE commission_pct is not null
+                                 );
+
+14. Să se afișeze codul, numele și salariul tuturor angajaților al căror salariu este mai
+mare decât salariul mediu.
+
+SELECT employee_id, last_name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary)
+                FROM employees);
+
+
+15. Scrieti o cerere pentru a afișa angajații care câștigă (salariul plus comision) mai mult
+decât oricare funcționar (job-ul conţine şirul “CLERK”). Sortați rezultatele dupa salariu,
+în ordine descrescătoare.
+
+select job_id 
+from employees;
+
+upper(job_id) like 'CLERK'
+
+--subcerere prin care selectam venitul pe care il au functionarii - %clerk%
+select max(salary + salary * nvl(commission_pct, 0))
+from employees
+where upper(job_id) like '%CLERK%';
+
+
+--cererea principala
+select *
+from employees 
+where salary + salary * nvl(commission_pct, 0) > (select max(salary + salary * nvl(commission_pct, 0))
+                                                  from employees
+                                                  where upper(job_id) like '%CLERK%')
+order by salary desc;
+
+
+--varianta 2
+select *
+from employees 
+where salary + salary * nvl(commission_pct, 0) > ALL (select salary + salary * nvl(commission_pct, 0)
+                                                     from employees
+                                                     where upper(job_id) like '%CLERK%')
+order by salary desc;
+
+>ANY -> inseamna ca este suficient sa fie mai mare decat salariul unui singur angajat (<=> mai mare decat minimul)
+
+>ALL -> inseamna mai mare decat salariul oricarui functionar (mai mare decat maximul)
+
+
+16. Scrieţi o cerere pentru a afişa numele angajatilor, numele departamentului şi
+salariul angajaţilor care nu câştigă comision, dar al căror şef direct câştigă comision.
+
+
+SELECT last_name, department_name, salary
+FROM employees e JOIN departments d USING (department_id)
+WHERE commission_pct is null and
+      e.manager_id IN (SELECT employee_id
+                       FROM employees
+                       WHERE commission_pct is not null
+                       );
+
+
+
+17. Să se afișeze numele angajatilor, departamentul, salariul şi job-ul tuturor
+angajaților al căror salariu și comision coincid cu salariul și comisionul unui angajat din
+Oxford.
+
+SELECT last_name, department_id, salary, job_id, employee_id
+FROM employees
+WHERE (nvl(commission_pct, -1), salary) IN
+                (SELECT nvl(commission_pct, -1), salary
+                 FROM employees e JOIN departments d ON (e.department_id = d.department_id)
+                 JOIN locations l ON (l.location_id = d.location_id)
+                 WHERE initcap(l.city) = 'Oxford'
+                );
+
+-- LABORATOR 4
+
+create table grupare (id number(5) not null,
+                      nume varchar2(10) not null,
+                      salariu number(10) not null,
+                      manager_id number(5) not null);
+                      
+select * from grupare;
+
+insert into grupare values (1, 'user1', 1000, 1);
+
+insert into grupare values (2, 'user2', 1400, 1);
+
+insert into grupare values (3, 'user3', 700, 2);
+
+insert into grupare values (4, 'user4', 300, 2);
+
+insert into grupare values (5, 'user5', 1600, 2);
+
+insert into grupare values (6, 'user6', 1200, 2);
+
+commit;
+
+--exemplu folosind clauza where
+select *
+from grupare
+where salariu < 1100;
+
+--exemplu folosind where si grupare
+select manager_id, salariu
+from grupare
+where salariu < 1100
+group by manager_id, salariu;
+
+--exemplu folosind where, iar gruparea realizata doar dupa coloana manager_id
+select manager_id
+from grupare
+where salariu < 1100
+group by manager_id;
+
+--exemplu folosind having
+select max(salariu)
+from grupare
+having max(salariu) < 10000;
+
+--group by si having
+select manager_id, min(salariu)
+from grupare
+group by manager_id
+having min(salariu) <= 1000;
+
+1. where
+2. group by
+3. having 
+
+drop table grupare;
+
+2. Să se afişeze cel mai mare salariu, cel mai mic salariu, suma şi media salariilor
+TUTUROR angajaţilor. Etichetaţi coloanele Maxim, Minim, Suma, respectiv Media. Sa se
+rotunjeasca media salariilor.
+
+SELECT MAX(salary) Maxim, MIN(salary) Minim, SUM(salary) Suma, AVG(salary) Medie
+FROM employees;
+
+3. Să se modifice problema 2 pentru a se afişa minimul, maximul, suma şi media
+salariilor pentru FIECARE job.
+
+SELECT job_id, MAX(salary) Maxim, MIN(salary) Minim, SUM(salary) Suma, AVG(salary) Medie
+FROM employees
+GROUP BY job_id;
+
+
+4. Să se afişeze numărul de angajaţi pentru FIECARE departament.
+
+SELECT COUNT(*), department_id
+FROM employees
+GROUP BY department_id;
+
+--daca un departament nu are angajati dorim sa afisam id-ul depart si zero
+--right join -> luam toate departamentele chiar daca au sau nu angajati
+SELECT COUNT(employee_id), d.department_id
+FROM employees e right join departments d on (e.department_id = d.department_id)
+GROUP BY d.department_id;
+
+count(expresie) -> returneaza numarul de linii pentru care expresia data NU ARE valoarea null
+
+count(*) -> NU IGNORA valorile null (adica ia in considerare toate liniile)
+
+5. Să se determine numărul de angajaţi care sunt şefi. Etichetati coloana “Nr.
+manageri”.
+? De ce am folosit cuvântul cheie DISTINCT? Ce am fi obţinut dacă îl omiteam?
+
+select count(distinct manager_id)
+from employees;
+
+6. Să se afişeze diferenţa dintre cel mai mare si cel mai mic salariu. Etichetati
+coloana “Diferenta”.
+
+----
+
+TEMA: Laborator 3 -> ex: 18 + Laborator 4 -> ex: 9 (0.5pct) -> primele 3 surse
+      Laborator 4 -> ex: 8, 10, 12, 13, 14 (Bonus la final) 
+
+

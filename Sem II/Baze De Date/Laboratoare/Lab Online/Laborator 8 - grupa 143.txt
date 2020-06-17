@@ -1,0 +1,224 @@
+--LABORATOR 5
+Exerciţii:
+0. a) Să se afişeze informaţii despre angajaţii al căror salariu depăşeşte 
+valoarea medie a salariilor colegilor săi de departament.
+
+SELECT last_name, salary, department_id
+FROM employees e
+WHERE salary > (SELECT AVG(salary)
+                FROM employees
+                WHERE department_id = e.department_id);
+                
+
+b) Analog cu cererea precedentă, afişându-se şi numele departamentului şi media salariilor 
+acestuia şi numărul de angajaţi.
+
+--Soluţia 1 (subcerere necorelată în clauza FROM):
+
+SELECT last_name, salary, e.department_id, department_name, sal_med, nr_sal
+FROM employees e, departments d, (SELECT department_id, round(AVG(salary)) sal_med,COUNT(*) nr_sal
+                                  FROM employees
+                                  GROUP BY department_id
+                                  ) ac
+WHERE e.department_id = d.department_id
+      AND d.department_id = ac.department_id
+      AND salary > (SELECT AVG(salary)
+                    FROM employees
+                    WHERE department_id = e.department_id
+                    );
+
+1. Să se afişeze numele şi salariul angajaţilor al căror salariu este mai mare decât 
+salariile medii din toate departamentele. 
+Se cer 2 variante de rezolvare: cu operatorul ALL sau cu funcţia MAX.
+
+--ALL
+select last_name, salary
+from employees
+where salary >ALL ( select round(avg(salary))
+                    from employees
+                    group by department_id
+                  );
+
+--MAX
+select last_name, salary
+from employees
+where salary > ( select round(max(avg(salary)))
+                 from employees
+                 group by department_id
+               );
+
+2. Sa se afiseze numele si salariul celor mai prost platiti angajati din fiecare departament.
+
+--Soluţia 1 (cu sincronizare):
+SELECT last_name, salary, department_id
+FROM employees e
+WHERE salary = (SELECT MIN(salary)
+                FROM employees
+                WHERE department_id = e.department_id);
+                
+--Soluţia 2 (fără sincronizare):
+SELECT last_name, salary, department_id
+FROM employees
+WHERE (department_id, salary) IN (SELECT department_id, MIN(salary)
+                                  FROM employees
+                                  GROUP BY department_id);
+                                  
+                                                                 
+--Soluţia 3: Subcerere în clauza FROM
+SELECT last_name, salary, e.department_id
+FROM employees e join (select department_id depId, min(salary) min_sal
+                       from employees
+                       group by department_id) sal
+             on(e.department_id = sal.depId)
+WHERE salary = min_sal;
+
+
+3. Sa se obtina numele salariatilor care lucreaza intr-un departament in care exista cel putin 1 angajat 
+cu salariul egal cu salariul maxim din departamentul 30.
+
+--in
+select last_name, salary
+from employees
+where department_id IN (select department_id
+                        from employees
+                        where salary = (select max(salary)
+                                        from employees
+                                        where department_id = 30
+                                        )
+                         and department_id != 30
+                        );
+
+--EXISTS
+select last_name, salary
+from employees e
+where EXISTS (select 1
+              from employees
+              where e.department_id = department_id and
+                  salary = (select max(salary)
+                            from employees
+                            where department_id = 30
+                            )
+              and department_id != 30
+             );
+
+4. Sa se obtina numele primilor 3 angajati avand salariul maxim. 
+Rezultatul se va afişa în ordine crescătoare a salariilor.
+
+--Solutia 1: subcerere sincronizată
+--numaram cate salarii sunt mai mari fata de salariul pe care il avem pe linia curenta
+select last_name, salary, rownum
+from (select last_name, salary 
+      from employees 
+      order by salary desc) e
+where 3 >  (select count(salary)
+             from employees
+             where salary > e.salary)
+     and rownum <=3;
+
+
+select last_name, salary
+from employees
+order by salary desc;
+
+
+--Solutia 2: vezi analiza top-n (mai jos)
+select last_name, salary
+from employees
+where rownum <= 3
+order by salary desc;
+-- este gresit deoarece elementele sunt selectate in ordinea gasita in tabel
+-- deoarece prima data se executa conditia din where => acceseaza primele 3 linii
+-- dupa care se executa ordonarea 
+
+--trebuie sa ordonam inainte de a prelua primele cele mai mari 3 valori!!!!!!!
+select last_name, salary, rownum
+from (select last_name, salary 
+      from employees 
+      order by salary desc)
+where rownum <= 3;
+
+
+6. Să se determine locaţiile în care se află cel puţin un departament.
+--in
+select location_id
+from locations
+where location_id IN (select location_id
+                      from departments);
+
+--exists
+select location_id
+from locations loc
+where EXISTS (select 1
+              from departments
+              where loc.location_id = location_id);
+
+
+7. Să se determine departamentele în care nu există nici un angajat.
+
+-- NOT EXISTS
+SELECT department_id, department_name
+FROM departments d -- department_id este cheie primara => deci avem o lista unica de departamente
+WHERE NOT EXISTS (SELECT 'x'
+                  FROM employees  -- department_id este cheie externa deci avem departamente in
+                                  -- care lucreaza angajati
+                  WHERE department_id = d.department_id);
+
+-- => obtine o lista de departamente care nu au angajati
+
+-- NOT IN
+SELECT department_id, department_name
+FROM departments d 
+WHERE department_id NOT IN (SELECT nvl(department_id, 0)  -- inlocuim valorile null cu 0
+                            FROM employees  
+                            );
+                  
+-- SAU ELIMINAM VALORILE NULL          
+SELECT department_id, department_name
+FROM departments d 
+WHERE department_id NOT IN (SELECT department_id
+                            FROM employees  
+                            WHERE department_id is not null
+                            );
+
+-- atunci cand utilizam NOT IN trebuie sa eliminam 
+--sau sa inlocuim din subcerere elementele NULL
+
+--MINUS
+select department_id 
+from departments -- din lista tuturor departamentelor
+
+MINUS -- eliminam
+
+select department_id
+from employees; -- departamentele in care lucreaza angajati
+
+--> in final obtinem toate departamentele care nu au angajati
+
+8. Utilizând clauza WITH, să se scrie o cerere care afişează 
+numele departamentelor şi valoarea totală a salariilor din cadrul acestora. 
+Se vor lua in considerare departamentele a căror valoare totală a salariilor este mai mare decât 
+media valorilor totale ale salariilor tuturor angajatilor.
+
+
+--numele departamentelor şi valoarea totală a salariilor din cadrul acestora
+WITH val_dep AS (SELECT department_name, SUM(salary) AS total
+                 FROM departments d join employees e ON (d.department_id = e.department_id)
+                 GROUP BY department_name
+                 ),
+                
+val_medie AS (SELECT SUM(total)/COUNT(*) AS medie
+              FROM val_dep)
+              
+SELECT *
+FROM val_dep
+WHERE total > (SELECT medie
+               FROM val_medie)
+ORDER BY department_name;
+
+
+Tema: Lab 5: ex: 5, 9, 10, 11, 12, 14  -> Deadline: duminica 12.04 (inclusiv)
+
+
+
+
+

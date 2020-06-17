@@ -1,0 +1,218 @@
+--LABORATOR 9
+
+1. Să se creeze o vizualizare VIZ_EMP30_PNU, care conţine codul, numele, email-ul si salariul angajaţilor 
+din departamentul 30. Să se analizeze structura şi conţinutul vizualizării. 
+Ce se observă referitor la constrângeri? Ce se obţine de fapt la interogarea conţinutului vizualizării? 
+Inseraţi o linie prin intermediul acestei vizualizări; comentaţi.
+
+CREATE OR REPLACE VIEW VIZ_EMP30_PNU AS
+    (SELECT employee_id, last_name, email, salary
+     FROM emp_pnu
+     WHERE department_id = 30
+    );
+
+DESC VIZ_EMP30_PNU;
+
+SELECT * FROM VIZ_EMP30_PNU;
+
+INSERT INTO VIZ_EMP30_PNU
+VALUES(559,'last_name','eemail',10000); --cannot insert NULL into ("GRUPA43"."EMP_PNU"."HIRE_DATE")
+
+DROP VIEW VIZ_EMP30_PNU;
+
+desc emp_pnu;
+
+2. Modificaţi VIZ_EMP30_PNU astfel încât să fie posibilă inserarea/modificarea conţinutului tabelului de bază 
+prin intermediul ei. Inseraţi şi actualizaţi o linie (cu valoarea 601 pentru codul angajatului) 
+prin intermediul acestei vizualizări.
+
+Obs: Trebuie introduse neapărat în vizualizare coloanele care au constrângerea NOT NULL 
+în tabelul de bază (altfel, chiar dacă tipul vizualizării permite operaţii LMD, 
+acestea nu vor fi posibile din cauza nerespectării constrângerilor NOT NULL).
+
+CREATE OR REPLACE VIEW VIZ_EMP30_PNU AS
+    (SELECT employee_id, last_name, email, salary, hire_date, job_id, department_id
+     FROM emp_pnu
+     WHERE department_id = 30
+    );
+    
+    
+DESC VIZ_EMP30_PNU;
+
+SELECT * FROM VIZ_EMP30_PNU;
+
+SELECT * FROM EMP_PNU;
+
+INSERT INTO VIZ_EMP30_PNU
+VALUES(601, 'last_name', 'eemail', 10000, SYSDATE, 'IT_PROG', 30);
+
+SELECT * FROM VIZ_EMP30_PNU;
+
+SELECT * FROM EMP_PNU;
+
+Unde a fost introdusă linia? Mai apare ea la interogarea vizualizării?
+
+Ce efect are următoarea operaţie de actualizare?
+
+UPDATE viz_emp30_pnu
+SET hire_date = hire_date-15
+WHERE employee_id = 601;
+
+Ştergeţi angajatul având codul 601 prin intermediul vizualizării. Analizaţi efectul asupra tabelului de bază.
+
+DELETE FROM viz_emp30_pnu
+WHERE employee_id = 601;
+
+COMMIT;
+
+3. Să se creeze o vizualizare, VIZ_EMPSAL50_PNU, care contine coloanele cod_angajat, nume, email, functie, 
+data_angajare si sal_anual corespunzătoare angajaţilor din departamentul 50. 
+Analizaţi structura şi conţinutul vizualizării.
+
+
+CREATE OR REPLACE VIEW VIZ_EMPSAL50_PNU AS
+        SELECT employee_id, last_name, email, job_id, hire_date, salary*12 sal_anual
+        FROM emp_pnu
+        WHERE department_id = 50;
+
+DESC VIZ_EMPSAL50_PNU;
+
+SELECT * FROM VIZ_EMPSAL50_PNU;
+
+4. a) Inseraţi o linie prin intermediul vizualizării precedente. Comentaţi.
+
+INSERT INTO VIZ_EMPSAL50_PNU(employee_id, last_name, email, job_id, hire_date)
+       VALUES(567, 'last_name', 'email000', 'IT_PROG', sysdate);
+
+select * from emp_pnu;
+
+b) Care sunt coloanele actualizabile ale acestei vizualizări? 
+Verificaţi răspunsul în dicţionarul datelor (USER_UPDATABLE_COLUMNS).
+
+select * 
+from USER_UPDATABLE_COLUMNS
+where table_name = 'VIZ_EMPSAL50_PNU';
+
+5. a) Să se creeze vizualizarea VIZ_EMP_DEP30_PNU, astfel încât aceasta să includă coloanele 
+vizualizării VIZ_EMP30_PNU, precum şi numele şi codul departamentului. 
+Să se introducă aliasuri pentru coloanele vizualizării.
+! Asiguraţi-vă că există constrângerea de cheie externă între tabelele de bază ale acestei vizualizări.
+
+CREATE OR REPLACE VIEW VIZ_EMP_DEP30_PNU AS
+    SELECT v.*,d.department_name
+    FROM VIZ_EMP30_PNU v JOIN departments d ON(d.department_id = v.department_id);
+
+b) Inseraţi o linie prin intermediul acestei vizualizări.
+
+INSERT INTO VIZ_EMP_DEP30_PNU(employee_id,last_name,email,salary,job_id,hire_date,department_id)
+       VALUES (358, 'lname', 'email', 15000, 'IT_PROG', sysdate, 30);
+
+SELECT * FROM VIZ_EMP_DEP30_PNU;
+
+SELECT * FROM VIZ_EMP30_PNU;
+
+c) Care sunt coloanele actualizabile ale acestei vizualizări? 
+Ce fel de tabel este cel ale cărui coloane sunt actualizabile?
+
+select * 
+from USER_UPDATABLE_COLUMNS
+where table_name = 'VIZ_EMP_DEP30_PNU';
+
+d) Ce efect are o operaţie de ştergere prin intermediul vizualizării viz_emp_dep30_pnu? Comentaţi.
+
+DELETE FROM VIZ_EMP_DEP30_PNU WHERE employee_id = 358;
+
+6. Să se creeze vizualizarea VIZ_DEPT_SUM_PNU, care conţine codul departamentului 
+şi pentru fiecare departament salariul minim, maxim si media salariilor. 
+Ce fel de vizualizare se obţine (complexa sau simpla)? 
+Se poate actualiza vreo coloană prin intermediul acestei vizualizări?
+
+CREATE OR REPLACE VIEW VIZ_DEPT_SUM_PNU AS
+    (SELECT department_id, MIN(salary) min_sal, MAX(salary) max_sal, round(AVG(salary)) med_sal
+     FROM employees RIGHT JOIN departments USING (department_id)
+     GROUP BY department_id
+     );
+     
+SELECT * FROM VIZ_DEPT_SUM_PNU;
+
+select * 
+from USER_UPDATABLE_COLUMNS
+where table_name = 'VIZ_DEPT_SUM_PNU';
+
+7. Modificaţi vizualizarea VIZ_EMP30_PNU astfel încât să nu permită modificarea 
+sau inserarea de linii ce nu sunt accesibile ei. Vizualizarea va selecta şi coloana department_id. 
+Daţi un nume constrângerii şi regăsiţi-o în vizualizarea USER_CONSTRAINTS din dicţionarul datelor. 
+Încercaţi să modificaţi şi să inseraţi linii ce nu îndeplinesc condiţia department_id = 30.
+
+CREATE OR REPLACE VIEW VIZ_EMP30_PNU AS
+    (SELECT employee_id, last_name, email, salary, hire_date, job_id, department_id
+     FROM emp_pnu
+     WHERE department_id = 30)
+WITH READ ONLY CONSTRAINT verific;
+
+select * from VIZ_EMP30_PNU;
+
+INSERT INTO VIZ_EMP30_PNU
+VALUES(600, 'last_name', 'eemail', 10000, SYSDATE, 'IT_PROG', 50);
+-- cannot perform a DML operation on a read-only view
+
+
+9. Să se selecteze numele, salariul, codul departamentului şi salariul maxim din departamentul din care face parte, 
+pentru fiecare angajat. Este necesară o vizualizare inline?
+
+SELECT last_name, salary, department_id, (  SELECT MAX(salary)
+                                            FROM employees
+                                            WHERE department_id = E.department_id) max_salary
+FROM employees E;
+
+
+10. Să se creeze o vizualizare VIZ_SAL_PNU, ce conţine numele angajaţilor, numele departamentelor, 
+salariile şi locaţiile (oraşele) pentru toţi angajaţii. Etichetaţi sugestiv coloanele. 
+Consideraţi ca tabele de bază tabelele originale din schema HR. Care sunt coloanele actualizabile?
+
+CREATE OR REPLACE VIEW VIZ_SAL_PNU AS
+    (SELECT last_name, department_name, salary, city
+     FROM employees JOIN departments USING(department_id)
+                    JOIN LOCATIONS USING(location_id)
+    );
+SELECT * FROM VIZ_SAL_PNU;
+
+
+select * 
+from USER_UPDATABLE_COLUMNS
+where table_name = 'VIZ_SAL_PNU';
+
+12. Creaţi o secvenţă pentru generarea codurilor de departamente, SEQ_DEPT_PNU. 
+Secvenţa va începe de la 400, va creşte cu 10 de fiecare dată şi va avea valoarea maximă 10000, 
+nu va cicla şi nu va încărca nici un număr înainte de cerere.
+
+13. Ştergeţi secvenţa SEQ_DEPT_PNU;
+
+CREATE SEQUENCE SEQ_test
+INCREMENT BY 10
+START WITH 500
+MAXVALUE 10000
+NOCYCLE
+NOCACHE;
+
+SELECT * FROM dept_pnu;
+
+INSERT INTO dept_pnu
+VALUES (SEQ_test.nextval, 'DeptNou', null, null);
+
+DELETE FROM dept_pnu
+WHERE DEPARTMENT_ID = SEQ_test.currval; -- nu merge in delete
+
+
+DELETE FROM dept_pnu
+WHERE DEPARTMENT_ID = 500;
+
+DROP SEQUENCE SEQ_test;
+
+
+
+
+
+
+
+
