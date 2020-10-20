@@ -144,3 +144,32 @@ GROUP BY m.member_id, r.title_id;
 
 --TEMA 2, 3, 6 (alte rezolvari), 10, 11, 12
 
+--6
+SELECT title, t.title_id, tc.copy_id, tc.status, 
+  (CASE WHEN status = 'RENTED' AND act_ret_date IS NULL THEN 'RENTED'
+       ELSE 'AVAILABLE'
+  END) AS "Status corect"
+FROM title t, title_copy tc, rental r
+WHERE t.title_id = tc.title_id AND r.copy_id = tc.copy_id AND r.title_id = t.title_id;
+
+--10
+SELECT m.last_name, m.first_name, r.copy_id,t.title_id, count(*)
+FROM rental r join member m on (r.member_id = m.member_id)
+               join title t on (t.title_id = r.title_id)
+GROUP BY m.last_name,m.first_name,r.copy_id,t.title_id;
+
+--11
+
+--12
+--a
+SELECT book_date,COUNT(*)
+from rental r
+WHERE r.book_date BETWEEN last_day(add_months(sysdate,-1))+1 AND last_day(add_months(sysdate,-1))+2
+group by book_date;
+--b
+SELECT book_date,COUNT(*)
+from rental r
+WHERE r.book_date BETWEEN last_day(add_months(sysdate,-1))+1 AND last_day(sysdate) AND ROWNUM <3
+group by book_date;
+
+--c

@@ -80,3 +80,8 @@ WHERE UPPER(table_name) LIKE UPPER('%PRoF');
 SPOOL OFF
 
 --23 TEMA
+SPOOL E:\insert_in_tabel.sql
+SELECT 'INSERT INTO ' || table_name || ' SELECT * from departments '
+FROM user_tables
+WHERE UPPER(table_name) LIKE UPPER('%HCO');
+SPOOL OFF
