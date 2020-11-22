@@ -12,20 +12,23 @@ import Data.List
 -}
 
 factori :: Int -> [Int]
-factori x = undefined
+factori x = [i | i <- [2 .. x -1], mod x i == 0]
 
 prim :: Int -> Bool
-prim x = undefined
+prim x = (length . factori $ x) == 0
 
 numerePrime :: Int -> [Int]
-numerePrime x = undefined
+numerePrime x = [i | i <- [2 .. x], prim i]
 
 -- L3.2 Testati si sesizati diferenta:
 -- [(x,y) | x <- [1..5], y <- [1..3]]
 -- zip [1..5] [1..3]
 
 myzip3 :: [Int] -> [Int] -> [Int] -> [(Int, Int, Int)]
-myzip3 l1 l2 l3 = undefined
+myzip3 [] _ _ = []
+myzip3 _ [] _ = []
+myzip3 _ _ [] = []
+myzip3 (x : xs) (y : ys) (z : zs) = (x, y, z) : myzip3 xs ys zs
 
 --------------------------------------------------------
 ----------FUNCTII DE NIVEL INALT -----------------------
