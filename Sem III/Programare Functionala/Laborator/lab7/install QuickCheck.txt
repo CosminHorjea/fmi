@@ -1,0 +1,26 @@
+
+
+Link util: https://stackoverflow.com/a/63841684/7063742
+
+
+Dupa instalare cu Chocolatey
+https://www.haskell.org/platform/windows.html
+
+Atentie! urmatoarele sunt in command prompt obisnuit (run as admin):
+
+choco install haskell-dev
+refreshenv
+
+Se creaza un director de lucru, de exemplu exhaskell
+
+command prompt (posibil sa fie nevoie ca admin)
+cd exhaskell (te duci in director)
+cabal update
+c:\Users\...\exhaskell> cabal install --lib --package-env . QuickCheck
+
+Se creaza un fisier .hs (notepd/++ save Alltipes si numele)
+
+import Test.QuickCheck
+
+
+
