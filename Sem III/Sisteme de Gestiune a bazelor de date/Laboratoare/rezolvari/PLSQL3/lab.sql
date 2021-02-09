@@ -453,12 +453,12 @@ DECLARE
     i INTEGER;
 BEGIN
     OPEN c1;
-    LOOP
-        FETCH c1 INTO v_job;
-        EXIT WHEN c1%NOTFOUND;
+    for i in c1 LOOP
+        --FETCH c1 INTO v_job;
+        --EXIT WHEN c1%NOTFOUND;
         
         DBMS_OUTPUT.PUT_LINE('-------------------------------------');
-        DBMS_OUTPUT.PUT_LINE('JOB: '|| v_job.title);
+        DBMS_OUTPUT.PUT_LINE('JOB: '|| i.job_title);
         DBMS_OUTPUT.PUT_LINE('-------------------------------------');
     
         OPEN c2(v_job.id);
