@@ -85,8 +85,8 @@ CREATE OR REPLACE PACKAGE BODY pachet_hco AS
                          AS
             mng_id emp_hco.employee_id%TYPE := gasesteManager(nume_mng,prenume_mng);
             codJob emp_HCO.job_id%TYPE := gasesteCodJob(nume_job);
-            salariuNou emp_HCO.salary%TYPE := celMaiMicSalariu(codJob);
             codDept emp_hco.department_id%TYPE := gasesteCodDept(nume_dept);
+            salariuNou emp_HCO.salary%TYPE := celMaiMicSalariu(codDept);
     BEGIN
             insert into emp_hco
             values (secv_hco.NEXTVAL,prenume,nume,email,telefon,SYSDATE,codJob,salariuNou,NULL,mng_id,codDept);
@@ -178,9 +178,10 @@ CREATE OR REPLACE PACKAGE BODY pachet_hco AS
         SELECT job_id INTO codJobVechi
         FROM emp_hco WHERE employee_id = codAng;
 
-        SELECT job_id INTO codDeptVechi
+        SELECT department_id INTO codDeptVechi
         FROM emp_hco WHERE employee_id = codAng;
         --adaug o intrare in job_history
+
         insert into job_history 
         values (codAng,dataAngAnterioara,SYSDATE,codJobVechi,codDeptVechi);
 
@@ -233,19 +234,22 @@ CREATE OR REPLACE PACKAGE BODY pachet_hco AS
         codMngColeg emp_hco.employee_id%TYPE;
     begin
         --managerul care conduce angajatul dat ca param.
+        --DBMS_OUTPUT.PUT_LINE(codAng);
         SELECT manager_id INTO codMng
         FROM emp_hco WHERE employee_id = codAng;
         IF codMng IS NULL THEN    
             RAISE_APPLICATION_ERROR(-20000,'Angajatul nu are superior');
         END IF;
-
+         --DBMS_OUTPUT.PUT_LINE(codMng);
         --managerul care o sa-l conduca pe angajatul din param 
         SELECT manager_id INTO codMngNou
         FROM emp_hco WHERE employee_id = codMng;
+
+        --DBMS_OUTPUT.PUT_LINE(codMngNou);
         
         -- un alt angajat pe acelasi nivel al ierarhiei
         SELECT employee_id INTO codMngColeg
-        FROM emp_hco WHERE employee_id != codAng AND manager_id = codMng;
+        FROM emp_hco WHERE employee_id != codAng AND manager_id = codMng AND ROWNUM<=1;
 
         -- angajatii care erau supervizati de angajatul din param. o sa fie supervizati de un coelg de-al acestuia
         update emp_hco
@@ -311,13 +315,13 @@ CREATE OR REPLACE PACKAGE BODY pachet_hco AS
         FOR job IN toateJoburile loop
             DBMS_OUTPUT.PUT_LINE(job.job_title);
           FOR ang IN listaAng(job.job_id)loop
-            DBMS_OUTPUT.PUT(ang.last_name||ang.first_name|| ' ');
+            DBMS_OUTPUT.PUT(ang.last_name||' ' ||ang.first_name|| ' ');
             SELECT COUNT(*) INTO aMaiLucrat FROM job_history WHERE employee_id = ang.employee_id AND job_id=job.job_id;
             
             IF aMaiLucrat = 0 THEN
-                DBMS_OUTPUT.PUT_LINE('Nu a mai lucrat in acest job');
+                DBMS_OUTPUT.PUT_LINE(' |Nu a mai lucrat in acest job');
             ELSE
-                DBMS_OUTPUT.PUT_LINE('A mai lucrat in acest job');
+                DBMS_OUTPUT.PUT_LINE(' |A mai lucrat in acest job');
             END IF;
           end loop;
           DBMS_OUTPUT.PUT_LINE('');
@@ -327,13 +331,18 @@ CREATE OR REPLACE PACKAGE BODY pachet_hco AS
 END pachet_hco;
 /
 
+
+
 BEGIN
-    pachet_hco.listaAngjob();
-END;
+    pachet_hco.listaAngJob();
+END; 
 /
 SELECt * from emp_hco;
-
+SELECT * from dept_hco;
+SELECT * FROM jobs;
+SELECT * FROM job_history;
   
+SELECT * FROM emp_hco WHERE employee_id = 113;
 
 
 

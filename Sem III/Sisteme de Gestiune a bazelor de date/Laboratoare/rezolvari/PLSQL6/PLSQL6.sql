@@ -1,3 +1,9 @@
+DELETE FROM emp_hco where employee_id = 113;
+
+
+UPDATE emp_hco SET salary = 7000 where employee_id = 113;
+
+SELECT * from emp_hco;
 --ex1
 CREATE OR REPLACE TRIGGER trig1_hco
   BEFORE DELETE ON emp_hco
@@ -7,6 +13,7 @@ begin
   END IF;
 end;
 /
+
 --ex2
 CREATE OR REPLACE TRIGGER trig2_hco
   BEFORE UPDATE OF commission_pct ON emp_hco
@@ -69,13 +76,16 @@ CREATE TABLE emp_test_hco(
   employee_id NUMBER(3) PRIMARY KEY,
   last_name VARCHAR2(20),
   first_name VARCHAR2(20),
-  department_id NUMBER(3) REFERENCES dept_test_hco
+  department_id NUMBER(3) REFERENCES dept_test_hco(department_id) ON DELETE CASCADE
 );
 CREATE TABLE dept_test_hco(
   department_id NUMBER(3) PRIMARY KEY,
   department_name VARCHAR2(20)
 );
 
+
+
+--b)
 CREATE OR REPLACE TRIGGER trig5_hco
   AFTER DELETE OR UPDATE ON dept_test_hco
   FOR EACH ROW
@@ -90,6 +100,11 @@ begin
   END IF;
 end;
 /
+--daca nu sunt definite constrangeri se sterge ok
+--daca avem chieie extenra, acea cheie nu o sa aiba ce sa referentieze si avem eroare
+-- daca avem delete cascade entitaile din emp_test o sa fie sterse
+-- daca avem On DELETE SET NULLL cheile esterne o sa fie setate la null
+
 --6
 CREATE TABLE erori_hco(
   user_id VARCHAR2(20),
