@@ -75,4 +75,9 @@ class MySmallCheck a where
   smallCheck prop = and [prop x | x <- smallValues]
 
 checkExp :: Expr -> Bool
-checkExp = undefined
+checkExp expr = evalExp (expr) == evalArb (expToArb (expr))
+
+instance MySmallCheck Expr where
+  smallValues = [Const 1, Const 2]
+
+test5 = smallCheck checkExp

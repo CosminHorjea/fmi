@@ -1,0 +1,22 @@
+Programare Functionala
+
+
+Curs 7 - smallCheck
+	   - pseudo aleatoare (pg21)
+	   -QuickCheck pg33
+Curs 8 - maybe pg5
+	   - Either pg 8
+	   - Logica prop pg 11 (envs la 19)
+	   - Expresii pg 22
+Curs 9 - Functori pg 9
+	   - Categorii si functori pg 19
+	   - Monoid pg 27
+	   - Foldable pg 48
+Curs 10- Monoid pg 2
+	   - Foldable pg 23
+Curs 11- adt arbori,monoizi pg2
+	   - Finger Tree pg 3
+	   - Monoizi Ftrees pg16
+	   __ curs 11-adt-expresii
+	   --iara expresii pg 6 (Fold pe expresii)
+Curs 12- IO - nu intra
