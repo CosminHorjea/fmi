@@ -38,6 +38,13 @@ string (x : xs) = Parser f
   where
     f s = [(y : z, zs) | (y, ys) <- apply (char x) s, (z, zs) <- apply (string xs) ys]
 
+-- asta e un parser care cauta un string specificat in alt string
+-- imi intoarce un parser care stie sa gaseasca un string specific
+
+-- * Main> apply (string "abcd1234") "abcd1234asdas"
+
+-- [("abcd1234","asdas")]
+
 -- Exercitiul 1
 
 three :: Parser (Char, Char)
