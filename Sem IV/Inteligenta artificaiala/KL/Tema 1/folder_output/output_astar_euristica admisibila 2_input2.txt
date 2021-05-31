@@ -1,0 +1,11 @@
+Solutie A* euristica admisibila 2 : 
+Timp: 0 milisecunde
+# # #
+# # #
+# # #
+
+Cost: 0
+Lungime: 1
+Numărul maxim de noduri: 1
+Numărul total de noduri calculate: 1
+-------------

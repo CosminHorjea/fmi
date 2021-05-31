@@ -1,0 +1,23 @@
+Solutie A* optimizat euristica admisibila 2 : 
+Timp: 9 milisecunde
+a b a
+b a b
+a b a
+
+a # a
+b b b
+a a a
+
+# # #
+a # a
+a a a
+
+# # #
+# # #
+# # #
+
+Cost: 3.75
+Lungime: 4
+Numărul maxim de noduri: 68
+Numărul total de noduri calculate: 20
+--------------------

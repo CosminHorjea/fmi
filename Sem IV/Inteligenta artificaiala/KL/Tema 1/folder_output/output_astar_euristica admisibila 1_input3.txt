@@ -1,0 +1,73 @@
+Solutie A* euristica admisibila 1 : 
+Timp: 1 milisecunde
+a b a
+b a b
+a b a
+
+a # a
+b b b
+a a a
+
+# # #
+a # a
+a a a
+
+# # #
+# # #
+# # #
+
+Cost: 3.75
+Lungime: 4
+Numărul maxim de noduri: 15
+Numărul total de noduri calculate: 4
+-------------
+Solutie A* euristica admisibila 1 : 
+Timp: 5 milisecunde
+a b a
+b a b
+a b a
+
+a # a
+b b b
+a b a
+
+# # #
+a a #
+a a #
+
+# # #
+# # #
+# # #
+
+Cost: 3.8
+Lungime: 4
+Numărul maxim de noduri: 53
+Numărul total de noduri calculate: 12
+-------------
+Solutie A* euristica admisibila 1 : 
+Timp: 6 milisecunde
+a b a
+b a b
+a b a
+
+# b a
+a a b
+a b a
+
+# a #
+b b #
+b a #
+
+# # #
+a # #
+a # #
+
+# # #
+# # #
+# # #
+
+Cost: 5.15
+Lungime: 5
+Numărul maxim de noduri: 73
+Numărul total de noduri calculate: 17
+-------------
