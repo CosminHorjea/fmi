@@ -1,5 +1,0 @@
-3
-aaabb
-ccccc
-aaaaa
-aaaaa
