@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+
+<html  dir="ltr" lang="ro" xml:lang="ro">
+<head>
+    <title>Curs: Metode de dezvoltare software - Seriile 23 si 24</title>
+    <link rel="shortcut icon" href="https://moodle.unibuc.ro/theme/image.php/unibuc/theme/1615307469/favicon" />
+     <link rel="stylesheet" href="https://moodle.unibuc.ro/theme/unibuc/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://moodle.unibuc.ro/theme/unibuc/css/owl.theme.default.min.css">
+    <meta name="apple-itunes-app" content="app-id=633359593, app-argument=https://moodle.unibuc.ro/course/view.php?id=3036"/><link rel="manifest" href="https://moodle.unibuc.ro/admin/tool/mobile/mobile.webmanifest.php" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="moodle, Curs: Metode de dezvoltare software - Seriile 23 si 24" />
+<link rel="stylesheet" type="text/css" href="https://moodle.unibuc.ro/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple.css" /><script id="firstthemesheet" type="text/css">/** Required in order to fix style inclusion problems in IE with YUI **/</script><link rel="stylesheet" type="text/css" href="https://moodle.unibuc.ro/theme/styles.php/unibuc/1615307469_1/all" />
+<script>
+//<![CDATA[
+var M = {}; M.yui = {};
+M.pageloadstarttime = new Date();
+M.cfg = {"wwwroot":"https:\/\/moodle.unibuc.ro","sesskey":"sMMjjRMwKq","sessiontimeout":"7200","themerev":"1615307469","slasharguments":1,"theme":"unibuc","iconsystemmodule":"core\/icon_system_fontawesome","jsrev":"1615307469","admin":"admin","svgicons":true,"usertimezone":"Europe\/Bucharest","contextid":93063,"langrev":1624669227,"templaterev":"1615307469","developerdebug":true};var yui1ConfigFn = function(me) {if(/-skin|reset|fonts|grids|base/.test(me.name)){me.type='css';me.path=me.path.replace(/\.js/,'.css');me.path=me.path.replace(/\/yui2-skin/,'/assets/skins/sam/yui2-skin')}};
+var yui2ConfigFn = function(me) {var parts=me.name.replace(/^moodle-/,'').split('-'),component=parts.shift(),module=parts[0],min='-min';if(/-(skin|core)$/.test(me.name)){parts.pop();me.type='css';min=''}
+if(module){var filename=parts.join('-');me.path=component+'/'+module+'/'+filename+min+'.'+me.type}else{me.path=component+'/'+component+'.'+me.type}};
+YUI_config = {"debug":true,"base":"https:\/\/moodle.unibuc.ro\/lib\/yuilib\/3.17.2\/","comboBase":"https:\/\/moodle.unibuc.ro\/theme\/yui_combo.php?","combine":true,"filter":"RAW","insertBefore":"firstthemesheet","groups":{"yui2":{"base":"https:\/\/moodle.unibuc.ro\/lib\/yuilib\/2in3\/2.9.0\/build\/","comboBase":"https:\/\/moodle.unibuc.ro\/theme\/yui_combo.php?","combine":true,"ext":false,"root":"2in3\/2.9.0\/build\/","patterns":{"yui2-":{"group":"yui2","configFn":yui1ConfigFn}}},"moodle":{"name":"moodle","base":"https:\/\/moodle.unibuc.ro\/theme\/yui_combo.php?m\/1615307469\/","combine":true,"comboBase":"https:\/\/moodle.unibuc.ro\/theme\/yui_combo.php?","ext":false,"root":"m\/1615307469\/","patterns":{"moodle-":{"group":"moodle","configFn":yui2ConfigFn}},"filter":"DEBUG","modules":{"moodle-core-actionmenu":{"requires":["base","event","node-event-simulate"]},"moodle-core-languninstallconfirm":{"requires":["base","node","moodle-core-notification-confirm","moodle-core-notification-alert"]},"moodle-core-chooserdialogue":{"requires":["base","panel","moodle-core-notification"]},"moodle-core-maintenancemodetimer":{"requires":["base","node"]},"moodle-core-tooltip":{"requires":["base","node","io-base","moodle-core-notification-dialogue","json-parse","widget-position","widget-position-align","event-outside","cache-base"]},"moodle-core-lockscroll":{"requires":["plugin","base-build"]},"moodle-core-popuphelp":{"requires":["moodle-core-tooltip"]},"moodle-core-notification":{"requires":["moodle-core-notification-dialogue","moodle-core-notification-alert","moodle-core-notification-confirm","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-core-notification-dialogue":{"requires":["base","node","panel","escape","event-key","dd-plugin","moodle-core-widget-focusafterclose","moodle-core-lockscroll"]},"moodle-core-notification-alert":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-confirm":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-exception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-notification-ajaxexception":{"requires":["moodle-core-notification-dialogue"]},"moodle-core-dragdrop":{"requires":["base","node","io","dom","dd","event-key","event-focus","moodle-core-notification"]},"moodle-core-formchangechecker":{"requires":["base","event-focus","moodle-core-event"]},"moodle-core-event":{"requires":["event-custom"]},"moodle-core-blocks":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification"]},"moodle-core-handlebars":{"condition":{"trigger":"handlebars","when":"after"}},"moodle-core_availability-form":{"requires":["base","node","event","event-delegate","panel","moodle-core-notification-dialogue","json"]},"moodle-backup-backupselectall":{"requires":["node","event","node-event-simulate","anim"]},"moodle-backup-confirmcancel":{"requires":["node","node-event-simulate","moodle-core-notification-confirm"]},"moodle-course-categoryexpander":{"requires":["node","event-key"]},"moodle-course-management":{"requires":["base","node","io-base","moodle-core-notification-exception","json-parse","dd-constrain","dd-proxy","dd-drop","dd-delegate","node-event-delegate"]},"moodle-course-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-course-coursebase","moodle-course-util"]},"moodle-course-formatchooser":{"requires":["base","node","node-event-simulate"]},"moodle-course-util":{"requires":["node"],"use":["moodle-course-util-base"],"submodules":{"moodle-course-util-base":{},"moodle-course-util-section":{"requires":["node","moodle-course-util-base"]},"moodle-course-util-cm":{"requires":["node","moodle-course-util-base"]}}},"moodle-form-dateselector":{"requires":["base","node","overlay","calendar"]},"moodle-form-passwordunmask":{"requires":[]},"moodle-form-shortforms":{"requires":["node","base","selector-css3","moodle-core-event"]},"moodle-question-chooser":{"requires":["moodle-core-chooserdialogue"]},"moodle-question-searchform":{"requires":["base","node"]},"moodle-question-preview":{"requires":["base","dom","event-delegate","event-key","core_question_engine"]},"moodle-availability_completion-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_date-form":{"requires":["base","node","event","io","moodle-core_availability-form"]},"moodle-availability_grade-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_group-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_grouping-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-availability_profile-form":{"requires":["base","node","event","moodle-core_availability-form"]},"moodle-mod_assign-history":{"requires":["node","transition"]},"moodle-mod_quiz-quizbase":{"requires":["base","node"]},"moodle-mod_quiz-toolboxes":{"requires":["base","node","event","event-key","io","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-slot","moodle-core-notification-ajaxexception"]},"moodle-mod_quiz-questionchooser":{"requires":["moodle-core-chooserdialogue","moodle-mod_quiz-util","querystring-parse"]},"moodle-mod_quiz-modform":{"requires":["base","node","event"]},"moodle-mod_quiz-autosave":{"requires":["base","node","event","event-valuechange","node-event-delegate","io-form"]},"moodle-mod_quiz-dragdrop":{"requires":["base","node","io","dom","dd","dd-scroll","moodle-core-dragdrop","moodle-core-notification","moodle-mod_quiz-quizbase","moodle-mod_quiz-util-base","moodle-mod_quiz-util-page","moodle-mod_quiz-util-slot","moodle-course-util"]},"moodle-mod_quiz-util":{"requires":["node","moodle-core-actionmenu"],"use":["moodle-mod_quiz-util-base"],"submodules":{"moodle-mod_quiz-util-base":{},"moodle-mod_quiz-util-slot":{"requires":["node","moodle-mod_quiz-util-base"]},"moodle-mod_quiz-util-page":{"requires":["node","moodle-mod_quiz-util-base"]}}},"moodle-message_airnotifier-toolboxes":{"requires":["base","node","io"]},"moodle-filter_glossary-autolinker":{"requires":["base","node","io-base","json-parse","event-delegate","overlay","moodle-core-event","moodle-core-notification-alert","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-filter_mathjaxloader-loader":{"requires":["moodle-core-event"]},"moodle-editor_atto-editor":{"requires":["node","transition","io","overlay","escape","event","event-simulate","event-custom","node-event-html5","node-event-simulate","yui-throttle","moodle-core-notification-dialogue","moodle-core-notification-confirm","moodle-editor_atto-rangy","handlebars","timers","querystring-stringify"]},"moodle-editor_atto-plugin":{"requires":["node","base","escape","event","event-outside","handlebars","event-custom","timers","moodle-editor_atto-menu"]},"moodle-editor_atto-menu":{"requires":["moodle-core-notification-dialogue","node","event","event-custom"]},"moodle-editor_atto-rangy":{"requires":[]},"moodle-report_eventlist-eventfilter":{"requires":["base","event","node","node-event-delegate","datatable","autocomplete","autocomplete-filters"]},"moodle-report_loglive-fetchlogs":{"requires":["base","event","node","io","node-event-delegate"]},"moodle-gradereport_grader-gradereporttable":{"requires":["base","node","event","handlebars","overlay","event-hover"]},"moodle-gradereport_history-userselector":{"requires":["escape","event-delegate","event-key","handlebars","io-base","json-parse","moodle-core-notification-dialogue"]},"moodle-tool_capability-search":{"requires":["base","node"]},"moodle-tool_lp-dragdrop-reorder":{"requires":["moodle-core-dragdrop"]},"moodle-tool_monitor-dropdown":{"requires":["base","event","node"]},"moodle-assignfeedback_editpdf-editor":{"requires":["base","event","node","io","graphics","json","event-move","event-resize","transition","querystring-stringify-simple","moodle-core-notification-dialog","moodle-core-notification-alert","moodle-core-notification-warning","moodle-core-notification-exception","moodle-core-notification-ajaxexception"]},"moodle-atto_accessibilitychecker-button":{"requires":["color-base","moodle-editor_atto-plugin"]},"moodle-atto_accessibilityhelper-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_align-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_bold-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_charmap-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_clear-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_collapse-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emojipicker-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_emoticon-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_equation-button":{"requires":["moodle-editor_atto-plugin","moodle-core-event","io","event-valuechange","tabview","array-extras"]},"moodle-atto_h5p-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_html-button":{"requires":["promise","moodle-editor_atto-plugin","moodle-atto_html-beautify","moodle-atto_html-codemirror","event-valuechange"]},"moodle-atto_html-codemirror":{"requires":["moodle-atto_html-codemirror-skin"]},"moodle-atto_html-beautify":{},"moodle-atto_image-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_indent-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_italic-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_link-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_managefiles-usedfiles":{"requires":["node","escape"]},"moodle-atto_media-button":{"requires":["moodle-editor_atto-plugin","moodle-form-shortforms"]},"moodle-atto_noautolink-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_orderedlist-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_recordrtc-recording":{"requires":["moodle-atto_recordrtc-button"]},"moodle-atto_recordrtc-button":{"requires":["moodle-editor_atto-plugin","moodle-atto_recordrtc-recording"]},"moodle-atto_rtl-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_strike-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_subscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_superscript-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_table-button":{"requires":["moodle-editor_atto-plugin","moodle-editor_atto-menu","event","event-valuechange"]},"moodle-atto_teamsmeeting-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_title-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_underline-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_undo-button":{"requires":["moodle-editor_atto-plugin"]},"moodle-atto_unorderedlist-button":{"requires":["moodle-editor_atto-plugin"]}}},"gallery":{"name":"gallery","base":"https:\/\/moodle.unibuc.ro\/lib\/yuilib\/gallery\/","combine":true,"comboBase":"https:\/\/moodle.unibuc.ro\/theme\/yui_combo.php?","ext":false,"root":"gallery\/1615307469\/","patterns":{"gallery-":{"group":"gallery"}}}},"modules":{"core_filepicker":{"name":"core_filepicker","fullpath":"https:\/\/moodle.unibuc.ro\/lib\/javascript.php\/1615307469\/repository\/filepicker.js","requires":["base","node","node-event-simulate","json","async-queue","io-base","io-upload-iframe","io-form","yui2-treeview","panel","cookie","datatable","datatable-sort","resize-plugin","dd-plugin","escape","moodle-core_filepicker","moodle-core-notification-dialogue"]},"core_comment":{"name":"core_comment","fullpath":"https:\/\/moodle.unibuc.ro\/lib\/javascript.php\/1615307469\/comment\/comment.js","requires":["base","io-base","node","json","yui2-animation","overlay","escape"]},"mathjax":{"name":"mathjax","fullpath":"https:\/\/cdn.jsdelivr.net\/npm\/mathjax@2.7.8\/MathJax.js?delayStartupUntil=configured"}}};
+M.yui.loader = {modules: {}};
+
+//]]>
+</script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body  id="page-course-view-topics" class="format-topics  path-course path-course-view chrome dir-ltr lang-ro yui-skin-sam yui3-skin-sam moodle-unibuc-ro pagelayout-course course-3036 context-93063 category-1703 ">
+
+<div id="page-wrapper">
+
+    <div>
+    <a class="sr-only sr-only-focusable" href="#maincontent">Salt la conţinutul principal</a>
+</div><script src="https://moodle.unibuc.ro/lib/javascript.php/1615307469/lib/babel-polyfill/polyfill.min.js"></script>
+<script src="https://moodle.unibuc.ro/lib/javascript.php/1615307469/lib/polyfills/polyfill.js"></script>
+<script src="https://moodle.unibuc.ro/theme/yui_combo.php?rollup/3.17.2/yui-moodlesimple.js"></script><script src="https://moodle.unibuc.ro/theme/jquery.php/core/jquery-3.4.1.js"></script>
+<script src="https://moodle.unibuc.ro/lib/javascript.php/1615307469/lib/javascript-static.js"></script>
+<script src="https://moodle.unibuc.ro/theme/javascript.php/unibuc/1615307469/head"></script>
+<script>
+//<![CDATA[
+document.body.className += ' jsenabled';
+//]]>
+</script>
+
+
+
+    
+    <nav class="fixed-topp navbar navbar-expand moodle-has-zindex" aria-label="Navigare pe site">
+    
+            <div data-region="drawer-toggle" class="d-inline-block mr-3">
+                <button aria-expanded="false" aria-controls="nav-drawer" type="button" class="hamburger hamburger--slider btn nav-link float-sm-left mr-1 btn-light bg-gray" data-action="toggle-drawer" data-side="left" data-preference="drawer-open-nav">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+                </button>
+            </div>
+    
+            <a href="https://moodle.unibuc.ro" class="navbar-brand has-logo
+                    ">
+               
+                    <span class="logo d-none d-sm-inline">
+                        <img src="https://moodle.unibuc.ro/pluginfile.php/1/core_admin/logocompact/0x70/1615307469/logo-ub-white.png" alt="Campus virtual">
+                    </span>
+               
+                <span class="site-name d-none d-md-inline">Campus virtual</span>
+            </a>
+            
+            <ul class="main-menu navbar-nav d-none d-md-flex">
+            <span id="slide-line"></span>
+                <!-- custom_menu -->
+                <li class="nav-item">
+    <a class="nav-item nav-link" href="https://moodle.unibuc.ro/my" >Campus</a>
+</li><li class="nav-item">
+    <a class="nav-item nav-link" href="https://moodle.unibuc.ro/?redirect=0" >Home</a>
+</li><li class="dropdown nav-item">
+    <a class="dropdown-toggle nav-link" id="drop-down-60d721946901d60d72194684662" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"  aria-controls="drop-down-menu-60d721946901d60d72194684662">
+        Facultăți
+    </a>
+    <div class="dropdown-menu" role="menu" id="drop-down-menu-60d721946901d60d72194684662" aria-labelledby="drop-down-60d721946901d60d72194684662">
+                <a class="dropdown-item" role="menuitem" href="https://moodle.unibuc.ro/course/index.php?categoryid=2884" >Facultatea de Limbi și Literaturi Străine</a>
+                <a class="dropdown-item" role="menuitem" href="https://moodle.unibuc.ro/course/index.php?categoryid=1829" >Facultatea de Biologie</a>
+                <a class="dropdown-item" role="menuitem" href="https://moodle.unibuc.ro/course/index.php?categoryid=1867" >Facultatea de Jurnalism si Științele Comunicării</a>
+                <a class="dropdown-item" role="menuitem" href="https://moodle.unibuc.ro/course/index.php?categoryid=2187" >Facultatea de Sociologie și Asistență Socială</a>
+                <a class="dropdown-item" role="menuitem" href="https://moodle.unibuc.ro/course/index.php?categoryid=1767" >Facultatea de Administrație și Afaceri</a>
+                <a class="dropdown-item" role="menuitem" href="https://moodle.unibuc.ro/course/index.php?categoryid=1944" >Facultatea de Filosofie</a>
+                <a class="dropdown-item" role="menuitem" href="https://moodle.unibuc.ro/course/index.php?categoryid=1585" >Facultatea de Matematică și Informatică</a>
+                <a class="dropdown-item" role="menuitem" href="https://moodle.unibuc.ro/course/index.php?categoryid=1973" >Facultatea de Psihologie și Științele Educației</a>
+                <a class="dropdown-item" role="menuitem" href="https://moodle.unibuc.ro/course/index.php?categoryid=2025" >Facultatea de Științe Politice</a>
+                <a class="dropdown-item" role="menuitem" href="https://moodle.unibuc.ro/course/index.php?categoryid=2070" >Facultatea de Geografie</a>
+                <a class="dropdown-item" role="menuitem" href="https://moodle.unibuc.ro/course/index.php?categoryid=2149" >Facultatea de Chimie</a>
+                <a class="dropdown-item" role="menuitem" href="https://moodle.unibuc.ro/course/index.php?categoryid=3485" >Facultatea de Teologie Baptistă</a>
+                <a class="dropdown-item" role="menuitem" href="https://moodle.unibuc.ro/course/index.php?categoryid=3431" >Facultatea de Teologie Romano-Catolică</a>
+                <a class="dropdown-item" role="menuitem" href="https://moodle.unibuc.ro/course/index.php?categoryid=3596" >Facultatea de Litere</a>
+    </div>
+</li><li class="nav-item">
+    <a class="nav-item nav-link" href="https://moodle.unibuc.ro/calendar/view.php?view=month" >Calendar</a>
+</li>
+                <!-- page_heading_menu -->
+                
+            </ul>
+            <ul class="nav navbar-nav ml-auto">
+                <div class="d-none d-lg-block">
+                
+            </div>
+                <!-- navbar_plugin_output -->
+                <li class="nav-item">
+                <div class="popover-region collapsed popover-region-notifications"
+    id="nav-notification-popover-container" data-userid="9950"
+    data-region="popover-region">
+    <div class="popover-region-toggle nav-link"
+        data-region="popover-region-toggle"
+        role="button"
+        aria-controls="popover-region-container-60d7219469af660d72194684663"
+        aria-haspopup="true"
+        aria-label="Afișați fereastra de notificări fără notificări noi"
+        tabindex="0">
+                <i class="icon fa fa-bell fa-fw "  title="Acționați meniul de notificări" aria-label="Acționați meniul de notificări"></i>
+        <div class="count-container hidden" data-region="count-container"
+        aria-label="Există 0 notificări necitite">0</div>
+
+    </div>
+    <div 
+        id="popover-region-container-60d7219469af660d72194684663"
+        class="popover-region-container"
+        data-region="popover-region-container"
+        aria-expanded="false"
+        aria-hidden="true"
+        aria-label="Fereastra de notificare"
+        role="region">
+        <div class="popover-region-header-container">
+            <h3 class="popover-region-header-text" data-region="popover-region-header-text">Notificări</h3>
+            <div class="popover-region-header-actions" data-region="popover-region-header-actions">        <a class="mark-all-read-button"
+           href="#"
+           title="Marcați-le pe toate ca citite"
+           data-action="mark-all-read"
+           role="button"
+           aria-label="Marcați-le pe toate ca citite">
+            <span class="normal-icon"><i class="icon fa fa-check fa-fw " aria-hidden="true"  ></i></span>
+            <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+        </a>
+        <a href="https://moodle.unibuc.ro/message/notificationpreferences.php?userid=9950"
+           title="Preferințe de notificare"
+           aria-label="Preferințe de notificare">
+            <i class="icon fa fa-cog fa-fw " aria-hidden="true"  ></i>
+        </a>
+</div>
+        </div>
+        <div class="popover-region-content-container" data-region="popover-region-content-container">
+            <div class="popover-region-content" data-region="popover-region-content">
+                        <div class="all-notifications"
+            data-region="all-notifications"
+            role="log"
+            aria-busy="false"
+            aria-atomic="false"
+            aria-relevant="additions"></div>
+        <div class="empty-message" tabindex="0" data-region="empty-message">Nu există notificări</div>
+
+            </div>
+            <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+        </div>
+                <a class="see-all-link"
+                    href="https://moodle.unibuc.ro/message/output/popup/notifications.php">
+                    <div class="popover-region-footer-container">
+                        <div class="popover-region-seeall-text">Vezi toate</div>
+                    </div>
+                </a>
+    </div>
+</div><div class="popover-region collapsed" data-region="popover-region-messages">
+    <a id="message-drawer-toggle-60d721946ad1d60d72194684664" class="nav-link d-inline-block popover-region-toggle position-relative" href="#"
+            role="button">
+        <i class="icon fa fa-comment fa-fw "  title="Acționați sertarul pentru mesaje" aria-label="Acționați sertarul pentru mesaje"></i>
+        <div class="count-container hidden" data-region="count-container"
+        aria-label="0 conversații necitite">0</div>
+    </a>
+    <span class="sr-only sr-only-focusable" data-region="jumpto" tabindex="-1"></span></div>
+                </li>
+                <!-- user_menu -->
+                <li class="nav-item d-flex align-items-center">
+                    <div class="usermenu"><div class="action-menu moodle-actionmenu nowrap-items d-inline" id="action-menu-1" data-enhance="moodle-core-actionmenu">
+
+        <div class="menubar d-flex " id="action-menu-1-menubar" role="menubar">
+
+            
+
+
+                <div class="action-menu-trigger">
+                    <div class="dropdown">
+                        <a href="#" tabindex="0" class="d-inline-block  dropdown-toggle icon-no-margin" id="action-menu-toggle-1" aria-label="Meniul utilizatorului" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" aria-controls="action-menu-1-menu">
+                            
+                            <span class="userbutton"><span class="usertext mr-1">COSMIN MARIAN HORJEA</span><span class="avatars"><span class="avatar current"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/u/f2" class="userpicture defaultuserpic" width="35" height="35" aria-hidden="true" /></span></span></span>
+                                
+                            <b class="caret"></b>
+                        </a>
+                            <div class="dropdown-menu dropdown-menu-right menu  align-tr-br" id="action-menu-1-menu" data-rel="menu-content" aria-labelledby="action-menu-toggle-1" role="menu" data-align="tr-br">
+                                                                <a href="https://moodle.unibuc.ro/my/" class="dropdown-item menu-action" role="menuitem" data-title="mymoodle,admin" aria-labelledby="actionmenuaction-1">
+                                <i class="icon fa fa-tachometer fa-fw " aria-hidden="true"  ></i>
+                                <span class="menu-action-text" id="actionmenuaction-1">Dashboard</span>
+                        </a>
+                    <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
+                                                                <a href="https://moodle.unibuc.ro/user/profile.php?id=9950" class="dropdown-item menu-action" role="menuitem" data-title="profile,moodle" aria-labelledby="actionmenuaction-2">
+                                <i class="icon fa fa-user fa-fw " aria-hidden="true"  ></i>
+                                <span class="menu-action-text" id="actionmenuaction-2">Profil</span>
+                        </a>
+                                                                <a href="https://moodle.unibuc.ro/grade/report/overview/index.php" class="dropdown-item menu-action" role="menuitem" data-title="grades,grades" aria-labelledby="actionmenuaction-3">
+                                <i class="icon fa fa-table fa-fw " aria-hidden="true"  ></i>
+                                <span class="menu-action-text" id="actionmenuaction-3">Note</span>
+                        </a>
+                                                                <a href="https://moodle.unibuc.ro/message/index.php" class="dropdown-item menu-action" role="menuitem" data-title="messages,message" aria-labelledby="actionmenuaction-4">
+                                <i class="icon fa fa-comment fa-fw " aria-hidden="true"  ></i>
+                                <span class="menu-action-text" id="actionmenuaction-4">Mesaje</span>
+                        </a>
+                                                                <a href="https://moodle.unibuc.ro/user/preferences.php" class="dropdown-item menu-action" role="menuitem" data-title="preferences,moodle" aria-labelledby="actionmenuaction-5">
+                                <i class="icon fa fa-wrench fa-fw " aria-hidden="true"  ></i>
+                                <span class="menu-action-text" id="actionmenuaction-5">Preferințe</span>
+                        </a>
+                    <div class="dropdown-divider" role="presentation"><span class="filler">&nbsp;</span></div>
+                                                                <a href="https://moodle.unibuc.ro/login/logout.php?sesskey=sMMjjRMwKq" class="dropdown-item menu-action" role="menuitem" data-title="logout,moodle" aria-labelledby="actionmenuaction-6">
+                                <i class="icon fa fa-sign-out fa-fw " aria-hidden="true"  ></i>
+                                <span class="menu-action-text" id="actionmenuaction-6">Delogare</span>
+                        </a>
+                            </div>
+                    </div>
+                </div>
+
+        </div>
+
+</div></div>
+                </li>
+            </ul>
+            <!-- search_box -->
+    </nav>
+    
+
+    <div id="page" class="container-fluid">
+        <header id="page-header" class="row">
+    <div class="col-12 pt-3 pb-3">
+        <div class="card ">
+            <div class="card-body ">
+                <div class="d-flex">
+                    <div class="mr-auto">
+                        <div class="page-context-header"><div class="page-header-headings"><h1>Metode de dezvoltare software - Seriile 23 si 24</h1></div></div>
+                    </div>
+
+                    <div class="header-actions-container flex-shrink-0" data-region="header-actions-container">
+                    </div>
+                </div>
+                <div class="d-flex flex-wrap">
+                    <div id="page-navbar">
+                        <nav aria-label="Bara de navigare">
+    <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="https://moodle.unibuc.ro/my/"  >Tablou de bord</a>
+                </li>
+        
+                <li class="breadcrumb-item">Cursurile mele</li>
+        
+                <li class="breadcrumb-item">
+                    <a href="https://moodle.unibuc.ro/course/index.php?categoryid=1584"  >2020-2021</a>
+                </li>
+        
+                <li class="breadcrumb-item">
+                    <a href="https://moodle.unibuc.ro/course/index.php?categoryid=1585"  >Facultatea de Matematică și Informatică</a>
+                </li>
+        
+                <li class="breadcrumb-item">
+                    <a href="https://moodle.unibuc.ro/course/index.php?categoryid=1586"  >Studii universitare de licență</a>
+                </li>
+        
+                <li class="breadcrumb-item">
+                    <a href="https://moodle.unibuc.ro/course/index.php?categoryid=1587"  >Informatică</a>
+                </li>
+        
+                <li class="breadcrumb-item">
+                    <a href="https://moodle.unibuc.ro/course/index.php?categoryid=1588"  >Limba română</a>
+                </li>
+        
+                <li class="breadcrumb-item">
+                    <a href="https://moodle.unibuc.ro/course/index.php?categoryid=1609"  >Forma de învățământ - IF</a>
+                </li>
+        
+                <li class="breadcrumb-item">
+                    <a href="https://moodle.unibuc.ro/course/index.php?categoryid=1611"  >Anul 2</a>
+                </li>
+        
+                <li class="breadcrumb-item">
+                    <a href="https://moodle.unibuc.ro/course/index.php?categoryid=1703"  >Semestrul II</a>
+                </li>
+        
+                <li class="breadcrumb-item">
+                    <a href="https://moodle.unibuc.ro/course/view.php?id=3036" aria-current="page" title="Metode de dezvoltare software - Seriile 23 si 24">Metode de dezvoltare software - Seriile 23 si 24</a>
+                </li>
+        </ol>
+</nav>
+                        
+                    </div>
+                    <div class="ml-auto d-flex">
+                    
+                        
+                    </div>
+                    <div id="course-header">
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+        <div id="page-content" class="row pb-3">
+            <div id="region-main-box" class="col-12">
+                <section id="region-main" >
+
+                    <span class="notifications" id="user-notifications"></span>
+                    <div role="main"><span id="maincontent"></span><div class="course-content"><h2 class="accesshide">Schița subiectului</h2><ul class="topics"><li id="section-0" class="section main clearfix" role="region" aria-labelledby="sectionid-18591-title" data-sectionid="0" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-18591-title" class="sectionname"><span>Detalii curs</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><ul>
+<li>cursul va avea loc online la <span style="background-color: #ffff99;"><a href="https://zoom.us/j/8702229646" title="zoom link" target="_blank"><span style="background-color: #ffff99;">https://zoom.us/j/8702229646</span></a></span> miercurea intre 10:00-12:00.</li>
+<li>la cursuri vor participa in mod regulat experti din industrie, de la compania ThoughtWorks Romania.</li>
+<li>consultatii Alin Stefanescu: in fiecare luni intre 8:00-10:00 pe <a href="https://zoom.us/j/8702229646" target="_blank">zoom</a> pentru discutii individuale despre proiectele voastre. As dori sa vorbesc cu cat mai multi dintre voi! De aceea, va rog sa va alegeti un interval aici<span style="font-size: 1rem;">: </span><span style="background-color: #ffff99;"><a href="https://calendly.com/stefanescu/consultatie-mds" title="https://calendly.com/stefanescu/consultatie-mds" target="_blank" style="font-size: 1rem;"><span style="background-color: #ffff99;">https://calendly.com/stefanescu/consultatie-mds</span></a></span></li>
+<li>contact: <a href="mailto:alin.stefanescu@unibuc.ro" target="_blank" title="mailto:alin.stefanescu@unibuc.ro">alin.stefanescu@unibuc.ro</a></li>
+</ul>
+<p></p>
+<p></p></div></div><ul class="section img-text"></ul></div></li><li id="section-1" class="section main clearfix" role="region" aria-labelledby="sectionid-112459-title" data-sectionid="1" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-112459-title" class="sectionname"><span>Evaluare</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><p>Nota finala la MDS este formata din urmatoarele ponderi:</p>
+<ul>
+<li>90% este nota pentru proiectul in echipa. Detalii: <span id="docs-internal-guid-0b29fc9a-7fff-a5d4-2044-de922c4721db"><a href="http://is.gd/barem_lab_MDS" target="_blank" title="http://is.gd/barem_lab_MDS">http://is.gd/barem_lab_MDS</a> si</span></li>
+<li><span id="docs-internal-guid-0b29fc9a-7fff-a5d4-2044-de922c4721db">10% este nota pentru referatul individual. Detalii: <a href="http://is.gd/referat_MDS" target="_blank" class="link" data-attrib-id="MTU4NzEyMzEwMDAwNC1odHRwOi8vaXMuZ2QvcmVmZXJhdF9NRFM=" title="http://is.gd/referat_MDS">http://is.gd/referat_MDS</a> </span></li>
+</ul>
+<p>Termenul este 15 iunie, iar referatul individual se trimite la linkul de mai jos:</p></div></div><ul class="section img-text"><li class="activity forum modtype_forum " id="module-45411"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/forum/view.php?id=45411"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/forum/1615307469/icon" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">Adauga aici referatul individual<span class="accesshide " > Forum</span></span></a></div></div></div></div></li></ul></div></li><li id="section-2" class="section main clearfix" role="region" aria-labelledby="sectionid-94184-title" data-sectionid="2" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-94184-title" class="sectionname"><span>Curs 1</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><ul id="yui_3_17_2_1_1613422554400_2673">
+<li><a class="autolink" title="organizare" href="https://moodle.unibuc.ro/mod/resource/view.php?id=37180">organizare</a> curs; descriere proiect: <a href="https://is.gd/barem_lab_MDS" title="https://is.gd/barem_lab_MDS" target="_blank">https://is.gd/barem_lab_MDS</a> &amp; referat: <a href="https://is.gd/referat_MDS" title="https://is.gd/referat_MDS" target="_blank">https://is.gd/referat_MDS</a></li>
+</ul>
+<ul id="yui_3_17_2_1_1613422554400_2673">
+<li id="yui_3_17_2_1_1613422554400_2672"><a class="autolink" title="procese de dezvoltare software - SCRUM" href="https://moodle.unibuc.ro/mod/resource/view.php?id=37181">procese de dezvoltare software - SCRUM</a>; filmulet de 3 minute despre procesul de dezvoltare software: <div class="mediaplugin mediaplugin_videojs d-block"><div style="max-width:400px;"><video data-setup-lazy="{&quot;techOrder&quot;: [&quot;youtube&quot;], &quot;sources&quot;: [{&quot;type&quot;: &quot;video/youtube&quot;, &quot;src&quot;:&quot;https://youtu.be/F01JmJGJ9n8&quot;}], &quot;fluid&quot;: true}" id="id_videojs_60d721947433f_1" class="video-js" preload="auto" controls="true" title="F01JmJGJ9n8"><a class="mediafallbacklink" href="https://youtu.be/F01JmJGJ9n8">F01JmJGJ9n8</a></video></div></div></li>
+</ul></div></div><ul class="section img-text"><li class="activity resource modtype_resource " id="module-37180"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=37180"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">organizare<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity resource modtype_resource " id="module-37181"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=37181"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">procese de dezvoltare software - SCRUM<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity url modtype_url " id="module-37182"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/url/view.php?id=37182"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/url/1615307469/icon" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">inregistrarea video a cursului<span class="accesshide " > Legătură</span></span></a></div></div></div></div></li></ul></div></li><li id="section-3" class="section main clearfix" role="region" aria-labelledby="sectionid-18592-title" data-sectionid="3" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-18592-title" class="sectionname"><span>Curs 2</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><ul>
+<li dir="ltr"><span>de la idee la cerinte (backlog de probleme, user personas, masurare a succesului)</span></li>
+<li dir="ltr"><span>prioritizare cerinte (backlog prioritizat pe baza de perspective)</span></li>
+</ul></div></div><ul class="section img-text"><li class="activity resource modtype_resource " id="module-39124"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=39124"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">de la idee la cerinte + prioritizare cerinte<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity url modtype_url " id="module-40437"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/url/view.php?id=40437"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/url/1615307469/icon" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">inregistrarea video a cursului<span class="accesshide " > Legătură</span></span></a></div></div></div></div></li></ul></div></li><li id="section-4" class="section main clearfix" role="region" aria-labelledby="sectionid-18593-title" data-sectionid="4" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-18593-title" class="sectionname"><span>Curs 3</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><ul>
+<li dir="ltr"><span>user stories si criterii de acceptanta</span></li>
+</ul>
+<ul>
+<li dir="ltr"><a class="autolink" title="cerințe software" href="https://moodle.unibuc.ro/mod/resource/view.php?id=39388">cerințe software</a></li>
+<li dir="ltr">(optional reading) metode de dezvoltare agile</li>
+</ul></div></div><ul class="section img-text"><li class="activity resource modtype_resource " id="module-39387"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=39387"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">user stories + criterii de acceptanta<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity resource modtype_resource " id="module-39388"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=39388"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">cerințe software<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity resource modtype_resource " id="module-39389"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=39389"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">(optional) metodologii agile<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity url modtype_url " id="module-40439"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/url/view.php?id=40439"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/url/1615307469/icon" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">inregistrarea video a cursului<span class="accesshide " > Legătură</span></span></a></div></div></div></div></li></ul></div></li><li id="section-5" class="section main clearfix" role="region" aria-labelledby="sectionid-18594-title" data-sectionid="5" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-18594-title" class="sectionname"><span>Curs 4</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><ul>
+<li>sisteme de versionare - Git</li>
+</ul>
+<p></p>
+<p>Exista o multime de surse excelente pentru a invata Git (<a href="https://git-scm.com/book/en/v2" title="https://git-scm.com/book/en/v2" target="_blank">carte</a> pe pagina Git), dar si in documentatiile de la <a href="https://guides.github.com" title="https://guides.github.com" target="_blank">GitHub</a> (inclusiv <a href="https://lab.github.com" title="https://lab.github.com" target="_blank">cursuri interactive</a>), <a href="https://docs.gitlab.com/ee/topics/git" title="https://docs.gitlab.com/ee/topics/git" target="_blank">GitLab</a>, <a href="https://www.atlassian.com/git" title="https://www.atlassian.com/git" target="_blank">Bitbucket</a>. Cel mai simplu este sa lucrati cu git folosind pluginurile oferite de IDE-uri, insa va recomand sa experimentati si cu linia-comanda si cu clienti GUI locali (precum <a href="https://desktop.github.com" title="https://desktop.github.com" target="_blank">GitHub Desktop</a> <a href="https://git-scm.com/downloads/guis" title="https://git-scm.com/downloads/guis" target="_blank">si altii</a>).</p></div></div><ul class="section img-text"><li class="activity resource modtype_resource " id="module-40271"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=40271"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">sisteme de versionare + git<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity url modtype_url " id="module-40438"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/url/view.php?id=40438"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/url/1615307469/icon" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">inregistrarea video a cursului<span class="accesshide " > Legătură</span></span></a></div></div></div></div></li></ul></div></li><li id="section-6" class="section main clearfix" role="region" aria-labelledby="sectionid-18595-title" data-sectionid="6" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-18595-title" class="sectionname"><span>Curs 5</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><ul>
+<li>arhitectura MVVM - pentru dezvoltare de aplicatii Android</li>
+<li>alte exemple de <a class="autolink" title="arhitecturi software" href="https://moodle.unibuc.ro/mod/resource/view.php?id=41097">arhitecturi software</a> (MVC etc)</li>
+<li>diagrame UML</li>
+</ul></div></div><ul class="section img-text"><li class="activity resource modtype_resource " id="module-41096"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=41096"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">arhitectura MVVM (Android)<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity resource modtype_resource " id="module-41097"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=41097"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">arhitecturi software<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity resource modtype_resource " id="module-41098"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=41098"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">introducere in UML<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity url modtype_url " id="module-41100"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/url/view.php?id=41100"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/url/1615307469/icon" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">inregistrarea video a cursului<span class="accesshide " > Legătură</span></span></a></div></div></div></div></li></ul></div></li><li id="section-7" class="section main clearfix" role="region" aria-labelledby="sectionid-111481-title" data-sectionid="7" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-111481-title" class="sectionname"><span>Curs 6</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><p></p>
+<ul>
+<li><a class="autolink" title="diagrame UML de cazuri de utilizare" href="https://moodle.unibuc.ro/mod/resource/view.php?id=42763">diagrame UML de cazuri de utilizare</a></li>
+<li><a class="autolink" title="diagrame UML de clase" href="https://moodle.unibuc.ro/mod/resource/view.php?id=42764">diagrame UML de clase</a></li>
+<li><a class="autolink" title="diagrame UML de stari" href="https://moodle.unibuc.ro/mod/resource/view.php?id=42766">diagrame UML de stari</a></li>
+<li><a class="autolink" title="diagrame UML de secvente" href="https://moodle.unibuc.ro/mod/resource/view.php?id=42765">diagrame UML de secvente</a></li>
+</ul></div></div><ul class="section img-text"><li class="activity resource modtype_resource " id="module-42763"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=42763"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">diagrame UML de cazuri de utilizare<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity resource modtype_resource " id="module-42764"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=42764"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">diagrame UML de clase<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity resource modtype_resource " id="module-42765"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=42765"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">diagrame UML de secvente<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity resource modtype_resource " id="module-42766"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=42766"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">diagrame UML de stari<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity url modtype_url " id="module-42767"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/url/view.php?id=42767"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/url/1615307469/icon" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">inregistrarea video a cursului<span class="accesshide " > Legătură</span></span></a></div></div></div></div></li></ul></div></li><li id="section-8" class="section main clearfix" role="region" aria-labelledby="sectionid-111889-title" data-sectionid="8" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-111889-title" class="sectionname"><span>Curs 7</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><ul>
+<li>sabloane de proiectare (design patterns) - v. si <a href="https://refactoring.guru/design-patterns" title="https://refactoring.guru/design-patterns" target="_blank">https://refactoring.guru/design-patterns</a></li>
+</ul></div></div><ul class="section img-text"><li class="activity resource modtype_resource " id="module-43519"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=43519"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">sabloane de proiectare / design patterns<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity url modtype_url " id="module-43520"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/url/view.php?id=43520"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/url/1615307469/icon" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">inregistrarea video a cursului<span class="accesshide " > Legătură</span></span></a></div></div></div></div></li></ul></div></li><li id="section-9" class="section main clearfix" role="region" aria-labelledby="sectionid-111890-title" data-sectionid="9" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-111890-title" class="sectionname"><span>Curs 8</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><ul>
+<li><a class="autolink" title="build tools" href="https://moodle.unibuc.ro/mod/resource/view.php?id=44265">build tools</a> (Gradle)</li>
+<li><a class="autolink" title="code review" href="https://moodle.unibuc.ro/mod/resource/view.php?id=44266">code review</a></li>
+<li>discutie libera despre R&amp;D (research and development)</li>
+</ul></div></div><ul class="section img-text"><li class="activity resource modtype_resource " id="module-44265"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=44265"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">build tools<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity resource modtype_resource " id="module-44266"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=44266"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">code review<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity url modtype_url " id="module-44267"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/url/view.php?id=44267"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/url/1615307469/icon" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">inregistrarea video a cursului<span class="accesshide " > Legătură</span></span></a></div></div></div></div></li></ul></div></li><li id="section-10" class="section main clearfix" role="region" aria-labelledby="sectionid-112230-title" data-sectionid="10" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-112230-title" class="sectionname"><span>Curs 9</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><ul>
+<li>refactorizarea codului - v. si <a href="https://refactoring.guru/refactoring" title="https://refactoring.guru/refactoring" target="_blank">https://refactoring.guru/refactoring</a> si <a href="https://refactoring.com/catalog" title="https://refactoring.com/catalog" target="_blank">https://refactoring.com/catalog</a></li>
+<li>bune practici in dezvoltarea software</li>
+<li>IDE-uri</li>
+</ul></div></div><ul class="section img-text"><li class="activity resource modtype_resource " id="module-45017"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=45017"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/powerpoint-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">refactorizare<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity url modtype_url " id="module-44970"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/url/view.php?id=44970"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/url/1615307469/icon" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">inregistrarea video a cursului<span class="accesshide " > Legătură</span></span></a></div></div></div></div></li></ul></div></li><li id="section-11" class="section main clearfix" role="region" aria-labelledby="sectionid-112231-title" data-sectionid="11" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-112231-title" class="sectionname"><span>Curs 10</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><ul>
+<li>testare (partea 1): introducere in testare, diverse tipuri de testare, unit testing - framworkul JUnit</li>
+</ul>
+<p>Am incarcat in GitHub si GitLab un mic proiect cu un exemplu de JUnit (cu Gradle), fiecare proiect avand in README.md instructiuni de setare, inclusiv partea de build si test automat in cloudul celor de la GitHub (via GitHub Actions) si GitLab (via CI/CD): <span class="s1"><a href="https://github.com/alinstef/junitexample" target="_blank" title="https://github.com/alinstef/junitexample">https://github.com/alinstef/junitexample</a> &amp; </span><span class="s1"><a href="https://gitlab.com/alinstef/junitexample" target="_blank" title="https://gitlab.com/alinstef/junitexample">https://gitlab.com/alinstef/junitexample</a></span></p></div></div><ul class="section img-text"><li class="activity resource modtype_resource " id="module-45454"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=45454"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">testare 1<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity url modtype_url " id="module-45455"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/url/view.php?id=45455"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/url/1615307469/icon" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">inregistrarea video a cursului<span class="accesshide " > Legătură</span></span></a></div></div></div></div></li></ul></div></li><li id="section-12" class="section main clearfix" role="region" aria-labelledby="sectionid-112641-title" data-sectionid="12" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-112641-title" class="sectionname"><span>Curs 11</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><ul>
+<li>debugging</li>
+</ul></div></div><ul class="section img-text"><li class="activity url modtype_url " id="module-46069"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/url/view.php?id=46069"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/url/1615307469/icon" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">inregistrarea video a cursului<span class="accesshide " > Legătură</span></span></a></div></div></div></div></li></ul></div></li><li id="section-13" class="section main clearfix" role="region" aria-labelledby="sectionid-112388-title" data-sectionid="13" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-112388-title" class="sectionname"><span>Curs 12</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><ul>
+<li>testare (partea a 2-a): test management, testare manuala si automata, web testing cu Selenium</li>
+</ul></div></div><ul class="section img-text"><li class="activity url modtype_url " id="module-46593"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/url/view.php?id=46593"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/url/1615307469/icon" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">inregistrarea video a cursului<span class="accesshide " > Legătură</span></span></a></div></div></div></div></li><li class="activity resource modtype_resource " id="module-47694"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=47694"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">testare 2<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li></ul></div></li><li id="section-14" class="section main clearfix" role="region" aria-labelledby="sectionid-112642-title" data-sectionid="14" data-sectionreturnid="0"><div class="left side"></div><div class="right side"><img class="icon spacer" width="1" height="1" alt="" aria-hidden="true" src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/spacer" /></div><div class="content"><h3 id="sectionid-112642-title" class="sectionname"><span>Curs 13</span></h3><div class="section_availability"></div><div class="summary"><div class="no-overflow"><ul>
+<li dir="ltr">continuous integration și continuous deployment (v. <a href="https://docs.github.com/en/actions/guides/about-continuous-integration" title="https://docs.github.com/en/actions/guides/about-continuous-integration" target="_blank">GitHub CI/CD</a> si <a href="https://docs.gitlab.com/ee/ci/introduction" title="https://docs.gitlab.com/ee/ci/introduction" target="_blank">GitLab CI/CD</a>)</li>
+<li dir="ltr"><span>monitorizare în timp real</span></li>
+<li dir="ltr"><span></span><span style="font-size: 1rem;">performanța aplicațiilor: load &amp; stress testing, profilers</span></li>
+</ul></div></div><ul class="section img-text"><li class="activity resource modtype_resource " id="module-47093"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=47093"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">CI/CD si monitorizare<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity resource modtype_resource " id="module-47094"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/resource/view.php?id=47094"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/core/1615307469/f/pdf-24" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">performanta aplicatiilor<span class="accesshide " > Fișier</span></span></a></div></div></div></div></li><li class="activity url modtype_url " id="module-47092"><div><div class="mod-indent-outer w-100"><div class="mod-indent"></div><div><div class="activityinstance"><a class="aalink" onclick="" href="https://moodle.unibuc.ro/mod/url/view.php?id=47092"><img src="https://moodle.unibuc.ro/theme/image.php/unibuc/url/1615307469/icon" class="iconlarge activityicon" alt="" role="presentation" aria-hidden="true" /><span class="instancename">inregistrarea video a cursului<span class="accesshide " > Legătură</span></span></a></div></div></div></div></li></ul></div></li></ul></div></div>
+                    
+                    
+
+                </section>
+            </div>
+        </div>
+    </div>
+    <div
+    id="drawer-60d721946c7a760d721946846613"
+    class=" drawer bg-white hidden"
+    aria-expanded="false"
+    aria-hidden="true"
+    data-region="right-hand-drawer"
+    role="region"
+    tabindex="0"
+>
+            <div id="message-drawer-60d721946c7a760d721946846613" class="message-app" data-region="message-drawer" role="region">
+            <div class="closewidget bg-light border-bottom text-right">
+                <a class="text-dark" data-action="closedrawer" href="#">
+                     <i class="icon fa fa-window-close fa-fw "  title="Închide" aria-label="Închide"></i>
+                </a>
+            </div>
+            <div class="header-container position-relative" data-region="header-container">
+                <div class="hidden border-bottom px-2 py-3" aria-hidden="true" data-region="view-contacts">
+                    <div class="d-flex align-items-center">
+                        <div class="align-self-stretch">
+                            <a class="h-100 d-flex align-items-center mr-2" href="#" data-route-back role="button">
+                                <div class="icon-back-in-drawer">
+                                    <span class="dir-rtl-hide"><i class="icon fa fa-chevron-left fa-fw " aria-hidden="true"  ></i></span>
+                                    <span class="dir-ltr-hide"><i class="icon fa fa-chevron-right fa-fw " aria-hidden="true"  ></i></span>
+                                </div>
+                                <div class="icon-back-in-app">
+                                    <span class="dir-rtl-hide"><i class="icon fa fa-times fa-fw " aria-hidden="true"  ></i></span>
+                                </div>                            </a>
+                        </div>
+                        <div>
+                            Prieteni
+                        </div>
+                        <div class="ml-auto">
+                            <a href="#" data-route="view-search" role="button" aria-label="Caută">
+                                <i class="icon fa fa-search fa-fw " aria-hidden="true"  ></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>                
+                <div
+                    class="hidden bg-white position-relative border-bottom p-1 p-sm-2"
+                    aria-hidden="true"
+                    data-region="view-conversation"
+                >
+                    <div class="hidden" data-region="header-content"></div>
+                    <div class="hidden" data-region="header-edit-mode">
+                        
+                        <div class="d-flex p-2 align-items-center">
+                            Mesaje selectate:
+                            <span class="ml-1" data-region="message-selected-court">1</span>
+                            <button type="button" class="ml-auto close" aria-label="Anulați selecția mesajelor"
+                                data-action="cancel-edit-mode">
+                                    <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div data-region="header-placeholder">
+                        <div class="d-flex">
+                            <div
+                                class="ml-2 rounded-circle bg-pulse-grey align-self-center"
+                                style="height: 38px; width: 38px"
+                            >
+                            </div>
+                            <div class="ml-2 " style="flex: 1">
+                                <div
+                                    class="mt-1 bg-pulse-grey w-75"
+                                    style="height: 16px;"
+                                >
+                                </div>
+                            </div>
+                            <div
+                                class="ml-2 bg-pulse-grey align-self-center"
+                                style="height: 16px; width: 20px"
+                            >
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="hidden position-absolute"
+                        data-region="confirm-dialogue-container"
+                        style="top: 0; bottom: -1px; right: 0; left: 0; background: rgba(0,0,0,0.3);"
+                    ></div>
+                </div>                <div class="border-bottom  p-1 px-sm-2 py-sm-3" aria-hidden="false"  data-region="view-overview">
+                    <div class="d-flex align-items-center">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text pr-2 bg-white">
+                                    <i class="icon fa fa-search fa-fw " aria-hidden="true"  ></i>
+                                </span>
+                            </div>
+                            <input
+                                type="text"
+                                class="form-control border-left-0"
+                                placeholder="Caută"
+                                aria-label="Caută"
+                                data-region="view-overview-search-input"
+                            >
+                        </div>
+                        <div class="ml-2">
+                            <a
+                                href="#"
+                                data-route="view-settings"
+                                data-route-param="9950"
+                                aria-label="Setări"
+                                role="button"
+                            >
+                                <i class="icon fa fa-cog fa-fw " aria-hidden="true"  ></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="text-right mt-sm-3">
+                        <a href="#" data-route="view-contacts" role="button">
+                            <i class="icon fa fa-user fa-fw " aria-hidden="true"  ></i>
+                            Prieteni
+                            <span class="badge badge-primary bg-primary ml-2 hidden"
+                            data-region="contact-request-count"
+                            aria-label="Există 0 solicitări de contact în așteptare">
+                                0
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hidden border-bottom px-2 py-3 view-search"  aria-hidden="true" data-region="view-search">
+                    <div class="d-flex align-items-center">
+                        <a
+                            class="mr-2 align-self-stretch d-flex align-items-center"
+                            href="#"
+                            data-route-back
+                            data-action="cancel-search"
+                            role="button"
+                        >
+                            <div class="icon-back-in-drawer">
+                                <span class="dir-rtl-hide"><i class="icon fa fa-chevron-left fa-fw " aria-hidden="true"  ></i></span>
+                                <span class="dir-ltr-hide"><i class="icon fa fa-chevron-right fa-fw " aria-hidden="true"  ></i></span>
+                            </div>
+                            <div class="icon-back-in-app">
+                                <span class="dir-rtl-hide"><i class="icon fa fa-times fa-fw " aria-hidden="true"  ></i></span>
+                            </div>                        </a>
+                        <div class="input-group">
+                            <input
+                                type="text"
+                                class="form-control"
+                                placeholder="Caută"
+                                aria-label="Caută"
+                                data-region="search-input"
+                            >
+                            <div class="input-group-append">
+                                <button
+                                    class="btn btn-outline-secondary"
+                                    type="button"
+                                    data-action="search"
+                                    aria-label="Caută"
+                                >
+                                    <span data-region="search-icon-container">
+                                        <i class="icon fa fa-search fa-fw " aria-hidden="true"  ></i>
+                                    </span>
+                                    <span class="hidden" data-region="loading-icon-container">
+                                        <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+                <div class="hidden border-bottom px-2 py-3" aria-hidden="true" data-region="view-settings">
+                    <div class="d-flex align-items-center">
+                        <div class="align-self-stretch" >
+                            <a class="h-100 d-flex mr-2 align-items-center" href="#" data-route-back role="button">
+                                <div class="icon-back-in-drawer">
+                                    <span class="dir-rtl-hide"><i class="icon fa fa-chevron-left fa-fw " aria-hidden="true"  ></i></span>
+                                    <span class="dir-ltr-hide"><i class="icon fa fa-chevron-right fa-fw " aria-hidden="true"  ></i></span>
+                                </div>
+                                <div class="icon-back-in-app">
+                                    <span class="dir-rtl-hide"><i class="icon fa fa-times fa-fw " aria-hidden="true"  ></i></span>
+                                </div>                            </a>
+                        </div>
+                        <div>
+                            Setări
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="body-container position-relative" data-region="body-container">
+                
+                <div
+                    class="hidden"
+                    data-region="view-contact"
+                    aria-hidden="true"
+                >
+                    <div class="p-2 pt-3" data-region="content-container"></div>
+                </div>                <div class="hidden h-100" data-region="view-contacts" aria-hidden="true" data-user-id="9950">
+                    <div class="d-flex flex-column h-100">
+                        <div class="p-3 border-bottom">
+                            <ul class="nav nav-pills nav-fill" role="tablist">
+                                <li class="nav-item">
+                                    <a
+                                        id="contacts-tab-60d721946c7a760d721946846613"
+                                        class="nav-link active"
+                                        href="#contacts-tab-panel-60d721946c7a760d721946846613"
+                                        data-toggle="tab"
+                                        data-action="show-contacts-section"
+                                        role="tab"
+                                        aria-controls="contacts-tab-panel-60d721946c7a760d721946846613"
+                                        aria-selected="true"
+                                    >
+                                        Prieteni
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a
+                                        id="requests-tab-60d721946c7a760d721946846613"
+                                        class="nav-link"
+                                        href="#requests-tab-panel-60d721946c7a760d721946846613"
+                                        data-toggle="tab"
+                                        data-action="show-requests-section"
+                                        role="tab"
+                                        aria-controls="requests-tab-panel-60d721946c7a760d721946846613"
+                                        aria-selected="false"
+                                    >
+                                        Solicitări
+                                        <span class="badge badge-primary bg-primary ml-2 hidden"
+                                        data-region="contact-request-count"
+                                        aria-label="Există 0 solicitări de contact în așteptare">
+                                            0
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="tab-content d-flex flex-column h-100">
+                                            <div
+                    class="tab-pane fade show active h-100 lazy-load-list"
+                    aria-live="polite"
+                    data-region="lazy-load-list"
+                    data-user-id="9950"
+                                        id="contacts-tab-panel-60d721946c7a760d721946846613"
+                    data-section="contacts"
+                    role="tabpanel"
+                    aria-labelledby="contacts-tab-60d721946c7a760d721946846613"
+
+                >
+                    
+                    <div class="hidden text-center p-2" data-region="empty-message-container">
+                        Fără contacte
+                    </div>
+                    <div class="hidden list-group" data-region="content-container">
+                        
+                    </div>
+                    <div class="list-group" data-region="placeholder-container">
+                        
+                    </div>
+                    <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container" >
+                        <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+                    </div>
+                </div>
+                
+                                            <div
+                    class="tab-pane fade h-100 lazy-load-list"
+                    aria-live="polite"
+                    data-region="lazy-load-list"
+                    data-user-id="9950"
+                                        id="requests-tab-panel-60d721946c7a760d721946846613"
+                    data-section="requests"
+                    role="tabpanel"
+                    aria-labelledby="requests-tab-60d721946c7a760d721946846613"
+
+                >
+                    
+                    <div class="hidden text-center p-2" data-region="empty-message-container">
+                        Fără solicitări de contact
+                    </div>
+                    <div class="hidden list-group" data-region="content-container">
+                        
+                    </div>
+                    <div class="list-group" data-region="placeholder-container">
+                        
+                    </div>
+                    <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container" >
+                        <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>                
+                <div
+                    class="view-conversation hidden h-100"
+                    aria-hidden="true"
+                    data-region="view-conversation"
+                    data-user-id="9950"
+                    data-midnight="1624654800"
+                    data-message-poll-min="10"
+                    data-message-poll-max="120"
+                    data-message-poll-after-max="300"
+                    style="overflow-y: auto; overflow-x: hidden"
+                >
+                    <div class="position-relative h-100" data-region="content-container" style="overflow-y: auto; overflow-x: hidden">
+                        <div class="content-message-container hidden h-100 px-2 pt-0" data-region="content-message-container" role="log" style="overflow-y: auto; overflow-x: hidden">
+                            <div class="py-3 sticky-top z-index-1 border-bottom text-center hidden" data-region="contact-request-sent-message-container">
+                                <p class="m-0">Solicitarea de contact a fost trimisă</p>
+                                <p class="font-italic font-weight-light" data-region="text"></p>
+                            </div>
+                            <div class="p-3 text-center hidden" data-region="self-conversation-message-container">
+                                <p class="m-0">Spatiu personal</p>
+                                <p class="font-italic font-weight-light" data-region="text">Salvați mesajele nefinalizate, linkurile, notele etc. pentru a le accesa ulterior.</p>
+                           </div>
+                            <div class="hidden text-center p-3" data-region="more-messages-loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</div>
+                        </div>
+                        <div class="p-4 w-100 h-100 hidden position-absolute" data-region="confirm-dialogue-container" style="top: 0; background: rgba(0,0,0,0.3);">
+                            
+                            <div class="p-3 bg-white" data-region="confirm-dialogue" role="alert">
+                                <p class="text-muted" data-region="dialogue-text"></p>
+                                <div class="mb-2 custom-control custom-checkbox hidden" data-region="delete-messages-for-all-users-toggle-container">
+                                    <input type="checkbox" class="custom-control-input" id="delete-messages-for-all-users" data-region="delete-messages-for-all-users-toggle">
+                                    <label class="custom-control-label text-muted" for="delete-messages-for-all-users">
+                                        Șterge pentru mine și pentru ceilalți participanți
+                                    </label>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-block">
+                                    <span data-region="dialogue-button-text">Block</span>
+                                    <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                                </button>
+                                <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-unblock">
+                                    <span data-region="dialogue-button-text">Deblocați</span>
+                                    <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                                </button>
+                                <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-remove-contact">
+                                    <span data-region="dialogue-button-text">Elimină</span>
+                                    <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                                </button>
+                                <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-add-contact">
+                                    <span data-region="dialogue-button-text">Adaugă</span>
+                                    <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                                </button>
+                                <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-delete-selected-messages">
+                                    <span data-region="dialogue-button-text">Șterge</span>
+                                    <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                                </button>
+                                <button type="button" class="btn btn-primary btn-block hidden" data-action="confirm-delete-conversation">
+                                    <span data-region="dialogue-button-text">Șterge</span>
+                                    <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                                </button>
+                                <button type="button" class="btn btn-primary btn-block hidden" data-action="request-add-contact">
+                                    <span data-region="dialogue-button-text">Trimiteți cererea de contact</span>
+                                    <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                                </button>
+                                <button type="button" class="btn btn-primary btn-block hidden" data-action="accept-contact-request">
+                                    <span data-region="dialogue-button-text">Acceptă și adaugă la contacte</span>
+                                    <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                                </button>
+                                <button type="button" class="btn btn-secondary btn-block hidden" data-action="decline-contact-request">
+                                    <span data-region="dialogue-button-text">Respinge</span>
+                                    <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                                </button>
+                                <button type="button" class="btn btn-primary btn-block" data-action="okay-confirm">OK</button>
+                                <button type="button" class="btn btn-secondary btn-block" data-action="cancel-confirm">Anulare</button>
+                            </div>
+                        </div>
+                        <div class="px-2 pb-2 pt-0" data-region="content-placeholder">
+                            <div class="h-100 d-flex flex-column">
+                                <div
+                                    class="px-2 pb-2 pt-0 bg-light h-100"
+                                    style="overflow-y: auto"
+                                >
+                                    <div class="mt-4">
+                                        <div class="mb-4">
+                                            <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                    </div>                                    <div class="mt-4">
+                                        <div class="mb-4">
+                                            <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                    </div>                                    <div class="mt-4">
+                                        <div class="mb-4">
+                                            <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                    </div>                                    <div class="mt-4">
+                                        <div class="mb-4">
+                                            <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                    </div>                                    <div class="mt-4">
+                                        <div class="mb-4">
+                                            <div class="mx-auto bg-white" style="height: 25px; width: 100px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                        <div class="d-flex flex-column p-2 bg-white rounded mb-2">
+                                            <div class="d-flex align-items-center mb-2">
+                                                <div class="mr-2">
+                                                    <div class="rounded-circle bg-pulse-grey" style="height: 35px; width: 35px"></div>
+                                                </div>
+                                                <div class="mr-4 w-75 bg-pulse-grey" style="height: 16px"></div>
+                                                <div class="ml-auto bg-pulse-grey" style="width: 35px; height: 16px"></div>
+                                            </div>
+                                            <div class="bg-pulse-grey w-100" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-100 mt-2" style="height: 16px"></div>
+                                            <div class="bg-pulse-grey w-75 mt-2" style="height: 16px"></div>
+                                        </div>
+                                    </div>                                </div>
+                            </div>                        </div>
+                    </div>
+                </div>
+                
+                <div
+                    class="hidden"
+                    aria-hidden="true"
+                    data-region="view-group-info"
+                >
+                    <div
+                        class="pt-3 h-100 d-flex flex-column"
+                        data-region="group-info-content-container"
+                        style="overflow-y: auto"
+                    ></div>
+                </div>                <div class="h-100 view-overview-body" aria-hidden="false" data-region="view-overview"  data-user-id="9950">
+                    <div id="message-drawer-view-overview-container-60d721946c7a760d721946846613" class="d-flex flex-column h-100" style="overflow-y: auto">
+                            
+                            
+                            <div
+                                class="section border-0 card"
+                                data-region="view-overview-favourites"
+                            >
+                                <div id="view-overview-favourites-toggle" class="card-header p-0" data-region="toggle">
+                                    <button
+                                        class="btn btn-link w-100 text-left p-1 p-sm-2 d-flex align-items-center overview-section-toggle collapsed"
+                                        data-toggle="collapse"
+                                        data-target="#view-overview-favourites-target-60d721946c7a760d721946846613"
+                                        aria-expanded="false"
+                                        aria-controls="view-overview-favourites-target-60d721946c7a760d721946846613"
+                                    >
+                                        <span class="collapsed-icon-container">
+                                            <i class="icon fa fa-caret-right fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                        <span class="expanded-icon-container">
+                                            <i class="icon fa fa-caret-down fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                        <span class="font-weight-bold">Evidențiat</span>
+                                        <small class="hidden ml-1" data-region="section-total-count-container"
+                                        aria-label=" conversații în total">
+                                            (<span data-region="section-total-count"></span>)
+                                        </small>
+                                        <span class="hidden ml-2" data-region="loading-icon-container">
+                                            <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+                                        </span>
+                                        <span class="hidden badge badge-pill badge-primary ml-auto bg-primary"
+                                        data-region="section-unread-count"
+                                        >
+                                            
+                                        </span>
+                                    </button>
+                                </div>
+                                                            <div
+                                class="collapse border-bottom  lazy-load-list"
+                                aria-live="polite"
+                                data-region="lazy-load-list"
+                                data-user-id="9950"
+                                            id="view-overview-favourites-target-60d721946c7a760d721946846613"
+            aria-labelledby="view-overview-favourites-toggle"
+            data-parent="#message-drawer-view-overview-container-60d721946c7a760d721946846613"
+
+                            >
+                                
+                                <div class="hidden text-center p-2" data-region="empty-message-container">
+                                            <p class="text-muted mt-2">Nu există conversații evidențiate</p>
+
+                                </div>
+                                <div class="hidden list-group" data-region="content-container">
+                                    
+                                </div>
+                                <div class="list-group" data-region="placeholder-container">
+                                            <div class="text-center py-2"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</div>
+
+                                </div>
+                                <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container" >
+                                    <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            
+                            <div
+                                class="section border-0 card"
+                                data-region="view-overview-group-messages"
+                            >
+                                <div id="view-overview-group-messages-toggle" class="card-header p-0" data-region="toggle">
+                                    <button
+                                        class="btn btn-link w-100 text-left p-1 p-sm-2 d-flex align-items-center overview-section-toggle collapsed"
+                                        data-toggle="collapse"
+                                        data-target="#view-overview-group-messages-target-60d721946c7a760d721946846613"
+                                        aria-expanded="false"
+                                        aria-controls="view-overview-group-messages-target-60d721946c7a760d721946846613"
+                                    >
+                                        <span class="collapsed-icon-container">
+                                            <i class="icon fa fa-caret-right fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                        <span class="expanded-icon-container">
+                                            <i class="icon fa fa-caret-down fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                        <span class="font-weight-bold">Grup</span>
+                                        <small class="hidden ml-1" data-region="section-total-count-container"
+                                        aria-label=" conversații în total">
+                                            (<span data-region="section-total-count"></span>)
+                                        </small>
+                                        <span class="hidden ml-2" data-region="loading-icon-container">
+                                            <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+                                        </span>
+                                        <span class="hidden badge badge-pill badge-primary ml-auto bg-primary"
+                                        data-region="section-unread-count"
+                                        >
+                                            
+                                        </span>
+                                    </button>
+                                </div>
+                                                            <div
+                                class="collapse border-bottom  lazy-load-list"
+                                aria-live="polite"
+                                data-region="lazy-load-list"
+                                data-user-id="9950"
+                                            id="view-overview-group-messages-target-60d721946c7a760d721946846613"
+            aria-labelledby="view-overview-group-messages-toggle"
+            data-parent="#message-drawer-view-overview-container-60d721946c7a760d721946846613"
+
+                            >
+                                
+                                <div class="hidden text-center p-2" data-region="empty-message-container">
+                                            <p class="text-muted mt-2">Fără conversații de grup</p>
+
+                                </div>
+                                <div class="hidden list-group" data-region="content-container">
+                                    
+                                </div>
+                                <div class="list-group" data-region="placeholder-container">
+                                            <div class="text-center py-2"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</div>
+
+                                </div>
+                                <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container" >
+                                    <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            
+                            <div
+                                class="section border-0 card"
+                                data-region="view-overview-messages"
+                            >
+                                <div id="view-overview-messages-toggle" class="card-header p-0" data-region="toggle">
+                                    <button
+                                        class="btn btn-link w-100 text-left p-1 p-sm-2 d-flex align-items-center overview-section-toggle collapsed"
+                                        data-toggle="collapse"
+                                        data-target="#view-overview-messages-target-60d721946c7a760d721946846613"
+                                        aria-expanded="false"
+                                        aria-controls="view-overview-messages-target-60d721946c7a760d721946846613"
+                                    >
+                                        <span class="collapsed-icon-container">
+                                            <i class="icon fa fa-caret-right fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                        <span class="expanded-icon-container">
+                                            <i class="icon fa fa-caret-down fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                        <span class="font-weight-bold">Confidențial</span>
+                                        <small class="hidden ml-1" data-region="section-total-count-container"
+                                        aria-label=" conversații în total">
+                                            (<span data-region="section-total-count"></span>)
+                                        </small>
+                                        <span class="hidden ml-2" data-region="loading-icon-container">
+                                            <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+                                        </span>
+                                        <span class="hidden badge badge-pill badge-primary ml-auto bg-primary"
+                                        data-region="section-unread-count"
+                                        >
+                                            
+                                        </span>
+                                    </button>
+                                </div>
+                                                            <div
+                                class="collapse border-bottom  lazy-load-list"
+                                aria-live="polite"
+                                data-region="lazy-load-list"
+                                data-user-id="9950"
+                                            id="view-overview-messages-target-60d721946c7a760d721946846613"
+            aria-labelledby="view-overview-messages-toggle"
+            data-parent="#message-drawer-view-overview-container-60d721946c7a760d721946846613"
+
+                            >
+                                
+                                <div class="hidden text-center p-2" data-region="empty-message-container">
+                                            <p class="text-muted mt-2">Nu există conversații private</p>
+
+                                </div>
+                                <div class="hidden list-group" data-region="content-container">
+                                    
+                                </div>
+                                <div class="list-group" data-region="placeholder-container">
+                                            <div class="text-center py-2"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</div>
+
+                                </div>
+                                <div class="w-100 text-center p-3 hidden" data-region="loading-icon-container" >
+                                    <span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                </div>
+                
+                <div
+                    data-region="view-search"
+                    aria-hidden="true"
+                    class="h-100 hidden"
+                    data-user-id="9950"
+                    data-users-offset="0"
+                    data-messages-offset="0"
+                    style="overflow-y: auto"
+                    
+                >
+                    <div class="hidden" data-region="search-results-container" style="overflow-y: auto">
+                        
+                        <div class="d-flex flex-column">
+                            <div class="mb-3 bg-white" data-region="all-contacts-container">
+                                <div data-region="contacts-container"  class="pt-2">
+                                    <h4 class="h6 px-2">Prieteni</h4>
+                                    <div class="list-group" data-region="list"></div>
+                                </div>
+                                <div data-region="non-contacts-container" class="pt-2 border-top">
+                                    <h4 class="h6 px-2">Nu este în lista de prieteni</h4>
+                                    <div class="list-group" data-region="list"></div>
+                                </div>
+                                <div class="text-right">
+                                    <button class="btn btn-link text-primary" data-action="load-more-users">
+                                        <span data-region="button-text">Încarcă mai mult</span>
+                                        <span data-region="loading-icon-container" class="hidden"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="bg-white" data-region="messages-container">
+                                <h4 class="h6 px-2 pt-2">Mesaje</h4>
+                                <div class="list-group" data-region="list"></div>
+                                <div class="text-right">
+                                    <button class="btn btn-link text-primary" data-action="load-more-messages">
+                                        <span data-region="button-text">Încarcă mai mult</span>
+                                        <span data-region="loading-icon-container" class="hidden"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                                    </button>
+                                </div>
+                            </div>
+                            <p class="hidden p-3 text-center" data-region="no-results-container">Fără rezultate</p>
+                        </div>                    </div>
+                    <div class="hidden" data-region="loading-placeholder">
+                        <div class="text-center pt-3 icon-size-4"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</div>
+                    </div>
+                    <div class="p-3 text-center" data-region="empty-message-container">
+                        <p>Caută persoane și mesaje</p>
+                    </div>
+                </div>                
+                <div class="h-100 hidden bg-white" aria-hidden="true" data-region="view-settings">
+                    <div class="hidden" data-region="content-container">
+                        
+                        <div data-region="settings" class="p-3">
+                            <h3 class="h6 font-weight-bold">Confidențialitate</h3>
+                            <p>Puteți restricționa mesajele</p>
+                            <div data-preference="blocknoncontacts" class="mb-3">
+                                <fieldset>
+                                    <legend class="sr-only">Acceptă mesaje de la:</legend>
+                                        <div class="custom-control custom-radio mb-2">
+                                            <input
+                                                type="radio"
+                                                name="message_blocknoncontacts"
+                                                class="custom-control-input"
+                                                id="block-noncontacts-60d721946c7a760d721946846613-1"
+                                                value="1"
+                                            >
+                                            <label class="custom-control-label ml-2" for="block-noncontacts-60d721946c7a760d721946846613-1">
+                                                Doar contactele mele
+                                            </label>
+                                        </div>
+                                        <div class="custom-control custom-radio mb-2">
+                                            <input
+                                                type="radio"
+                                                name="message_blocknoncontacts"
+                                                class="custom-control-input"
+                                                id="block-noncontacts-60d721946c7a760d721946846613-0"
+                                                value="0"
+                                            >
+                                            <label class="custom-control-label ml-2" for="block-noncontacts-60d721946c7a760d721946846613-0">
+                                                Contactele mele și ceilalți participanți la curs
+                                            </label>
+                                        </div>
+                                        <div class="custom-control custom-radio mb-2">
+                                            <input
+                                                type="radio"
+                                                name="message_blocknoncontacts"
+                                                class="custom-control-input"
+                                                id="block-noncontacts-60d721946c7a760d721946846613-2"
+                                                value="2"
+                                            >
+                                            <label class="custom-control-label ml-2" for="block-noncontacts-60d721946c7a760d721946846613-2">
+                                                Orice utilizator de pe site
+                                            </label>
+                                        </div>
+                                </fieldset>
+                            </div>
+                        
+                            <div class="hidden" data-region="notification-preference-container">
+                                <h3 class="mb-2 mt-4 h6 font-weight-bold">Preferințe de notificare</h3>
+                            </div>
+                        
+                            <h3 class="mb-2 mt-4 h6 font-weight-bold">General</h3>
+                            <div data-preference="entertosend">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="enter-to-send-60d721946c7a760d721946846613" >
+                                    <label class="custom-control-label" for="enter-to-send-60d721946c7a760d721946846613">
+                                        Folosiți tasta Enter pentru a trimite mesaje
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div data-region="placeholder-container">
+                        
+                        <div class="d-flex flex-column p-3">
+                            <div class="w-25 bg-pulse-grey h6" style="height: 18px"></div>
+                            <div class="w-75 bg-pulse-grey mb-4" style="height: 18px"></div>
+                            <div class="mb-3">
+                                <div class="w-100 d-flex mb-3">
+                                    <div class="bg-pulse-grey rounded-circle" style="width: 18px; height: 18px"></div>
+                                    <div class="bg-pulse-grey w-50 ml-2" style="height: 18px"></div>
+                                </div>
+                                <div class="w-100 d-flex mb-3">
+                                    <div class="bg-pulse-grey rounded-circle" style="width: 18px; height: 18px"></div>
+                                    <div class="bg-pulse-grey w-50 ml-2" style="height: 18px"></div>
+                                </div>
+                                <div class="w-100 d-flex mb-3">
+                                    <div class="bg-pulse-grey rounded-circle" style="width: 18px; height: 18px"></div>
+                                    <div class="bg-pulse-grey w-50 ml-2" style="height: 18px"></div>
+                                </div>
+                            </div>
+                            <div class="w-50 bg-pulse-grey h6 mb-3 mt-2" style="height: 18px"></div>
+                            <div class="mb-4">
+                                <div class="w-100 d-flex mb-2 align-items-center">
+                                    <div class="bg-pulse-grey w-25" style="width: 18px; height: 27px"></div>
+                                    <div class="bg-pulse-grey w-25 ml-2" style="height: 18px"></div>
+                                </div>
+                                <div class="w-100 d-flex mb-2 align-items-center">
+                                    <div class="bg-pulse-grey w-25" style="width: 18px; height: 27px"></div>
+                                    <div class="bg-pulse-grey w-25 ml-2" style="height: 18px"></div>
+                                </div>
+                            </div>
+                            <div class="w-25 bg-pulse-grey h6 mb-3 mt-2" style="height: 18px"></div>
+                            <div class="mb-3">
+                                <div class="w-100 d-flex mb-2 align-items-center">
+                                    <div class="bg-pulse-grey w-25" style="width: 18px; height: 27px"></div>
+                                    <div class="bg-pulse-grey w-50 ml-2" style="height: 18px"></div>
+                                </div>
+                            </div>
+                        </div>                    </div>
+                </div>            </div>
+            <div class="footer-container position-relative" data-region="footer-container">
+                
+                <div
+                    class="hidden border-top bg-white position-relative"
+                    aria-hidden="true"
+                    data-region="view-conversation"
+                    data-enter-to-send="0"
+                >
+                    <div class="hidden p-sm-2" data-region="content-messages-footer-container">
+                        
+                            <div
+                                class="emoji-auto-complete-container w-100 hidden"
+                                data-region="emoji-auto-complete-container"
+                                aria-live="polite"
+                                aria-hidden="true"
+                            >
+                            </div>
+                        <div class="d-flex mt-sm-1">
+                            <textarea
+                                dir="auto"
+                                data-region="send-message-txt"
+                                class="form-control bg-light"
+                                rows="3"
+                                data-auto-rows
+                                data-min-rows="3"
+                                data-max-rows="5"
+                                aria-label="Scrie un mesaj..."
+                                placeholder="Scrie un mesaj..."
+                                style="resize: none"
+                            ></textarea>
+                        
+                            <div class="position-relative d-flex flex-column">
+                                    <div
+                                        data-region="emoji-picker-container"
+                                        class="emoji-picker-container hidden"
+                                        aria-hidden="true"
+                                    >
+                                        
+                                        <div
+                                            data-region="emoji-picker"
+                                            class="card shadow emoji-picker"
+                                        >
+                                            <div class="card-header px-1 pt-1 pb-0 d-flex justify-content-between flex-shrink-0">
+                                                <button
+                                                    class="btn btn-outline-secondary icon-no-margin category-button selected"
+                                                    data-action="show-category"
+                                                    data-category="Recent"
+                                                    title="Recent"
+                                                >
+                                                    <i class="icon fa fa-clock-o fa-fw " aria-hidden="true"  ></i>
+                                                </button>
+                                                <button
+                                                    class="btn btn-outline-secondary icon-no-margin category-button"
+                                                    data-action="show-category"
+                                                    data-category="Smileys & People"
+                                                    title="Smileys & people"
+                                                >
+                                                    <i class="icon fa fa-smile-o fa-fw " aria-hidden="true"  ></i>
+                                                </button>
+                                                <button
+                                                    class="btn btn-outline-secondary icon-no-margin category-button"
+                                                    data-action="show-category"
+                                                    data-category="Animals & Nature"
+                                                    title="Animale & natură"
+                                                >
+                                                    <i class="icon fa fa-leaf fa-fw " aria-hidden="true"  ></i>
+                                                </button>
+                                                <button
+                                                    class="btn btn-outline-secondary icon-no-margin category-button"
+                                                    data-action="show-category"
+                                                    data-category="Food & Drink"
+                                                    title="Mâncare & băutură"
+                                                >
+                                                    <i class="icon fa fa-cutlery fa-fw " aria-hidden="true"  ></i>
+                                                </button>
+                                                <button
+                                                    class="btn btn-outline-secondary icon-no-margin category-button"
+                                                    data-action="show-category"
+                                                    data-category="Travel & Places"
+                                                    title="Călătorii & locuri"
+                                                >
+                                                    <i class="icon fa fa-plane fa-fw " aria-hidden="true"  ></i>
+                                                </button>
+                                                <button
+                                                    class="btn btn-outline-secondary icon-no-margin category-button"
+                                                    data-action="show-category"
+                                                    data-category="Activities"
+                                                    title="Activități"
+                                                >
+                                                    <i class="icon fa fa-futbol-o fa-fw " aria-hidden="true"  ></i>
+                                                </button>
+                                                <button
+                                                    class="btn btn-outline-secondary icon-no-margin category-button"
+                                                    data-action="show-category"
+                                                    data-category="Objects"
+                                                    title="Obiecte"
+                                                >
+                                                    <i class="icon fa fa-lightbulb-o fa-fw " aria-hidden="true"  ></i>
+                                                </button>
+                                                <button
+                                                    class="btn btn-outline-secondary icon-no-margin category-button"
+                                                    data-action="show-category"
+                                                    data-category="Symbols"
+                                                    title="Simboluri"
+                                                >
+                                                    <i class="icon fa fa-heart fa-fw " aria-hidden="true"  ></i>
+                                                </button>
+                                                <button
+                                                    class="btn btn-outline-secondary icon-no-margin category-button"
+                                                    data-action="show-category"
+                                                    data-category="Flags"
+                                                    title="Steaguri"
+                                                >
+                                                    <i class="icon fa fa-flag fa-fw " aria-hidden="true"  ></i>
+                                                </button>
+                                            </div>
+                                            <div class="card-body p-2 d-flex flex-column overflow-hidden">
+                                                <div class="input-group mb-1 flex-shrink-0">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text pr-0 bg-white text-muted">
+                                                            <i class="icon fa fa-search fa-fw " aria-hidden="true"  ></i>
+                                                        </span>
+                                                    </div>
+                                                    <input
+                                                        type="text"
+                                                        class="form-control border-left-0"
+                                                        placeholder="Caută"
+                                                        aria-label="Caută"
+                                                        data-region="search-input"
+                                                    >
+                                                </div>
+                                                <div class="flex-grow-1 overflow-auto emojis-container h-100" data-region="emojis-container">
+                                                    <div class="position-relative" data-region="row-container"></div>
+                                                </div>
+                                                <div class="flex-grow-1 overflow-auto search-results-container h-100 hidden" data-region="search-results-container">
+                                                    <div class="position-relative" data-region="row-container"></div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="card-footer d-flex flex-shrink-0"
+                                                data-region="footer"
+                                            >
+                                                <div class="emoji-preview" data-region="emoji-preview"></div>
+                                                <div data-region="emoji-short-name" class="emoji-short-name text-muted text-wrap ml-2"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button
+                                        class="btn btn-link btn-icon icon-size-3 ml-1"
+                                        aria-label="Afișați selectorul de emoji"
+                                        data-action="toggle-emoji-picker"
+                                    >
+                                        <i class="icon fa fa-smile-o fa-fw " aria-hidden="true"  ></i>
+                                    </button>
+                                <button
+                                    class="btn btn-link btn-icon icon-size-3 ml-1 mt-auto"
+                                    aria-label="Trimite mesaj"
+                                    data-action="send-message"
+                                >
+                                    <span data-region="send-icon-container"><i class="icon fa fa-paper-plane fa-fw " aria-hidden="true"  ></i></span>
+                                    <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden p-sm-2" data-region="content-messages-footer-edit-mode-container">
+                        
+                        <div class="d-flex p-3 justify-content-end">
+                            <button
+                                class="btn btn-link btn-icon my-1 icon-size-4"
+                                data-action="delete-selected-messages"
+                                data-toggle="tooltip"
+                                data-placement="top"
+                                title="Șterge mesajele selectate"
+                            >
+                                <span data-region="icon-container"><i class="icon fa fa-trash fa-fw " aria-hidden="true"  ></i></span>
+                                <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                                <span class="sr-only">Șterge mesajele selectate</span>
+                            </button>
+                        </div>                    </div>
+                    <div class="hidden bg-secondary p-sm-3" data-region="content-messages-footer-require-contact-container">
+                        
+                        <div class="p-3 bg-white">
+                            <p data-region="title"></p>
+                            <p class="text-muted" data-region="text"></p>
+                            <button type="button" class="btn btn-primary btn-block" data-action="request-add-contact">
+                                <span data-region="dialogue-button-text">Trimiteți cererea de contact</span>
+                                <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hidden bg-secondary p-sm-3" data-region="content-messages-footer-require-unblock-container">
+                        
+                        <div class="p-3 bg-white">
+                            <p class="text-muted" data-region="text">Ați blocat acest utilizator</p>
+                            <button type="button" class="btn btn-primary btn-block" data-action="request-unblock">
+                                <span data-region="dialogue-button-text">Deblocați utilizatorul</span>
+                                <span class="hidden" data-region="loading-icon-container"><span class="loading-icon icon-no-margin"><i class="icon fa fa-circle-o-notch fa-spin fa-fw "  title="Încărcare" aria-label="Încărcare"></i></span>
+</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="hidden bg-secondary p-sm-3" data-region="content-messages-footer-unable-to-message">
+                        
+                        <div class="p-3 bg-white">
+                            <p class="text-muted" data-region="text">Nu puteți trimite mesaje acestui utilizator</p>
+                        </div>
+                    </div>
+                    <div class="p-sm-2" data-region="placeholder-container">
+                        <div class="d-flex">
+                            <div class="bg-pulse-grey w-100" style="height: 80px"></div>
+                            <div class="mx-2 mb-2 align-self-end bg-pulse-grey" style="height: 20px; width: 20px"></div>
+                        </div>                    </div>
+                    <div
+                        class="hidden position-absolute"
+                        data-region="confirm-dialogue-container"
+                        style="top: -1px; bottom: 0; right: 0; left: 0; background: rgba(0,0,0,0.3);"
+                    ></div>
+                </div>                    <div data-region="view-overview" class="text-center">
+                        <a href="https://moodle.unibuc.ro/message/index.php">
+                            Vezi toate
+                        </a>
+                    </div>
+            </div>
+        </div>
+
+</div>
+    <div id="nav-drawer" data-region="drawer" class="d-print-none moodle-has-zindex closed" aria-hidden="true" tabindex="-1">
+        <nav class="list-group" aria-label="">
+            <ul>
+                    <li>
+                        <a class="list-group-item list-group-item-action active active_tree_node " href="https://moodle.unibuc.ro/course/view.php?id=3036" data-key="coursehome" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" >
+                            <div class="ml-0">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body font-weight-bold">Metode de dezvoltare software - Seriile 23 si 24</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/user/index.php?id=3036" data-key="participants" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="90" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="3036">
+                            <div class="ml-0">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-users fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Participanți</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    </ul>
+                    </nav>
+                    <nav class="list-group mt-1" aria-label="Site">
+                    <ul>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/my/" data-key="myhome" data-isexpandable="0" data-indent="0" data-showdivider="1" data-type="1" data-nodetype="1" data-collapse="0" data-forceopen="1" data-isactive="0" data-hidden="0" data-preceedwithhr="0" >
+                            <div class="ml-0">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-tachometer fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Tablou de bord</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/?redirect=0" data-key="home" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="70" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="myhome">
+                            <div class="ml-0">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-home fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Pagina principală</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/calendar/view.php?view=month&amp;course=3036" data-key="calendar" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="60" data-nodetype="0" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1">
+                            <div class="ml-0">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-calendar fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Calendar</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <div class="list-group-item " data-key="mycourses" data-isexpandable="0" data-indent="0" data-showdivider="0" data-type="0" data-nodetype="1" data-collapse="0" data-forceopen="1" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="myhome">
+                            <div class="ml-0">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body">Cursurile mele</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/course/view.php?id=4638" data-key="4638" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1702">
+                            <div class="ml-1">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body "> Opțional de dezvoltarea aplicațiilor web </span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/course/view.php?id=4639" data-key="4639" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1702">
+                            <div class="ml-1">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body "> Opțional de dezvoltarea aplicațiilor web - s2</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/course/view.php?id=4629" data-key="4629" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1702">
+                            <div class="ml-1">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Algoritmi fundamentali - Seria 24</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/course/view.php?id=3028" data-key="3028" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1702">
+                            <div class="ml-1">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Probabilități și statistică - Seria 24</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/course/view.php?id=4312" data-key="4312" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1702">
+                            <div class="ml-1">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Programare functionala - Seria 24</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/course/view.php?id=4311" data-key="4311" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1702">
+                            <div class="ml-1">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Sisteme de gestiune a bazelor de date - Seria 24</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/course/view.php?id=3030" data-key="3030" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1702">
+                            <div class="ml-1">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Sisteme de operare</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/course/view.php?id=4633" data-key="4633" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1703">
+                            <div class="ml-1">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Algoritmi avansați - Seria 24</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/course/view.php?id=4635" data-key="4635" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1703">
+                            <div class="ml-1">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Fundamentele limbajelor de programare - Seria 24</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/course/view.php?id=6350" data-key="6350" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1703">
+                            <div class="ml-1">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Inteligență artificială - Seria 24</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action active active_tree_node " href="https://moodle.unibuc.ro/course/view.php?id=3036" data-key="3036" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="1" data-isactive="1" data-hidden="0" data-preceedwithhr="0" data-parent-key="1703">
+                            <div class="ml-1">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body font-weight-bold">Metode de dezvoltare software - Seriile 23 si 24</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/course/view.php?id=4630" data-key="4630" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1703">
+                            <div class="ml-1">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Programare avansată pe obiecte - Seria 24</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/course/view.php?id=3035" data-key="3035" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1703">
+                            <div class="ml-1">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Programare logică</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="list-group-item list-group-item-action  " href="https://moodle.unibuc.ro/course/view.php?id=4637" data-key="4637" data-isexpandable="1" data-indent="1" data-showdivider="0" data-type="20" data-nodetype="1" data-collapse="0" data-forceopen="0" data-isactive="0" data-hidden="0" data-preceedwithhr="0" data-parent-key="1703">
+                            <div class="ml-1">
+                                <div class="media">
+                                        <span class="media-left">
+                                            <i class="icon fa fa-graduation-cap fa-fw " aria-hidden="true"  ></i>
+                                        </span>
+                                    <span class="media-body ">Rețele de calculatoare - Seria 24</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+            </ul>
+        </nav>
+    </div>
+      <footer id="page-footer"
+        class="py-3 ">
+        <div class="container">
+            <div class="footer-container">
+                <div class="row pd-0">
+                    <div class="col-xl-3 col-lg-12  row">
+                        <div id="unibuc">
+                            <div class="unibuc-logo">
+                            <a href="https://unibuc.ro/">
+                                <img src="https://moodle.unibuc.ro/theme/unibuc/pix/worldwide.png">
+                                <span class="text-white pl-1">unibuc.ro</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-lg-12 col-xs-12 pl-0 contact">
+                    <div class="row p-0 m-0">
+                        <div class="contact-container">
+                            <h6>CONTACT</h6>
+                            <p>Telefon<span> +40 21 307 73 00 </span></p>
+                            <p>Email<span> office@g.unibuc.ro </span></p>
+                        </div>
+    
+    
+    
+                        <div class="contact-container">
+                            <h6>ADRESA</h6>
+                            <span>Șoseaua Panduri, nr. 90, Sector 5, 050663,
+                                București, ROMÂNIA</span>
+                        </div>
+                        <div class="icon-container">
+                        <div class="icons">
+                            <div class="icon-container-facebook">
+                            <a href="https://www.facebook.com/Universitatea.din.Bucuresti/?rf=114780361872176">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="icon-container-youtube">
+                            <a href="https://www.youtube.com/channel/UC0X9C_qqul3KN9u8TQmm6aA">
+                                <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="icon-container-instagram">
+                            <a href="https://www.instagram.com/unibuc/">
+                                <i class="fa fa-instagram" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                           
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-xl-2 col-lg-12 mdl-logo">
+                        <a href="https://www.elearningsoftware.ro/">
+                            <img src="https://moodle.unibuc.ro/theme/unibuc/pix/elso.png">
+                        </a>
+                    </div>
+    
+    
+                </div>
+    
+    
+            </div>
+            <div class="tool_dataprivacy"><a href="https://moodle.unibuc.ro/admin/tool/dataprivacy/summary.php">Rezumatul păstrării datelor</a></div><a href="https://download.moodle.org/mobile?version=2020061502&amp;lang=ro&amp;iosappid=633359593&amp;androidappid=com.moodle.moodlemobile">Obțineți aplicația mobilă</a>
+        </div>
+        <div class="add-info pl-3">
+    <script src="https://moodle.unibuc.ro/theme/unibuc/javascript/apply.js"></script>
+            <script>
+//<![CDATA[
+var require = {
+    baseUrl : 'https://moodle.unibuc.ro/lib/requirejs.php/1615307469/',
+    // We only support AMD modules with an explicit define() statement.
+    enforceDefine: true,
+    skipDataMain: true,
+    waitSeconds : 0,
+
+    paths: {
+        jquery: 'https://moodle.unibuc.ro/lib/javascript.php/1615307469/lib/jquery/jquery-3.4.1.min',
+        jqueryui: 'https://moodle.unibuc.ro/lib/javascript.php/1615307469/lib/jquery/ui-1.12.1/jquery-ui.min',
+        jqueryprivate: 'https://moodle.unibuc.ro/lib/javascript.php/1615307469/lib/requirejs/jquery-private'
+    },
+
+    // Custom jquery config map.
+    map: {
+      // '*' means all modules will get 'jqueryprivate'
+      // for their 'jquery' dependency.
+      '*': { jquery: 'jqueryprivate' },
+      // Stub module for 'process'. This is a workaround for a bug in MathJax (see MDL-60458).
+      '*': { process: 'core/first' },
+
+      // 'jquery-private' wants the real jQuery module
+      // though. If this line was not here, there would
+      // be an unresolvable cyclic dependency.
+      jqueryprivate: { jquery: 'jquery' }
+    }
+};
+
+//]]>
+</script>
+<script src="https://moodle.unibuc.ro/lib/javascript.php/1615307469/lib/requirejs/require.min.js"></script>
+<script>
+//<![CDATA[
+M.util.js_pending("core/first");require(['core/first'], function() {
+require(['core/prefetch']);
+;
+require(["media_videojs/loader"], function(loader) {
+    loader.setUp(function(videojs) {
+        videojs.options.flash.swf = "https://moodle.unibuc.ro/media/player/videojs/videojs/video-js.swf";
+
+    });
+});;
+
+require(['jquery', 'message_popup/notification_popover_controller'], function($, controller) {
+    var container = $('#nav-notification-popover-container');
+    var controller = new controller(container);
+    controller.registerEventListeners();
+    controller.registerListNavigationEventListeners();
+});
+;
+
+require(
+[
+    'jquery',
+    'core_message/message_popover'
+],
+function(
+    $,
+    Popover
+) {
+    var toggle = $('#message-drawer-toggle-60d721946ad1d60d72194684664');
+    Popover.init(toggle);
+});
+;
+
+require(['jquery', 'core_message/message_drawer'], function($, MessageDrawer) {
+    var root = $('#message-drawer-60d721946c7a760d721946846613');
+    MessageDrawer.init(root, '60d721946c7a760d721946846613', false);
+});
+;
+
+require(['theme_boost/loader']);
+require(['theme_boost/drawer'], function(mod) {
+    mod.init();
+});
+;
+M.util.js_pending('filter_oembed/oembed'); require(['filter_oembed/oembed'], function(amd) {amd.init(); M.util.js_complete('filter_oembed/oembed');});;
+M.util.js_pending('core/notification'); require(['core/notification'], function(amd) {amd.init(93063, [], true); M.util.js_complete('core/notification');});;
+M.util.js_pending('core/log'); require(['core/log'], function(amd) {amd.setConfig({"level":"trace"}); M.util.js_complete('core/log');});;
+M.util.js_pending('core/page_global'); require(['core/page_global'], function(amd) {amd.init(); M.util.js_complete('core/page_global');});M.util.js_complete("core/first");
+});
+//]]>
+</script>
+<script src="https://moodle.unibuc.ro/lib/javascript.php/1615307469/course/format/topics/format.js"></script>
+<script>
+//<![CDATA[
+M.str = {"moodle":{"lastmodified":"Ultima modificare","name":"Nume","error":"Eroare","info":"Informa\u021bii","yes":"Da","no":"Nu","cancel":"Anulare","confirm":"Confirm\u0103","areyousure":"Sunte\u021bi sigur?","closebuttontitle":"\u00cenchide","unknownerror":"Eroare necunoscut\u0103","file":"Fi\u0219ier","url":"URL"},"repository":{"type":"Tip","size":"Dimensiune","invalidjson":"\u0218ir de caractere JSON invalid","nofilesattached":"Nu exist\u0103 fi\u0219iere ata\u0219ate","filepicker":"Selector de fi\u0219iere","logout":"Logout","nofilesavailable":"Nu sunt fi\u0219iere disponibile","norepositoriesavailable":"Ne pare r\u0103u, niciunul dintre depozitele dumneavoastr\u0103 curente nu pot returna fi\u0219iere \u00een formatul cerut.","fileexistsdialogheader":"Fi\u0219ierul exist\u0103","fileexistsdialog_editor":"Un fi\u0219ier cu acest nume a fost deja ata\u0219at textului pe care \u00eel edita\u021bi","fileexistsdialog_filemanager":"Un fi\u0219ier cu acest nume a fost deja ata\u0219at.","renameto":"Redenumi\u021bi ca \"{$a}\"","referencesexist":"Exist\u0103 {$a} fi\u0219iere alias\/short-uri care folosesc acest fi\u0219ier ca surs\u0103 a lor.","select":"Selectare"},"admin":{"confirmdeletecomments":"Sunte\u021bi pe cale s\u0103 \u0219terge\u021bi comentariile, sunte\u021bi sigur?","confirmation":"Confirmare"},"debug":{"debuginfo":"Informa\u021bii despre depanare","line":"Linie","stacktrace":"Urm\u0103 de stiv\u0103"},"langconfig":{"labelsep":":"}};
+//]]>
+</script>
+<script>
+//<![CDATA[
+(function() {Y.use("moodle-filter_mathjaxloader-loader",function() {M.filter_mathjaxloader.configure({"mathjaxconfig":"\nMathJax.Hub.Config({\n    config: [\"Accessible.js\", \"Safe.js\"],\n    errorSettings: { message: [\"!\"] },\n    skipStartupTypeset: true,\n    messageStyle: \"none\"\n});\n","lang":"en"});
+});
+M.util.help_popups.setup(Y);
+ M.util.js_pending('random60d721946846614'); Y.on('domready', function() { M.util.js_complete("init");  M.util.js_complete('random60d721946846614'); });
+})();
+//]]>
+</script>
+
+    
+        </div>
+    
+    
+        </footer>
+</div>
+
+</body>
+</html>
