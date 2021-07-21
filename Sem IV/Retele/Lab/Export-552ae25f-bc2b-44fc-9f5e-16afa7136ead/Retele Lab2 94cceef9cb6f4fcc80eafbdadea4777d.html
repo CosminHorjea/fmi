@@ -1,0 +1,632 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Retele Lab2</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="94cceef9-cb6f-4fcc-80ea-fbdadea4777d" class="page sans"><header><h1 class="page-title">Retele Lab2</h1></header><div class="page-body"><ul id="754bd9d5-a26a-4e4c-a123-4fc6f230506f" class="toggle"><li><details open=""><summary>PC  ATENA</summary><p id="b52dde0f-2857-4d14-acbc-712e20882549" class="">Se pune placa de retea de Gb</p><ul id="2f531a1d-e3b6-4524-a35f-07d981318155" class="toggle"><li><details open=""><summary>IP Configuration</summary><p id="990b7148-039d-49ab-91c5-cfc4108c192d" class="">IPv4 :  192.168.243.15</p><p id="0b8f4101-3dbc-4aa2-b5d8-301f3e56e927" class="">Subnet Mask: 255.255.255.0</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="e5a7cb03-a7a3-4d15-ac56-c1a24160e82a"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">1111.1111 ⇒ 8 bits
+2^7 + 2^6 + ... + 2^0 = 255</div></figure><p id="80e080f8-c898-43dc-98e5-68c300673b3b" class="">Default Gateway:  192.169.243.1</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="67ade135-dab4-4dfd-bf92-57bec247ca67"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">1 de la sf ⇒ cel mai mic ip din range, 0 nu se poate asigna</div></figure><p id="8813a9ab-ca9b-479e-8c0e-82a4f82ef88a" class="">DNS Server: 192.168.243.254</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="a869b62a-a77f-4636-8e7c-964cb91108f6"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%">serverul va reprezenta cel mai mare ip din range, de la sfarsit 254 ⇒ cel mai mare ip (adresa de broadcast) nu se poate asigna</div></figure><p id="829ff1e1-a2c4-4100-9578-909d84407252" class="">
+</p></details></li></ul><ul id="d134483c-3a1d-4f25-adef-73a45d70bc38" class="toggle"><li><details open=""><summary>Configure Mail</summary><p id="b82d9033-8beb-4a3d-8adb-1a7ec1cb8a36" class="">Your Name : ATENA</p><p id="3a839712-fae3-4a39-a5b5-02e90e1def74" class="">Email Address : ATENA@INFO.RO</p><p id="b89556d8-9991-4c2e-a6e5-f4b3c95947ce" class="">Incoming Mail Server : 192.168.243.254 (la fel ca la DNS)</p><p id="9ed88533-c446-405b-9903-03358b188c9e" class="">Outgoing Mail Server : 192.168.243.254 (la fel ca la DNS)</p><p id="6e62ebb4-2e22-4741-9c93-8585c2e2f654" class="">User Name : ATENA (prin conventie)</p><p id="56503c75-7684-49b1-85f6-52211b265a7d" class="">Password : 123456 (prin conventie)</p></details></li></ul></details></li></ul><ul id="c9883ba3-7da0-4bd1-8c2b-4ea1df49a9bd" class="toggle"><li><details open=""><summary>2960-24TT SwATENA</summary><p id="6e5e5414-6081-46c0-9255-a9eeab93d305" class="">Pentru configurare avem nevoie de un laptop de service.</p><p id="b72bda09-6a65-4348-957b-8b7420bac6d4" class="">Legam prin cablul Console (RS232 (Registery Serial) (laptop) - Console (switch))</p><p id="74068a89-ee3c-49e7-ac3f-c8f16cc4d063" class="">Laptop ⇒ Desktop ⇒ Terminal ⇒ Ok ⇒ Enter</p><p id="9a111146-04a7-4dd9-ae86-a78b83cad4f4" class="">Acum ne aflam in modul user &quot;Switch&gt;&quot; (default, cel mai slab mod cu putine facilitati)</p><ul id="84ee72a1-361f-46fc-a7d5-160925ca6734" class="toggle"><li><details open=""><summary>Comenzi</summary><ul id="94b60379-5b5f-4155-ae96-ca14abcd9a83" class="toggle"><li><details open=""><summary>enable</summary><p id="64a443b1-bbb8-4b1e-8d0b-8316510bb5e9" class="">Switch# - Modul privilegiat, cu mai multe drepturi dar nu suficiente pt controlul echipamentului</p></details></li></ul><ul id="81621678-27a6-4bf8-9069-68d7af875ef9" class="toggle"><li><details open=""><summary>configure terminal</summary><p id="e556a852-d530-4c49-b044-3022a3f15076" class="">Switch(config)# - Modul de configurare globala, ne ofera drepturile de ea configura echipamentul (modul configurare standard)</p></details></li></ul><ul id="ac87ec95-6f56-4c9d-be26-6deb68ae0bfb" class="toggle"><li><details open=""><summary>no ip domain-lookup</summary><p id="4bfd198d-bdf1-4e41-9751-1268d151b039" class="">comanda de evitare a erorilor, daca am gresit sintaxa, astfel incat sa nu asteptam cautarea in baza de date ce poate dura mult</p></details></li></ul><ul id="0f75955c-e026-4196-8e83-e8a5e3674c16" class="toggle"><li><details open=""><summary>hostname SwATENA</summary><p id="eae70985-eabf-4e54-8e71-a614a9ec2f99" class="">     </p></details></li></ul><ul id="291ff89c-5bd1-458e-a581-4423ec1d4a33" class="toggle"><li><details open=""><summary>no cdp run</summary><p id="ea4f388c-8d01-47f7-9381-db3671ee36ab" class="">cdp (Cisco Discovery Protocol) - protocol de a &quot;descoperi vecini&quot;</p></details></li></ul><ul id="75fd65b5-56e1-4b8d-87cf-0cb729cf90bc" class="toggle"><li><details open=""><summary>service password-encryption</summary><p id="6567dca5-4d54-46de-95e4-b4c29054c44e" class="">este criptata orice parola introdusa (cu un algoritm destul de slab)</p></details></li></ul><ul id="84c7abb0-b357-4bbb-bdc4-dadcd7b86056" class="toggle"><li><details open=""><summary>enable password ciscoenpa55</summary><p id="456ebb6e-0102-44c7-9390-8e25d3f65c52" class="">Parola generala necesara dupa enable</p></details></li></ul><ul id="7b0dc010-b5ba-4710-88cd-df9249942814" class="toggle"><li><details open=""><summary>enable secret ciscosecpa55</summary><p id="6b8efb1a-9307-4ff5-b3f9-b936d811f2c4" class="">Cea de-a doua parola mai puternica decat cea anterioara. Daca aceasta e introdusa, nu mai e necesara prima (daca ambele sunt setate, o vom introduce pe aceasta)</p></details></li></ul><ul id="f75698ac-23ab-4c89-bd2e-df0e851ceee4" class="toggle"><li><details open=""><summary>banner motd # Vineri la ora 14:00 serverul va fi oprit!#</summary><p id="8f1e1840-1f49-403e-9081-15132079cbd7" class="">Informam utilizatorii din reteaua noastra de anumite proceduri</p><p id="b4de211b-66b4-4394-9f4f-5343c2c66e86" class="">motd = Message of the day</p><p id="bf19f492-fad2-410f-a79f-c1663400a2a7" class="">
+</p></details></li></ul><ul id="d7e7caa8-1be7-4bd0-a3b0-8e8280aa5bf1" class="toggle"><li><details open=""><summary>line console 0</summary><p id="189c6227-645d-4042-ba90-8f9e930e9e91" class="">SwATENA(config-line) - configurare linie, configuram legatura dintre laptop si switch, o securizam setand parola (pasii urmatori)</p></details></li></ul><ul id="678321a1-c8c1-41dc-8f59-6082e01b1a1e" class="toggle"><li><details open=""><summary>password ciscoconpa55</summary><p id="34a0e3c8-a0b9-4642-95ba-cbc72dfe76e0" class="">Setam parola acestui mod de configurare</p></details></li></ul><ul id="e3befe50-fe3d-4db7-8a57-91619afe825c" class="toggle"><li><details open=""><summary>login</summary><p id="e807389f-4076-453f-8aa7-de44a345bb7a" class="">Instruim echipamentul ca parola sa fie ceruta la login</p></details></li></ul><ul id="97691595-e1e6-4862-9f30-c087e7d80cf7" class="toggle"><li><details open=""><summary>logging synchronous</summary><p id="c41a7b79-fadd-4d79-b856-6eb1c438d517" class="">Sincronizeaza logarea : daca sistemul are anumite proceduri/activitati ale sistemului de operare pe care le-ar face in detrimentul utilizatorului, acesta le sincronizeaza cu utilizatorul. Spre exemplu daca isi face update, sistemul are prioritate, ma intrerupe si ma intoarce in config-line (daca nu introduc aceasta linie de cod)</p></details></li></ul><ul id="a489c42c-af2a-47c3-9b12-39f7289a3ee0" class="toggle"><li><details open=""><summary>exec-timeout 25 10</summary><p id="05a6d22d-3319-4f4d-abf1-c873d603d42a" class="">Daca au trecut 25 min si 10 sec de la ultima activitate, ne intoarce in 0, cerand iar parolele </p><p id="b603efc0-24b7-4ea1-8cb2-f0eb29d88e99" class="">
+</p></details></li></ul><ul id="708fb144-3b41-4dfb-b959-36bb581a0e83" class="toggle"><li><details open=""><summary>exit</summary><p id="f884cf7c-a894-41dd-9911-bb093cbe6b32" class="">Inapoi la modul de configurare globala</p></details></li></ul><ul id="7dcb1801-ce10-465f-af82-d913fd87cacc" class="toggle"><li><details open=""><summary>line vty 0 15</summary><p id="8f89ed75-7960-4aa1-87b8-e46284a6f09a" class="">SwATENA(config-line)# - configuram alte linii care ne permit accesul de la distanta, sunt 16 linii in total</p></details></li></ul><ul id="c8968507-6b8f-45b2-b998-5ec909479adf" class="toggle"><li><details open=""><summary>password ciscovtypa55</summary></details></li></ul><ul id="3acf13ec-ee7c-4851-90d0-48b6e238ba72" class="toggle"><li><details open=""><summary>login</summary></details></li></ul><ul id="084dc272-ef72-496a-954b-961bd5f02e6b" class="toggle"><li><details open=""><summary>logging synchronous</summary></details></li></ul><ul id="7eee764c-770e-4c38-9543-8088aff46354" class="toggle"><li><details open=""><summary>exec-timeout 20 20</summary></details></li></ul><ul id="d30c332e-c99f-4764-917e-9006bc6c2359" class="toggle"><li><details open=""><summary>exit</summary></details></li></ul><ul id="8ba6a9f4-5f64-41da-a10f-f1a141a45778" class="toggle"><li><details open=""><summary>exit</summary><p id="8eb5888e-52ee-4272-a632-8471ccc1dd45" class="">Trecem in modul de lucru SwATENA#</p></details></li></ul><ul id="7eb611c3-80a0-4cef-bbc6-ee6cdf841e98" class="toggle"><li><details open=""><summary>copy running-config startup-config</summary><p id="1b76d8d3-6d53-4cf6-a6b4-fb034a75b90a" class="">Salveaza modificarile, se updateaza procesul de startup</p><p id="8b34ed0b-1a49-464d-b827-d7493743740c" class="">Apasam enter la filename </p></details></li></ul><ul id="93835d25-0c54-4a1b-a5c2-2e7a7ccb5630" class="toggle"><li><details open=""><summary>reload</summary><p id="49c08e6a-1f56-4b80-b5bd-dc926a87e19c" class="">Se reincarca sistemul de operare, imi va afisa mesajul setat cu banner si imi va cere parola de autentificare pentru ca am salvat modificarile. Vom introduce parola &quot;ciscoconpa55&quot;si vom trece in &quot;SwATENA&gt;&quot; (modul user)</p></details></li></ul><ul id="d483a430-e365-4093-98b3-d17e5847db2e" class="toggle"><li><details open=""><summary>enable</summary><p id="79f4e489-0513-46e5-8718-db5316726b06" class="">Cere parola de login pe care o vom introduce : &quot;ciscosecpa55&quot;. Acum ne aflam in modul privilegiat.</p></details></li></ul><ul id="6ec16f5a-7b12-4390-bdb0-12d6d235b511" class="toggle"><li><details open=""><summary>configure terminal</summary><p id="5cfecdc1-1965-4c38-8928-a640134899f0" class="">Trecem in modul de configurare globala</p></details></li></ul><ul id="33493dcc-1ea6-42df-b9db-8abb15b4c030" class="toggle"><li><details open=""><summary>CTRL+Z</summary><p id="a558b470-12aa-4929-a483-45d0d09386ec" class="">Ne intoarcem in modul de lucru privilegiat</p></details></li></ul><ul id="4af64d9b-85b1-4e12-a273-2bad4d424e49" class="toggle"><li><details open=""><summary>show clock</summary><p id="d560dfe6-10ca-4f4e-b0bd-de1fa20abd67" class="">Data producerii echipamentului</p></details></li></ul><ul id="3d0f2dda-24c0-4ca5-af84-965824d94b36" class="toggle"><li><details open=""><summary>clock set (o data gen 10:55:54 25 Feb 2021)</summary><p id="6d787d43-88f3-4763-988b-4fdd77c5dc49" class="">seteaza timerul pt sincronizare</p></details></li></ul><ul id="514c97fb-ed5a-4fa9-b9f8-d5dde18cf6c8" class="toggle"><li><details open=""><summary>configure terminal</summary><p id="26f06453-2313-4b80-89a1-65788b9b63c5" class="">Vom incepe configurarea accesului de la distanta securizat</p></details></li></ul><ul id="0edd4f2b-1897-4f35-b05e-ae679db14c98" class="toggle"><li><details open=""><summary>ip domain-name info.ro</summary><p id="80b31e0f-fc4d-4852-b1c6-7c266ee5b2ff" class="">Domeniul nostru este info.ro</p></details></li></ul><ul id="3f9a0e53-ed6f-4559-a5ef-0c75c43713cb" class="toggle"><li><details open=""><summary>username Admin01 privilege 15 secret Admin01pa55</summary><p id="c17c0b46-7ea6-44e0-abb3-1e528901d40d" class="">Ii spunem cine administreaza echipamentele din reteaua noatra</p><p id="0aa9aa43-32bf-43c2-948f-3b0db8a49fa8" class="">15 - numarul de drepturi (de la 0 la 15, unde 15 = toate drepturile)</p><p id="928ba72d-f52d-4e93-af04-cb592bcc7fe8" class="">Userul este Admin01 si parola Admin01pa55</p></details></li></ul><ul id="d3d2081f-e9c4-426b-b31a-8759f90013b5" class="toggle"><li><details open=""><summary>line vty 0 15</summary><p id="bcd396c4-d43a-4215-b809-1db7987e56c5" class="">Accesul de la distanta poate fi facut doar prin liniile vty. Va trece in modul config line. 0 15 - sunt 16 linii prin care putem comunica de la distanta</p></details></li></ul><ul id="800162fa-ea0c-4c15-9b4e-2adecf116c27" class="toggle"><li><details open=""><summary>transport input ssh</summary><p id="650e79f9-3418-4455-bd6d-8bbe10e3f386" class="">Il instruiesc sa permita serviciul transport input prin serviciul ssh (secure shell)</p></details></li></ul><ul id="1e6c2b2b-3c61-4e9d-814e-a16d78ab014d" class="toggle"><li><details open=""><summary>login local</summary><p id="048a725d-b308-4283-89e3-1514edc6e0aa" class="">La logare locala cere parola</p></details></li></ul><ul id="ea90e220-85f6-4c10-8367-87490be8e122" class="toggle"><li><details open=""><summary>exit</summary></details></li></ul><ul id="afea5b35-9cef-4664-8126-a2bfadb8f10f" class="toggle"><li><details open=""><summary>crypto key generate rsa</summary><p id="1b0897f8-e270-4ab4-a02c-f5b5211caed3" class="">Cripteaza toata munca prin algoritmul de criptare rsa (Rivest–Shamir–Adleman). Ma va intreba pe cati biti vrem sa lucram: 2048</p></details></li></ul><ul id="f9a50b17-34e5-433c-b684-f086867d3f3f" class="toggle"><li><details open=""><summary>exit</summary><p id="4dcfcec7-62f0-4226-83cf-5358b8f2d067" class="">Ne intoarcem in modul privilegiat pentru a salva modificarile</p></details></li></ul><ul id="cc2b778e-fad7-47bb-b4d8-621cc5e8e06e" class="toggle"><li><details open=""><summary>copy running-config startup-config</summary><p id="764ff6ff-182b-4ece-b078-09ca0ca046ca" class="">Salvam modificarile</p></details></li></ul><ul id="e4821749-d9f5-4507-9d00-8a87718ae7a3" class="toggle"><li><details open=""><summary>configure terminal</summary></details></li></ul><ul id="f0bc8ded-cbbd-4f31-a34e-9dfe58de0e2d" class="toggle"><li><details open=""><summary>interface vlan 1</summary><p id="7a4e779a-5166-4b1f-a5ed-ccc6b5d33d53" class=""><strong>DOAR IN SWITCHURI POT LUCRA CU O INTERFATA VIRTUALA</strong></p><p id="4392e696-8371-4b5b-8305-c2ad1487395a" class="">vlan 1 - virtual lan configurat de producator ( este o mare bresa de securitate dar lucram cu el la acest nivel de baza doar) ma va trece in modul &quot;SwATENA(config-if)#&quot; configurare interfata</p></details></li></ul><ul id="ae5b3410-9bb2-4e4a-8419-a690234e0997" class="toggle"><li><details open=""><summary>description Legatura cu ramura 192.168.243.0/24</summary></details></li></ul><ul id="f0aa33e9-849b-4162-8015-db3df0b4c62d" class="toggle"><li><details open=""><summary>ip address 192.168.243.2 255.255.255.0</summary><p id="01b59b17-4eed-4818-aa07-efcb221356a7" class="">192.168.243.2 → dupa ip-ul de la default gateway</p><p id="95d492b2-b639-4461-82a9-e1ff25ad0835" class="">255.255.255.0 → masca de retea</p></details></li></ul><ul id="5afdd2c9-8965-4333-afaa-67b7245a31b0" class="toggle"><li><details open=""><summary>no shutdown</summary><p id="4bf4b6b5-7ab8-476a-83ec-7a536c5b7c75" class="">Ca sa devina activa legatura mea</p><p id="d33ef66b-4bd6-429e-9ea7-913943485057" class="">Voi primi un mesaj &quot;Interface Vlan1, changed state to up&quot;.</p></details></li></ul><p id="68fba1b5-874d-421e-ae81-a02f73540c35" class="">Pentru legatura dintre host si switch voi folosi un cablu &quot;Copper Straight-Through&quot; → Click pe host (pc) → GigabitEternet0 → Click pe Switch → GigabitEthernet0/2. Dupa putin timp cablul devine verde la ambele capete (ii invata adresa MAC). Intram in host → Command Prompt .</p></details></li></ul></details></li></ul><ul id="54b62e00-8e92-4488-9580-2abc585f162e" class="toggle"><li><details open=""><summary>Testare host (Command Prompt)</summary><ul id="6eb5bfe4-8153-477e-b033-4a67fd5ae82f" class="toggle"><li><details open=""><summary>ping 192.168.243.2</summary><p id="87856129-6b40-45a8-b696-1e2cd6452160" class="">Ping catre switch. normal prima oara trebuie sa mearga 3/4 pachete</p></details></li></ul><ul id="1c4f158f-aa34-4dfb-a863-72d182cc4507" class="toggle"><li><details open=""><summary>ssh -l Admin01 192.168.243.2</summary><p id="9bf24b81-d3ba-45e0-8865-42ad34e3e38f" class="">Incerc conexiunea de la distanta, imi cere parola: &quot;Admin01pa55&quot; si voi intra in modul privilegiat &quot;SwATENA#&quot;</p><p id="2a9b4c45-8c8d-4221-914d-a4f704a42c29" class="">
+</p></details></li></ul></details></li></ul><p id="262d416b-a0ca-47f2-a9a3-8ca949947e0a" class="">Adaugam un nou <strong>PC ATENA1 </strong>cu aceleasi configuratii ca <strong>PC ATENA </strong>, dar <strong>IPv4 Address : 192.168.243.16 </strong>(si la mail in loc de ATENA punem ATENA1).</p><p id="e0b0986c-cb00-4eac-8472-4229a0b2b5b5" class="">Adaugam un nou Switch 2960 pe care-l numim SwATENA1. Mutam cablul albastru de la laptopul SERVICE din dreptul switchului (apasand pe cercul mic negru) pe noul switch → Console.  Intram in consola laptopului si adaugam aceleasi comenzi de configurare cu <strong>hostname SwATENA1 , ip address 192.168.243.3 255.255.255.0</strong></p><p id="193d4af5-2a12-470e-b2ef-d7e3be852fa6" class="">Dupa configurare legam <strong>PC ATENA1</strong> de <strong>SwATENA1 </strong>care va deveni verde la ambele capete, dupa care luam cablul punctat <strong>Copper Cross-Over </strong>si legam cele doua switchuri intre ele (GigabitEthernet 0 la ambele capete) care va deveni si el verde la ambele capete dupa putin timp.</p><p id="408835ca-2069-4636-86f9-a0ce564ca8a9" class="">Daca totul e configurat bine pot: sa dau ping din ATENA catre SwATENA, din ATENA catre SwATENA1 (ping catre 192.168.243.3), sa ma conectez cu ssh din ATENA la SwATENA dar si la SwATENA1, dar si ping de la ATENA la ATENA1 (ping 192.168.243.16)</p></div></article></body></html>

@@ -1,0 +1,927 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Rezumat</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="239ed4c5-860e-47ee-be43-4f8f07f3172e" class="page sans"><header><h1 class="page-title">Rezumat</h1></header><div class="page-body"><ul id="d9b4001d-c952-4e13-b403-bbbc345ee4b6" class="toggle"><li><details open=""><summary>PC → Switch</summary><pre id="a48ec5a7-30f2-4f86-b227-5b262fa96ad3" class="code"><code>I) Configurare PC
+1) PC [NUME]
+2) Placa de retea CGE
+3) IP Configuration
+	IP: N.A. + 10 (Lasam 10 IP-uri pentru switch-uri)
+	Mask: Se calculeaza dupa numarul de biti
+	Gateway: Cel mai mic ip din range
+	DNS: Cel mai mare ip din range
+4) E-Mail
+	Name: [NUME]
+	Email: [NUME]@INFO.RO
+	Server Information:
+	[DNS]
+	User Name: [NUME]
+	Password: 123456
+
+	[SAVE]
+
+II) Configurare Switch
+1) Switch 2960 cu nume propriu
+2) Laptop SERVICE
+3) Cablu Console -&gt; Laptop -&gt; RS 232 -&gt; Switch -&gt; Console
+4) Laptop -&gt; Terminal -&gt; Ok
+ Switch&gt; -&gt; modul utilizator
+ Switch# -&gt; modul privilegiat
+ Switch(config)# -&gt; modul de configurare globala (configurare standard) in care
+                    am control ca specialist
+
+Comenzi pentru configurarea switch-ului:
+
+enable                -&gt; Switch#
+configure terminal    -&gt; Switch(config)#
+no ip domain-lookup   -&gt; pentru evitarea erorilor, nu sta sa caute un input invalid
+										    in tot istoricul de comenzi
+hostname Sw[NUME]     -&gt; schimbam numele -&gt; Sw[NUME](config)#
+no cdp run            -&gt; inchide serviciul cdp, adica nu va ma i fi descoperit de
+                        alte switch-uri
+interface range fa 0/1-24      -&gt; toate interfetele fast
+shutdown                       -&gt; le inchidem pentru ca nu le folosim
+exit
+
+service password-encryption    -&gt; serviciu de criptare a parolelor
+enable password ciscoenapa55   -&gt; prima parola
+enable secret ciscosecpa55     -&gt; a doua parola care este ceruta, in caz ca aceasta
+                                 nu este introdusa, este ceruta prima
+banner motd # Vineri la ora 14:00 serverul va fi oprit !#
+                               -&gt; message of the day, un mesaj informativ relevant
+
+
+line console 0                 -&gt; SwATENA(config-line)# -&gt; vrem sa securizam
+																 switch-ul cand e accesat prin cablu
+password ciscoconpa55          -&gt; setam parola
+login                          -&gt; vrem ca parola sa fie ceruta la login
+logging synchronous            -&gt; imi permite configurarea chiar daca sistemul
+                                 ruleaza si alte activitati ale S.O.
+exec-timeout 25 10             -&gt; dupa 25 min, 10 sec, sistemul cere parole(logarea)
+exit                           -&gt; ne intoarce in modul de configurare globala
+                                 (Sw[NUME](config)#)
+
+line vty 0 15             -&gt; intram in modul de configurare line, prin alte linii
+                          -&gt; Sw[NUME](config-line)#
+password ciscovtypa55
+login
+logging synchronous
+exec-timeout 20 20
+end                       -&gt; ne intoarcem in modul privilegiat
+
+
+
+[show clock]                   -&gt; afiseaza timpul la care a fost setat echipamentul
+clock set 10:54:25 25 Feb 2021 -&gt; setam ceasul
+
+configure terminal
+ip domain-name info.ro         -&gt; vrem sa configuram de la distanta
+username Admin01 privilege 15 secret Admin01pa55
+                               -&gt; utilizatorul cu toate drepturile
+line vty 0 15                  -&gt; se poate conecta de la distanta doar prin liniile
+                                  vty
+                               -&gt; Sw[NUME](config-line)#
+transport input ssh            -&gt; il instruiesc sa permita serviciul transport input
+                                  prin ssh (secure shell)
+login local                    -&gt; la logare locala se cere parola
+exit                           -&gt; Sw[NUME](config)#
+crypto key generate rsa        -&gt; 2048
+															 -&gt; algoritmul de cryptare a parolei pe 2048 de biti
+
+[Monitorizrea sistemului de logare]
+logging host [Server IP]
+service timestamps log datetime msec
+service timestamps debug datetime msec
+
+
+[Configurarea interfetei virtuale (doar in switch-uri) vlan 1]
+interface vlan 1                        -&gt; SwATENA(config-if)#
+description Legatura cu ramura [N.A.]
+ip address [N.A. + 2] [Mask]         -&gt; urmatorul IP dupa gateway
+no shutdown                             -&gt; facem legatura activa
+exit
+ip default-gateway [N.A. + 1]           -&gt; pentru a fi vazut din intreaga topologie,
+                                           ii adaugam gateway
+end
+copy running-config startup-config      -&gt; salvam modificarile
+
+5) Cablu Copper Straight-Through -&gt; PC -&gt; GigabitEthernet0 -&gt; Switch
+   -&gt; GigabitEthernet0/2
+
+[Testare]
+6) PC -&gt; Command Prompt -&gt; ping adresa switch [Gateway + 1]
+   -&gt; prima oara e posibil sa piarda pachete pana reusesc comunicarea, iar a
+      doua oara ar trebui sa nu piarda
+ C:\&gt; -&gt; ssh -l Admin01 192.168.243.2 -&gt; ne conectam de la distanta prin ssh
+         cu utilizatorul admin creat
+ Password -&gt; Admin01pa55</code></pre></details></li></ul><ul id="ae2b66e4-826e-4e6b-b7d3-59cea8d4775c" class="toggle"><li><details open=""><summary>Router → Switch</summary><pre id="1561ad8a-9f92-450b-a42d-08da5b39e352" class="code"><code>I) Configurare Router
+Router 2911 R[NUME]
+Physical -&gt; Power Off -&gt; HWIC-2T -&gt; Cat mai aproape de sursa (dreapta)
+Conectez laptopul la Router prin cablul Console -&gt; No
+
+[Comenzi configurare Router]
+enable
+configure terminal
+no ip domain-lookup
+hostname R[NUME]
+no cdp run
+
+[Inchidem interfetele pe care nu le folosim]
+interface range giga 0/1-2                -&gt; interfetele pe care nu le folosim
+shutdown
+exit
+interface serial 0/0/1
+shutdown
+exit
+
+service password-encryption
+ security passwords min-length 10         -&gt; parola de minim 10 caractere
+ login block-for 50 attempts 3 within 15  -&gt; la interval de 15 sec si 3 incercari
+                                             esuate, blocam pentru 50 secunde
+enable password ciscoenapa55
+enable secret ciscosecpa55
+ banner login #Accesul persoanelor neautorizate este strict interzis !#
+banner motd #Vineri la ora 10:00 sedinta IT !#
+line console 0
+password ciscoconpa55
+login
+logging synchronous
+exec-timeout 25 25
+exit
+line vty 0 15
+password ciscovtypa55
+login
+logging synchronous
+exec-timeout 30 30
+end
+clock set 18:57:30 13 May 2021
+configure terminal
+ip domain-name info.ro
+username Admin01 privilege 15 secret Admin01pa55
+line vty 0 15
+transport input ssh
+login local
+exit
+crypto key generate rsa -&gt; 2048
+
+[Monitorizrea sistemului de logare]
+logging host [Server IP]
+service timestamps log datetime msec
+service timestamps debug datetime msec
+
+[Configuram IP pe INTERFATA FIZICA]
+[Interfata switch-router]
+interface giga 0/0
+description Legatura cu LAN [N.A.]
+ip address [N.A. + 1] [Mask]
+no shutdown
+ip helper-address [N.A. + 1/ IP Server] -&gt; daca avem DHCP pe routerul vecin folosim
+																				   legatura respectiva
+exit
+
+[Interfata router-router]
+interface serial 0/0/0
+description Legatura cu routerul [RNUME]
+ip address [IP] [MASK]
+no shutdown
+
+[Rutare]
+ip route [N.A.] [Mask] [serial] -&gt; retelele care nu sunt conectate direct
+end
+copy running-config startup-config
+
+[TESTARE]
+Cablu Copper Straight-Through -&gt; Switch -&gt; GE0/1 -&gt; Router -&gt; GE0/0
+PC -&gt; Terminal -&gt; Ping + ssh in switch si router</code></pre></details></li></ul><ul id="daba4793-7d51-492f-bcbd-0747b3bf6bb8" class="toggle"><li><details open=""><summary>Router → Router</summary><pre id="39a337c8-7a45-4b50-b288-cf6eec3c541e" class="code"><code>Legatura intre doua routere se face prin portul Serial.
+Legam Routerele:
+1) Cablul Serial DTE (Data Terminal Equipment)
+2) Click pe primul router -&gt; alegem portul serial -&gt; click pe al doilea router care
+   face legatura cu serverul -&gt; alegem portul serial identic
+3) Ceasul trebuie sa fie de la stanga la dreapta</code></pre></details></li></ul><ul id="4065c8fe-782f-4b1f-8f2e-d5a2ee296b6c" class="toggle"><li><details open=""><summary>WIFI</summary><pre id="c06015ae-7a9a-4d25-8013-7330d1d8dcc7" class="code"><code>[Pentru WIFI cu useri]
+Wireless Devices -&gt; WRT300N
+[Pentru 15 useri]
+	2^4 -&gt; 15 -&gt; 2^5
+	32 - 5 = 27 -&gt; 255.255.255.224
+Wifi -&gt; Auto DHCP -&gt; 192.168.243.33
+-&gt; Mask de mai sus -&gt; 30 useri -&gt; save
+
+
+WIFI-[NUME]
+GUI (Graphic User Interface) -&gt; Static IP
+ IP: [Cel mai mare din range]
+ Mask: 255.255.255.252
+ Gateway : [Cel mai mic din range]
+ DNS: [Cel mai mare din range-ul serverului]
+
+[Network Setup]
+ IP: 192.168.243.65
+ Mask: 255.255.255.240
+ Start IP: 65
+ Users: 14
+-&gt; SAVE
+
+[WIRELESS]
+ Name: WIFI-[NUME]
+ Standard Channel: 6/11
+-&gt; SAVE
+
+[WIRELESS SECURITY]
+ Mode: WPA2 Personal
+ Passphrase: 123456789
+-&gt; SAVE
+
+
+Laptop -&gt; L[NUME] -&gt; Physical -&gt; WPC300N
+Desktop -&gt; PC Wireless -&gt; Profiles -&gt; NEW -&gt; WIFI-[NUME]
+-&gt; Advanced Setup -&gt; WIFI-[NUME] -&gt; Next -&gt; Next -&gt; Security WPA2-Personal
+-&gt; Next -&gt; 123456789 -&gt; Next -&gt; Save -&gt; Connect -&gt; Linii verzi
+
+Laptop -&gt; Physical -&gt; WPC300N
+			 -&gt; Mail
+
+Cablu Copper Cross-Over -&gt; R[NUME] -&gt; GE0/1 -&gt; WIFI-[NUME] -&gt; Internet
+
+[TESTARE]
+L[NUME]-&gt; CMD -&gt; ping IP R[NUME] GE0/1 -&gt; ping Sw[NUME] -&gt; ping PC[NUME]</code></pre></details></li></ul><ul id="22247536-4752-4632-89dd-248ea48b97a8" class="toggle"><li><details open=""><summary>Server</summary><pre id="cddc0e43-ae3a-4cb9-88ee-731333ca563b" class="code"><code>Physical -&gt; CGE
+IP Configuration:
+	IP: [cel mai mare din range]
+	Mask: [Mask]
+	Gateway: [cel mai mic din range]
+	DNS: [IP]
+Mail
+
+Server -&gt; Services -&gt; HTTP Off
+-&gt; DNS -&gt; On -&gt; Name: INFO.RO -&gt; Address: [Server IP] -&gt; Add
+-&gt; EMAIL -&gt; Domain Name :INFO.RO -&gt; Set -&gt; User: SERVER, [DEST1], [DEST2], L[NUME]
+-&gt; Pass 123456 -&gt; +
+
+-&gt; FTP -&gt; Write, Read, Delete, Rename, List -&gt; adaugam useri (key sensitive)
+
+[TESTARE]
+Server -&gt; Desktop -&gt; Mail -&gt; Compose -&gt; To: [NUME]@info.ro
+       -&gt; Subject: Test -&gt; Verificare serviciu de e-mail -&gt; Send
+[NUME] -&gt; Mail -&gt; Receive -&gt; Reply -&gt; [NUME] -&gt; Send
+---------------------------------------------------------------------
+PCCEHIA -&gt; Desktop -&gt; Web Browser -&gt; 136.236.16.126 -&gt; Go -&gt; https
+-&gt; info.ro -&gt; https
+
+PCCEHIA -&gt; Desktop -&gt; Mail -&gt; Compose -&gt; To: Server -&gt; Subject: server@info.ro
+        -&gt; Verificare e-mail -&gt; Send
+
+PCCEHIA -&gt; Desktop -&gt; CMD -&gt; FTP 136.236.16.126 -&gt; cisco -&gt; cisco -&gt; ftp&gt; dir</code></pre></details></li></ul><ul id="1ce88800-743a-4ee7-b97d-ea47a8fb2158" class="toggle"><li><details open=""><summary>DHCP</summary><pre id="4ff984d5-3c69-4601-89fb-bb2c31131ff4" class="code"><code>Server -&gt; Services -&gt; DHCP -&gt; On
+	Name: [Numele PC-ului cu hosturi multe]
+	Gateway: [Cel mai mic ip din range de la numele respectiv]
+	DNS: [IP Server]
+	Start IP: [IP PC]
+	Mask: [Mask PC]
+	Max Users: [Allocated size - 2 - [IP Server].last]
+-&gt; Add
+
+Ma duc pe reteaua (routerul) care face legatura cu celealte (cel din mijloc)
+Ma duc pe interfata cu [Nume PC]
+	ip helper-address [IP Server]
+	save
+
+Adaug un PC Test -&gt; FastEthernet0 -&gt; Sw[NUME] -&gt; FE0/24
+Intru in Sw[NUME] -&gt; 
+	interface fa 0/24
+	no shutdown
+Intru in PC Test -&gt; Ip -&gt; Mut de pe Static pe DHCP pana DHCP request successful
+
+[DHCP pe router]
+	configure terminal
+	ip dhcp excluded-address [N.A. + 1] [N.A. + x - 1]
+						-&gt; rezervam anumite ip-uri(x = 50) din reteaua routerului unde vrem DHCP
+	ip dhcp pool [NUME] -&gt; numele retelei unde vrem sa folosim dhcp
+	network [N.A] [Mask] -&gt; reteaua unde vrem dhcp
+	default-router [N.A. + 1] -&gt; reteaua unde vrem dhcp
+	dns-server [SERVER IP]
+	domain-name info.ro</code></pre></details></li></ul><ul id="60d2701a-341a-4503-a326-7a09fd3be8c1" class="toggle"><li><details open=""><summary>FTP</summary><pre id="50ddf6d3-48a6-47ce-8a87-5030c68eba1a" class="code"><code>[TESTARE]
+PC[NUME] -&gt; CMD -&gt; FTP [IP SERVER] -&gt; cisco -&gt; cisco
+-&gt; get asa842-k8.bin</code></pre></details></li></ul><pre id="603baedd-0073-4ae5-9f23-97bb4e7fda5e" class="code"><code>show run -&gt; afisare comenzi
+show ip route -&gt; afisare rute
+Router -&gt; interface [interfata] -&gt; no ip address -&gt; stergem ip-ul
+Switch -&gt; interface vlan 1 -&gt; no ip default-gateway [ip] -&gt; stergem ip</code></pre><p id="5370cd9e-2514-4082-b56d-9175d2ad3ed3" class="">
+</p></div></article></body></html>
