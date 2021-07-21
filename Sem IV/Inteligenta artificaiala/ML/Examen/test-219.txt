@@ -1,0 +1,60 @@
+1. Care dintre urmatoarele activari ale neuronilor este rezultatul functiei de activare tangenta hiperbolica?
+A. [-0.1, 0, 1.0, -0.2]
+B. [0.1, 0.5, 0.3, 0.1]
+C. [0.1, -0.1, 3.2, -0.001]
+D. [-0.2, 0, 2.3, 5.1]
+
+2. Daca avem probabilitatile pentru evenimentele P(A)=0.91, P(B)=0.82, P(B|A)=0.73. Calculati probabilitea P(A|B) folosind regula lui Bayes.
+A. 0.95
+B. 0.65
+C. 0.58
+D. 0.81
+
+3. Care este rezultatul aplicarii functiei de activare ReLU(x) unde x = -227.09?
+A. 1
+B. 0
+C. 227.09
+D. -227
+
+4. Pentru o retea neuronala cu un singur strat si un singur perceptron, ponderile W formeaza:
+A. Un vector paralel cu hiperplanul de separare, aflat de aceeasi parte cu exemplele cu scoruri pozitive
+B. Un vector paralel cu hiperplanul de separare, aflat de aceeasi parte cu exemplele cu scoruri negative
+C. Un vector perpendicular pe hiperplanul de separare, aflat de aceeasi parte cu exemplele cu scoruri pozitive
+D. O matrice de ponderi care mapeaza datele intr-un spatiu liniar
+
+5. Care este forma duala utilizand kernel-ul liniar pe exemplul de test X_test = [2.5, 1], daca X_train = [[1, 3], [-2, -4], [0.5, -1], [-4, -2]]? X_train si X_test sunt in forma primala.
+A. X_test_dual = [5.5, -9, 0.25, -12]
+B. X_test_dual = [-3.5, -9, 0.25, 15]
+C. X_test_dual = [-5.5, 9, 0.25, -12]
+D. X_test_dual = [-5.5, -9, 0.25, 12]
+
+6. Fie un set de date format din numere reale x din intervalul [-5, 5] cu eticheta sin(x), { (x, sin(x)) | x in [-5, 5] } si un clasificator format dintr-un neuron fara activare. Acest model va:
+A. Suferi de underfitting
+B. Suferi de overfitting
+C. Niciuna dintre variante
+D. Avea rezultate bune atat pe setul de antrenare cat si pe cel de testare
+
+7. Care este, in general, beneficiul adus de utilizarea a mai multe straturi de neuroni (doua sau mai multe) in cazul relelelor neurale?
+A. Utilizarea unui numar mare de straturi de neuroni cu activare liniara duce la o putere de modelare sporita.
+B. Marirea numarului de parametrii prin utilizarea a mai multe straturi de neuroni duce la prevenirea fenomenului de regularizare.
+C. Marirea numarului de parametrii prin utilizarea a mai multe straturi de neuroni duce la prevenirea fenomenului de overfitting.
+D. Utilizarea a mai multe straturi permite invatarea automata a unor reprezentari din ce in ce mai abstracte a inputurilor.
+
+8. Functia kernel PQ provine din:
+A. Calcularea anumitor perechi concordante si discordante
+B. Diferenta media intre histograme de valori
+C. Functia de corelatie Kendall Tau
+D. Functia kernel liniara aplicata histogramelor de valori
+
+9. Care dintre urmatoarele functii de activare este recomandata pentru stratul de iesire cu 2 neuroni al unei retele neuronale ce discrimineaza intre caini si pisici?
+A. Softmax
+B. ReLU
+C. Liniara
+D. Sigmoid
+
+10. Cati neuroni trebuie sa fie pe primul strat al unei retele neurale?
+A. Un numar egal cu dimensiunea inputului.
+B. Numarul depinde de problema si tipul problemei.
+C. Un numar de neuroni mai mic decat dimensiunea inputului.
+D. Un numar de neuroni mai mare decat dimensiunea inputului.
+

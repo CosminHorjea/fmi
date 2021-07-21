@@ -1,0 +1,31 @@
+Solutie A* optimizat euristica neadmisibila : 
+Timp: 40 milisecunde
+b a b a b a b a b
+a b a b a b a b a
+
+b a b a b a b # b
+a b a b a b a a a
+
+b a b a b a # # #
+a b a b a b b b #
+
+b a b a # a # # #
+a b a b b b b b #
+
+b a b # # # # # #
+a b a a a # # # #
+
+b # b # # # # # #
+a a a a a # # # #
+
+# # # # # # # # #
+b b # # # # # # #
+
+# # # # # # # # #
+# # # # # # # # #
+
+Cost: 10.430555555555555
+Lungime: 8
+Numărul maxim de noduri: 75
+Numărul total de noduri calculate: 13
+--------------------
