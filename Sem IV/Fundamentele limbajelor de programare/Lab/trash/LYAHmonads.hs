@@ -41,4 +41,4 @@ flipThree = do
   a <- coin
   b <- coin
   c <- loadedCoin
-  return (all (== Tails) [a, b, c]) -- asta cred ca mergedin definitia de la functor de mai sus
+  return (all (== Tails) [a, b, c]) -- asta cred ca merge din definitia de la functor de mai sus
